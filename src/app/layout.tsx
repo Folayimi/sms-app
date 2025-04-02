@@ -7,7 +7,7 @@ import Layout from "@/components/Layout";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased font-inter`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Layout children={children} />

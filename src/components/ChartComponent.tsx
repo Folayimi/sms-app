@@ -1,6 +1,4 @@
 "use client";
-
-import { TrendingUp } from "lucide-react";
 import { CartesianGrid, Line, LineChart, XAxis } from "recharts";
 
 import {
@@ -42,11 +40,13 @@ export function ChartComponent({
   description,
   comment1,
   comment2,
+  trending,
 }: {
   title: string;
   description: string;
   comment1: string;
   comment2: string;
+  trending?: React.ReactNode;
 }) {
   return (
     <Card>
@@ -79,10 +79,10 @@ export function ChartComponent({
             <Line
               dataKey="desktop"
               type="natural"
-              stroke="var(--color-chart-2)"
+              stroke="#0187FF"
               strokeWidth={2}
               dot={{
-                fill: "var(--color-chart-2)",
+                fill: "#0187FF",
               }}
               activeDot={{
                 r: 6,
@@ -93,7 +93,7 @@ export function ChartComponent({
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
         <div className="flex gap-2 font-medium leading-none">
-          {comment1} <TrendingUp className="h-4 w-4" />
+          {comment1} {trending}
         </div>
         <div className="leading-none text-muted-foreground">{comment2}</div>
       </CardFooter>

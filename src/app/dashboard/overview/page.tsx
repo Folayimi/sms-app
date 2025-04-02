@@ -125,7 +125,7 @@ const Overview: React.FC = () => {
               {overviewData.map((data, index) => (
                 <div
                   key={index}
-                  className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-5 flex flex-col items-start transition transform hover:scale-105"
+                  className="bg-white dark:bg-gray-800 shadow-md rounded-2xl p-5 flex flex-col items-start transition transform hover:scale-105"
                 >
                   {/* Icon */}
                   <div className="text-3xl">{data.icon}</div>
@@ -163,24 +163,28 @@ const Overview: React.FC = () => {
               description="January - June 2024"
               comment1="Trending up by 5.2% this month"
               comment2="Showing total visitors for the last 6 months"
+              trending={<TrendingUp className="h-4 w-4" />}
             />
             <ChartComponent
               title="Total Users"
               description="January - June 2024"
               comment1="Trending up by 10.5% this month"
               comment2="Showing total users"
+              trending={<TrendingUp className="h-4 w-4" />}
             />
             <ChartComponent
               title="Total Payments"
               description="January - June 2024"
               comment1="Trending up by 7.2% this month"
               comment2="Showing total payments for the last 3 months"
+              trending={<TrendingUp className="h-4 w-4" />}
             />
             <ChartComponent
               title="Total SMS Numbers Received"
               description="January - June 2024"
               comment1="Dropped by 2.2% this month"
               comment2="Showing total SMS Numbers for the last 6 months"
+              trending={<TrendingDown className="h-4 w-4" />}
             />
           </div>
         </div>
