@@ -7,8 +7,8 @@ const SignUp = () => {
   return (
     <>
       <div
-        className="mt-[85px] w-full flex"
-        style={{ height: "calc(100vh - 85px)" }}
+        className="mt-[70px] w-full flex"
+        style={{ height: "calc(100vh - 70px)" }}
       >
         <div className="w-[45%] h-full bg-[#0187FF] py-[4em] px-[5em] text-white">
           <div className="cflexss gap-[1.5em]">
