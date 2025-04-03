@@ -58,9 +58,9 @@ const Home = () => {
   )
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-blue-50 min-h-screen">
       {/* Hero Section */}
-      <div className="bg-blue-600 text-white mt-8 p-8 pb-16 relative">
+      <div className="bg-blue-600 text-white mt-8 p-10 pb-16 relative">
         <div className="max-w-6xl mx-auto">
           <h1 className="text-3xl font-bold mb-4">Receive SMS online</h1>
           <p className="mb-8 max-w-md">
@@ -97,26 +97,26 @@ const Home = () => {
             </div>
           </div>
         </div>
-
-        {/* Phone mockup */}
         <div className="max-w-6xl mx-auto relative">
-          <div className="absolute bottom-[-80px] left-1/2 transform -translate-x-1/2 bg-white rounded-xl p-4 shadow-lg w-64">
-            <div className="bg-gray-100 rounded-lg p-4">
-              <p className="text-gray-800 text-sm">
+          <div className="absolute bottom-[-80px] left-1/2 transform -translate-x-1/2 bg-gray-100 opacity-50 rounded-xl p-4 shadow-lg w-64">
+          <div className="bg-gray-100 opacity-50 rounded-lg p-4">
+            <p className="text-blue-800 text-sm">
                 Your SMS code for registration in the service is 12344. Enter it on the site! 👍
               </p>
             </div>
           </div>
-        </div>
       </div>
+        
+      </div>
+      
 
       {/* How It Works Section */}
       <div className="py-20 text-center">
-        <p className="text-blue-500 font-bold">Check how it works!</p>
+        <p className="text-blue-500 text-2xl font-bold">Check how it works!</p>
       </div>
 
       {/* Service Selection Section */}
-      <div className="max-w-4xl mx-auto px-4 pb-12">
+      <div className="bg-blue-50 max-w-4xl mx-auto px-4 pb-12">
         <h2 className="text-2xl font-bold text-black text-center mb-8">
           Choose your country and service
           <br />
@@ -198,7 +198,7 @@ const Home = () => {
       </div>
 
       {/* Popular Services Section */}
-      <div className="max-w-4xl mx-auto px-4 pb-12 text-black">
+      <div className="bg-blue-50 max-w-4xl mx-auto px-4 pb-12 text-black">
         <h2 className="text-xl font-bold mb-6">Most popular services today</h2>
 
         <div className="bg-white rounded-lg shadow-md p-6">
@@ -261,7 +261,7 @@ const Home = () => {
       </div>
 
       {/* Personal Data Warning Section */}
-      <div className="max-w-4xl mx-auto px-4 pb-24">
+      <div className="bg-blue-50 max-w-4xl mx-auto px-4 pb-24">
         <h2 className="text-xl font-bold mb-6 text-center text-black">
           It's no secret that almost all online services
           <br />
@@ -441,7 +441,7 @@ const Home = () => {
             <div className="text-center">
               <div className="bg-blue-500 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
                 <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-wWE82NKWgFyeT5QVu3bh8jQDH5TsN4.png"
+                  src="https://sms-man.com/img/advantages/1.webp"
                   alt="Support Icon"
                   className="w-10 h-10 object-contain"
                 />
@@ -465,7 +465,7 @@ const Home = () => {
             <div className="text-center">
               <div className="bg-blue-500 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
                 <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-wWE82NKWgFyeT5QVu3bh8jQDH5TsN4.png"
+                  src="https://sms-man.com/img/advantages/2.webp"
                   alt="Telegram Icon"
                   className="w-10 h-10 object-contain"
                 />
@@ -489,7 +489,7 @@ const Home = () => {
             <div className="text-center">
               <div className="bg-blue-500 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
                 <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-wWE82NKWgFyeT5QVu3bh8jQDH5TsN4.png"
+                  src="https://sms-man.com/img/advantages/3.webp"
                   alt="Group Chat Icon"
                   className="w-10 h-10 object-contain"
                 />
@@ -513,7 +513,7 @@ const Home = () => {
             <div className="text-center">
               <div className="bg-blue-500 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
                 <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-wWE82NKWgFyeT5QVu3bh8jQDH5TsN4.png"
+                  src="https://sms-man.com/img/advantages/4.webp?id=1"
                   alt="Desktop Icon"
                   className="w-10 h-10 object-contain"
                 />
@@ -540,7 +540,7 @@ const Home = () => {
       </div>
 
       {/* Solutions for Professionals Section */}
-      <div className="bg-blue-600 text-black py-12">
+      <div className="bg-blue-600 py-12">
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="text-2xl font-bold mb-6 text-center">Solutions for professionals</h2>
 
@@ -589,9 +589,9 @@ const Home = () => {
       </div>
 
       {/* FAQ Section */}
-      <div className="bg-gray-50 py-12">
+      <div className="bg-blue-50 py-12 text-black">
         <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-2xl font-bold mb-8 text-center">Frequently Asked Questions</h2>
+          <h2 className="text-2xl font-bold mb-8 text-center text-black">Frequently Asked Questions</h2>
 
           <div className="space-y-4">
             <div className="bg-white rounded-lg shadow-sm overflow-hidden">
@@ -687,18 +687,18 @@ const Home = () => {
         NEW SECTION: Add your images & text here.
         Replace /images/... with the correct paths or URLs to your uploaded images.
       */}
-      <div className="bg-gray-50 py-16">
+      <div className="bg-blue-50 py-16">
         <div className="max-w-6xl mx-auto px-4">
           {/* First Row: iPad mockup + main text */}
           <div className="flex flex-col md:flex-row items-center mb-12">
             <div className="md:w-1/2 mb-6 md:mb-0 md:pr-6">
-              <img src="/images/sms-man-mockup.png" alt="SMS-MAN Mockup" className="w-full h-auto rounded shadow" />
+              <img src="https://sms-man.com/img/test/pic_en.webp" alt="SMS-MAN Mockup" className="w-full h-auto rounded shadow" />
             </div>
             <div className="md:w-1/2">
-              <h2 className="text-2xl font-bold mb-4">
+              <h2 className="text-2xl font-bold mb-4 text-black">
                 SMS-MAN – service for private registration at online resources
               </h2>
-              <p className="text-gray-700 mb-4">
+              <p className="text-black mb-4">
                 We give you the opportunity to anonymously use the phone number online to receive SMS to register on
                 sites and applications. At the same time, you can be sure that no one but you will have access to it.
               </p>
@@ -708,10 +708,10 @@ const Home = () => {
           {/* Second Row: 3-step explanation */}
           <div className="flex flex-col md:flex-row items-center mb-12">
             <div className="md:w-1/2 order-2 md:order-1 mt-6 md:mt-0 md:pr-6">
-              <h3 className="text-xl font-semibold mb-4">
+              <h3 className="text-xl font-semibold mb-4 text-black">
                 Registration on the sites without SMS to your personal number in 3 steps
               </h3>
-              <ul className="list-disc list-inside text-gray-700 space-y-3">
+              <ul className="list-disc list-inside text-black space-y-3">
                 <li>
                   <strong>Get your number</strong> in your personal cabinet. To register with SMS-MAN you only need to
                   enter your email address. No ID information or other contacts.
@@ -738,11 +738,11 @@ const Home = () => {
           {/* Third Row: one-time vs. rent */}
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-6 md:mb-0 md:pr-6">
-              <img
+              {/* <img
                 src="/images/sms-man-options.png"
                 alt="Disposable vs. Rent"
                 className="w-full h-auto rounded shadow"
-              />
+              /> */}
             </div>
             <div className="md:w-1/2">
               <h3 className="text-xl font-semibold mb-4">
@@ -768,7 +768,7 @@ const Home = () => {
         </div>
       </div>
       {/* Footer */}
-      <div className="bg-white py-8 border-t">
+      <div className="bg-blue-50 py-8 border-t">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex justify-center mb-6">
             <div className="text-blue-500 font-bold text-xl">
@@ -835,7 +835,22 @@ const Home = () => {
 
           <div className="flex justify-center gap-4 mb-6">
             <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-If9lB2EbQaH2VT2RQSu3ZbpEnfxqGY.png"
+              src="https://sms-man.com/img/payment/tinkoff.png"
+              alt="Payment Method"
+              className="h-6"
+            />
+            <img
+              src="https://sms-man.com/img/payment/Sufaka.png"
+              alt="Payment Method"
+              className="h-6"
+            />
+            <img
+              src="https://sms-man.com/img/payment/payeer.png"
+              alt="Payment Method"
+              className="h-6"
+            />
+            <img
+              src="https://sms-man.com/img/payment/advcash.png"
               alt="Payment Method"
               className="h-6"
             />
