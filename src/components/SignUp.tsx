@@ -1,5 +1,5 @@
 import { useState } from "react";
-import StudentAccount from "./StudentAccount";
+import UserAccount from "./UserAccount";
 
 const SignUp = () => {
   const [accountType, setAccountType] = useState("user");
@@ -27,7 +27,7 @@ const SignUp = () => {
 
         <div className="w-[55%] flexmm h-full bg-white p-[3em] overflow-y-auto">
           {accountType === "user" && (
-            <StudentAccount setAccountType={setAccountType} />
+            <UserAccount setAccountType={setAccountType} />
           )}
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import StudentSignIn from "./StudentSignIn";
+import UserSignin from "./UserSignin";
 import ForgotPassword from "./ForgotPassword";
 
 const SignIn = () => {
@@ -30,7 +30,7 @@ const SignIn = () => {
 
         <div className="w-[55%] h-full flexmm bg-white p-[3em] overflow-y-auto">
           {loginType === "user" && !forgot && (
-            <StudentSignIn setLoginType={setLoginType} setForgot={setForgot} />
+            <UserSignin setLoginType={setLoginType} setForgot={setForgot} />
           )}
           {loginType === "user" && forgot && (
             <ForgotPassword loginType={loginType} setForgot={setForgot} />
