@@ -13,9 +13,9 @@ const SignIn = () => {
         style={{ height: "calc(100vh - 70px)" }}
       >
         <div
-          className="w-[45%] h-full bg-[#0187FF] py-[4em] px-[5em] text-white"
+          className="w-[45%] h-full bg-[#0187FF] flexmm py-[4em] px-[5em] text-white"
         >
-          <div className="w-full cflexss gap-[1.5em]">
+          <div className="w-full max-w-[650px] cflexss gap-[1.5em]">
             <h1>A Logo will be here </h1>
             <div className="cflexss gap-[50px]">
               <h1 className="text-[60px] text-white font-[800]">

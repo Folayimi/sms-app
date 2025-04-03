@@ -10,8 +10,8 @@ const SignUp = () => {
         className="mt-[70px] w-full flex"
         style={{ height: "calc(100vh - 70px)" }}
       >
-        <div className="w-[45%] h-full bg-[#0187FF] py-[4em] px-[5em] text-white">
-          <div className="cflexss gap-[1.5em]">
+        <div className="w-[45%] h-full flexmm bg-[#0187FF] py-[4em] px-[5em] text-white">
+          <div className="w-full cflexss max-w-[650px] gap-[1.5em]">
             <h1>A Logo will be here </h1>
             <div className="cflexss gap-[50px]">
               <h1 className="text-[60px] text-white font-[800]">
