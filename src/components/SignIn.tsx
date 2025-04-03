@@ -28,7 +28,7 @@ const SignIn = () => {
           </div>
         </div>
 
-        <div className="w-[55%] h-full bg-white p-[3em] overflow-y-auto">
+        <div className="w-[55%] h-full flexmm bg-white p-[3em] overflow-y-auto">
           {loginType === "user" && !forgot && (
             <StudentSignIn setLoginType={setLoginType} setForgot={setForgot} />
           )}

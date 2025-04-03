@@ -25,7 +25,7 @@ const SignUp = () => {
           </div>
         </div>
 
-        <div className="w-[55%] h-full bg-white p-[3em] overflow-y-auto">
+        <div className="w-[55%] flexmm h-full bg-white p-[3em] overflow-y-auto">
           {accountType === "user" && (
             <StudentAccount setAccountType={setAccountType} />
           )}

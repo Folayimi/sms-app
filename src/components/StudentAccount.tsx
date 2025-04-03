@@ -120,7 +120,7 @@ const StudentAccount = ({
   };
 
   return (
-    <div className="cflexss px-[30px] h-full w-full gap-[28px]">
+    <div className="cflexss max-w-[650px] px-[30px] h-full w-full gap-[28px]">
       <div
         className="flexss bg-blue-500 rounded-[0.5em] p-[0.4em] cursor-pointer"
         onClick={() => {

@@ -60,7 +60,7 @@ const StudentSignIn = ({ setLoginType, setForgot }: StudentSignInProps) => {
   };
 
   return (
-    <div className="cflexss px-[30px] h-full w-full gap-[28px]">
+    <div className="cflexss px-[30px] max-w-[650px] h-full w-full gap-[28px]">
       <div
         className="flexss bg-blue-500 rounded-[0.5em] p-[0.4em] cursor-pointer"
         onClick={() => {
@@ -146,7 +146,7 @@ const StudentSignIn = ({ setLoginType, setForgot }: StudentSignInProps) => {
           </div>
         )}
 
-        <div className="flexbm w-full text-[16px] lg:text-[14px] text-black sm:text-[20px]">
+        <div className="flexbm gap-[320px] mt-[20px] w-full text-[16px] lg:text-[14px] text-black sm:text-[20px]">
           <div className="flexmm gap-[12px]">
             <input type="checkbox" />
             <p>Remember me</p>

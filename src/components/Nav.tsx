@@ -30,22 +30,13 @@ const Nav: React.FC = () => {
           showNav && "fixed"
         } bg-opacity-75 font-inter`}
       >
-        <div className="w-fit flexmm gap-[50px] lf:hidden">
+        <div className="w-fit flexmm gap-[125px] lf:hidden">
           <h1 className="font-[600] text-[#0187FF]">SMS-APP-LOGO</h1>
           <input
             type="text"
             placeholder="Search"
             className="px-4 py-2 border w-[300px] bg-white rounded-lg text-gray-700 focus:ring-2 focus:ring-blue-400"
-          />
-          {/* <div className="group-hover:border-[2px] group-hover:border-[#0187FF] bg-white text-black rounded-[10px] flexmm gap-[15px] px-[15px] py-[10px]">
-            <HiSearch size={20} color="gray" />
-            <input
-              type="text"
-              placeholder="Search"
-              className="outline-none bg-transparent w-[200px] sm:w-[300px]"
-              style={{ fontSize: "16px", fontWeight: "600" }}
-            />
-          </div> */}
+          />        
         </div>
 
         <div className="w-fit flexmm gap-[50px] text-[14px]">
