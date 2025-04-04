@@ -40,7 +40,7 @@ const Nav: React.FC = () => {
         </div>
 
         <div className="w-fit flexmm gap-[50px] text-[14px]">
-          <ThemeSwitcher />
+          {/* <ThemeSwitcher /> */}
           <div className="bg-white rounded-[10px] border-[#0187FF] border-[1px] flexbm gap-[20px] px-[20px] py-[5px]">
             <div className="cflexss">
               <p className="text-[#929696]">Balance:</p>
