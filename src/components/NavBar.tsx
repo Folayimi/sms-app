@@ -1,8 +1,9 @@
 "use client";
-import { Button } from "./ui/button";
+
 import React, { useState } from "react";
 import { RiMenuFill } from "react-icons/ri";
 import { HiX } from "react-icons/hi";
+import { Button } from "./ui/button";
 import Link from "next/link";
 
 type NavBarProps = {
@@ -10,121 +11,95 @@ type NavBarProps = {
   background?: string;
 };
 
-const NavBar: React.FC<NavBarProps> = ({ active = 0, background }) => {
+const NavBar: React.FC<NavBarProps> = ({ active = 0, background = "#FFFFFF" }) => {
   const nav = [
-    {
-      title: "Home",
-      link: "/",
-    },
-    {
-      title: "About Us",
-      link: "/",
-    },
-    {
-      title: "Contact",
-      link: "/",
-    },
+    { title: "Home", link: "/" },
+    { title: "About Us", link: "/about" },
+    { title: "Contact", link: "/contact" },
   ];
 
-  const [showNav, setShowNav] = useState<boolean>(false);
+  const [showNav, setShowNav] = useState(false);
 
   return (
-    <>
-      <div
-        className={`px-[40px] fixed text-black top-0 left-0 z-50 bg-white shadow-md w-full flex justify-between items-center py-[20px] px-xpadding ${
-          showNav && "fixed"
-        } bg-opacity-75`}
-      >
-        <h1 className="font-[600] text-[#0187FF]">SMS-APP-LOGO</h1>
-        <div className="hidden text-blue-500 flexmm gap-[60px] md:block">
-          {nav.map((item, i) => {
-            return (
-              <a
-                href={item.link}
-                key={i}
-                className={
-                  active === i
-                    ? "font-[800] text-sec1 text-[16px] lg:text-[14px]"
-                    : "text-[16px] font-[600] lg:text-[14px]"
-                }
-              >
-                {item.title}
-              </a>
-            );
-          })}
-        </div>
+    <header
+      style={{ background }}
+      className="fixed top-0 left-0 w-full z-50 bg-opacity-95 px-6 py-4 flex items-center justify-between shadow-lg"
+    >
+      {/* LOGO */}
+      <h1 className="text-[#BB86FC] font-bold text-xl">SMS-APP</h1>
 
-        <div className="w-fit flex gap-6 lf:hidden">
-          <Link href={"/signup"}>
-            <Button className="rounded-full border-[2px] border-blue-500 bg-transparent px-[30px] py-[10px] text-[16px] text-blue-500 hover:text-white font-[600]">
+      {/* Desktop Nav */}
+      <nav className="hidden md:flex gap-10 items-center text-white">
+        {nav.map((item, i) => (
+          <Link
+            key={i}
+            href={item.link}
+            className={`text-sm font-semibold hover:text-[#BB86FC] transition-colors duration-300 ${
+              active === i ? "text-[#BB86FC]" : ""
+            }`}
+          >
+            {item.title}
+          </Link>
+        ))}
+        <Link href="/signup">
+          <Button className="bg-transparent border-2 border-[#BB86FC] text-[#BB86FC] hover:bg-[#BB86FC] hover:text-white rounded-full px-5 py-2 text-sm font-semibold">
+            Sign Up
+          </Button>
+        </Link>
+        <Link href="/signin">
+          <Button className="bg-[#7E57C2] hover:bg-[#BB86FC] text-white rounded-full px-5 py-2 text-sm font-semibold">
+            Login
+          </Button>
+        </Link>
+      </nav>
+
+      {/* Mobile Hamburger */}
+      <div className="md:hidden text-white z-50">
+        {showNav ? (
+          <HiX size={28} onClick={() => setShowNav(false)} />
+        ) : (
+          <RiMenuFill size={28} onClick={() => setShowNav(true)} />
+        )}
+      </div>
+
+      {/* Mobile Menu */}
+      <div
+        className={`fixed top-0 right-0 w-3/4 h-full bg-[#1A1A1A] text-white transform transition-transform duration-300 ease-in-out ${
+          showNav ? "translate-x-0" : "translate-x-full"
+        } px-6 pt-20`}
+      >
+        <div className="flex flex-col gap-6">
+          {nav.map((item, i) => (
+            <Link
+              key={i}
+              href={item.link}
+              onClick={() => setShowNav(false)}
+              className={`text-base font-medium hover:text-[#BB86FC] ${
+                active === i ? "text-[#BB86FC]" : ""
+              }`}
+            >
+              {item.title}
+            </Link>
+          ))}
+          <Link href="/signup">
+            <Button
+              onClick={() => setShowNav(false)}
+              className="bg-transparent border-2 border-[#BB86FC] text-[#BB86FC] hover:bg-[#BB86FC] hover:text-white rounded-full w-full py-2 text-sm font-semibold"
+            >
               Sign Up
             </Button>
           </Link>
-
           <Link href="/signin">
-            <Button className="rounded-full px-[30px] py-[12px] text-[16px] text-white">
+            <Button
+              onClick={() => setShowNav(false)}
+              className="bg-[#7E57C2] hover:bg-[#BB86FC] text-white rounded-full w-full py-2 text-sm font-semibold"
+            >
               Login
             </Button>
           </Link>
         </div>
-
-        <div className="hidden lf:block">
-          {showNav ? (
-            <HiX
-              size={24}
-              onClick={() => {
-                setShowNav(false);
-              }}
-            />
-          ) : (
-            <RiMenuFill
-              size={24}
-              onClick={() => {
-                setShowNav(true);
-              }}
-            />
-          )}
-        </div>
-
-        <div
-          className={`fixed top-[70px] sm:top-[60px] w-full bg-primary0  h-full p-xpadding ${
-            showNav ? "left-0" : "left-[100%]"
-          } transition-all z-[999]`}
-        >
-          <div className="flex gap-6 flex-col">
-            {nav.map((item, i) => {
-              return (
-                <a
-                  href={item.link}
-                  key={i}
-                  className={
-                    active === i
-                      ? "font-[800] text-sec1 text-[0.8em]"
-                      : "text-[0.8em]"
-                  }
-                >
-                  {item.title}
-                </a>
-              );
-            })}
-          </div>
-
-          <div className="w-fit flex gap-6 mt-10">
-            <Link href={"/signup"}>
-              <Button className="rounded-full border-[2px] border-white bg-transparent px-[30px] py-[10px] text-[16px] text-white font-[600]">
-                Sign Up
-              </Button>
-            </Link>
-
-            <Link href="/signin">
-              <Button className="rounded-full px-[30px] py-[12px] text-[16px] text-white">
-                Login
-              </Button>
-            </Link>
-          </div>
-        </div>
       </div>
-    </>
+    </header>
   );
 };
 

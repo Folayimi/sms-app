@@ -5,33 +5,27 @@ const SignUp = () => {
   const [accountType, setAccountType] = useState("user");
 
   return (
-    <>
-      <div
-        className="mt-[70px] w-full flex"
-        style={{ height: "calc(100vh - 70px)" }}
-      >
-        <div className="w-[45%] h-full flexmm bg-[#0187FF] py-[4em] px-[5em] text-white">
-          <div className="w-full cflexss max-w-[650px] gap-[1.5em]">
-            <h1>A Logo will be here </h1>
-            <div className="cflexss gap-[50px]">
-              <h1 className="text-[60px] text-white font-[800]">
-                Welcome to SMS-App!
-              </h1>
-              <p className="text-[18px] font-[400] pt-[0.5em] leading-[1.7em]">
-                By creating an account, you gain access to a diverse range of
-                SMS numbers
-              </p>
-            </div>
+    <div className="mt-[70px] w-full" style={{ minHeight: "calc(100vh - 70px)" }}>
+      <div className="flex flex-col md:flex-row h-full">
+        {/* Info Panel */}
+        <div className="w-full md:w-1/2 h-full bg-[#0187FF] flex flex-col items-center justify-center py-16 px-12 text-white">
+          <div className="max-w-[650px] text-center space-y-6">
+            <h1 className="text-3xl md:text-4xl font-bold">A Logo will be here</h1>
+            <h2 className="text-[40px] md:text-[60px] font-extrabold">
+              Welcome to SMS-App!
+            </h2>
+            <p className="text-lg font-normal pt-2 leading-relaxed">
+              By creating an account, you gain access to a diverse range of SMS numbers.
+            </p>
           </div>
         </div>
 
-        <div className="w-[55%] flexmm h-full bg-white p-[3em] overflow-y-auto">
-          {accountType === "user" && (
-            <UserAccount setAccountType={setAccountType} />
-          )}
+        {/* Form Panel */}
+        <div className="w-full md:w-1/2 h-full flex flex-col items-center justify-center bg-white p-12 overflow-y-auto">
+          {accountType === "user" && <UserAccount setAccountType={setAccountType} />}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
