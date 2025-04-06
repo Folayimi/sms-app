@@ -34,25 +34,75 @@ const Home = () => {
   const services = [
     { name: "LiveScore", price: 0.14, icon: <Phone className="w-5 h-5" /> },
     { name: "PaxFul", price: 0.26, icon: <Shield className="w-5 h-5" /> },
-    { name: "Okcupid", price: 0.45, icon: <MessageSquare className="w-5 h-5" /> },
+    {
+      name: "Okcupid",
+      price: 0.45,
+      icon: <MessageSquare className="w-5 h-5" />,
+    },
     { name: "paysafecard", price: 0.58, icon: <Clock className="w-5 h-5" /> },
     { name: "JustDating", price: 0.18, icon: <Phone className="w-5 h-5" /> },
-    { name: "Tantan/探探", price: 0.18, icon: <MessageSquare className="w-5 h-5" /> },
+    {
+      name: "Tantan/探探",
+      price: 0.18,
+      icon: <MessageSquare className="w-5 h-5" />,
+    },
     { name: "DiDi/滴滴出行", price: 0.18, icon: <Phone className="w-5 h-5" /> },
-    { name: "Potato Chat", price: 0.29, icon: <MessageSquare className="w-5 h-5" /> },
+    {
+      name: "Potato Chat",
+      price: 0.29,
+      icon: <MessageSquare className="w-5 h-5" />,
+    },
     { name: "Prepaid2Cash", price: 0.6, icon: <Clock className="w-5 h-5" /> },
     { name: "MobiKwik", price: 0.23, icon: <Shield className="w-5 h-5" /> },
   ];
 
   const popularServices = [
-    { country: "Indonesia", service: "Instagram", icon: "📷", activated: 1711, cost: 0.08 },
-    { country: "South Africa", service: "Facebook", icon: "👤", activated: 519, cost: 0.18 },
-    { country: "Indonesia", service: "Telegram", icon: "📱", activated: 215, cost: 0.29 },
-    { country: "Indonesia", service: "Google/youtube/Gmail", icon: "📺", activated: 156, cost: 0.15 },
-    { country: "Philippines", service: "Facebook", icon: "👤", activated: 103, cost: 0.27 },
+    {
+      country: "Indonesia",
+      service: "Instagram",
+      icon: "📷",
+      activated: 1711,
+      cost: 0.08,
+    },
+    {
+      country: "South Africa",
+      service: "Facebook",
+      icon: "👤",
+      activated: 519,
+      cost: 0.18,
+    },
+    {
+      country: "Indonesia",
+      service: "Telegram",
+      icon: "📱",
+      activated: 215,
+      cost: 0.29,
+    },
+    {
+      country: "Indonesia",
+      service: "Google/youtube/Gmail",
+      icon: "📺",
+      activated: 156,
+      cost: 0.15,
+    },
+    {
+      country: "Philippines",
+      service: "Facebook",
+      icon: "👤",
+      activated: 103,
+      cost: 0.27,
+    },
   ];
 
-  const socialIcons = ["telegram", "youtube", "instagram", "facebook", "twitter", "gmail", "whatsapp"];
+  const socialIcons = [
+    "telegram",
+    "youtube",
+    "instagram",
+    "facebook",
+    "twitter",
+    "gmail",
+    "whatsapp",
+  ];
 
   // Memoize random positions for social icons
   const socialIconPositions = useMemo(
@@ -75,16 +125,20 @@ const Home = () => {
   );
 
   return (
-    <div className="bg-[#1A1A1A] min-h-screen mt-[70px] text-gray-100 w-full">
+    <div className="bg-[#1A1A1A] min-h-screen lg:mt-[70px] mt-[50px] text-gray-100 w-full">
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-[#7E57C2] to-[#BB86FC] text-white p-8 md:p-16 rounded-b-3xl shadow-lg relative overflow-hidden w-full">
         <div className="w-full px-4 relative z-10">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Receive SMS Online</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            Receive SMS Online
+          </h1>
           <p className="mb-8 text-lg">
-            Register on social networks, marketplaces, exchanges and online services{" "}
+            Register on social networks, marketplaces, exchanges and online
+            services{" "}
             <span className="text-yellow-300 font-semibold">
               without spam and disclosure of personal data
-            </span>.
+            </span>
+            .
           </p>
           <div className="flex flex-wrap gap-4 mb-12">
             <button className="bg-gray-900 text-white font-bold py-3 px-8 rounded-full hover:bg-[#BB86FC] transition duration-300 shadow-lg">
@@ -98,7 +152,8 @@ const Home = () => {
           <div className="bg-gray-900 rounded-xl p-4 shadow-xl max-w-sm mt-8 md:mt-0 md:absolute md:bottom-[-40px] md:right-4 transform rotate-2 border-l-4 border-[#7E57C2]">
             <p className="text-gray-300 text-sm">
               Your SMS code for registration in the service is{" "}
-              <span className="font-bold text-[#BB86FC]">12344</span>. Enter it on the site! 👍
+              <span className="font-bold text-[#BB86FC]">12344</span>. Enter it
+              on the site! 👍
             </p>
           </div>
         </div>
@@ -132,8 +187,12 @@ const Home = () => {
             <div className="bg-[#7E57C2] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
               <Search className="w-8 h-8 text-white" />
             </div>
-            <h3 className="text-xl font-bold mb-2">1. Choose Country &amp; Service</h3>
-            <p className="text-gray-400">Select from our global range of numbers and services</p>
+            <h3 className="text-xl font-bold mb-2">
+              1. Choose Country &amp; Service
+            </h3>
+            <p className="text-gray-400">
+              Select from our global range of numbers and services
+            </p>
           </div>
 
           <div className="bg-gray-800 rounded-xl p-6 text-center shadow-lg transform hover:scale-105 transition duration-300">
@@ -141,7 +200,9 @@ const Home = () => {
               <RefreshCcw className="w-8 h-8 text-white" />
             </div>
             <h3 className="text-xl font-bold mb-2">2. Complete Payment</h3>
-            <p className="text-gray-400">Choose your preferred payment method</p>
+            <p className="text-gray-400">
+              Choose your preferred payment method
+            </p>
           </div>
 
           <div className="bg-gray-800 rounded-xl p-6 text-center shadow-lg transform hover:scale-105 transition duration-300">
@@ -149,14 +210,18 @@ const Home = () => {
               <MessageSquare className="w-8 h-8 text-white" />
             </div>
             <h3 className="text-xl font-bold mb-2">3. Receive SMS</h3>
-            <p className="text-gray-400">Get verification codes instantly on our platform</p>
+            <p className="text-gray-400">
+              Get verification codes instantly on our platform
+            </p>
           </div>
         </div>
       </div>
 
       {/* Service Selection Section */}
       <div className="w-full px-4 pb-16">
-        <h2 className="text-3xl font-bold text-center mb-2">Choose Your Number</h2>
+        <h2 className="text-3xl font-bold text-center mb-2">
+          Choose Your Number
+        </h2>
         <p className="text-center text-gray-400 mb-8">
           Receive SMS messages instantly from anywhere in the world
         </p>
@@ -185,7 +250,9 @@ const Home = () => {
                   <div
                     key={country.code}
                     className={`flex items-center p-3 hover:bg-[#7E57C2] cursor-pointer rounded-lg mb-1 transition duration-200 ${
-                      selectedCountry === country.code ? "bg-[#7E57C2]" : "bg-gray-800"
+                      selectedCountry === country.code
+                        ? "bg-[#7E57C2]"
+                        : "bg-gray-800"
                     }`}
                     onClick={() => setSelectedCountry(country.code)}
                   >
@@ -199,7 +266,8 @@ const Home = () => {
               </div>
               <div className="text-xs text-gray-400 mt-4 flex items-center justify-between">
                 <span>
-                  Available Countries: <span className="text-white font-bold">179</span>
+                  Available Countries:{" "}
+                  <span className="text-white font-bold">179</span>
                 </span>
                 <button className="text-[#BB86FC] hover:underline flex items-center">
                   View All <ChevronDown className="w-4 h-4 ml-1" />
@@ -230,11 +298,15 @@ const Home = () => {
                   <div
                     key={index}
                     className={`flex items-center p-3 hover:bg-[#7E57C2] cursor-pointer rounded-lg mb-1 transition duration-200 ${
-                      selectedService === service.name ? "bg-[#7E57C2]" : "bg-gray-800"
+                      selectedService === service.name
+                        ? "bg-[#7E57C2]"
+                        : "bg-gray-800"
                     }`}
                     onClick={() => setSelectedService(service.name)}
                   >
-                    <div className="bg-gray-700 p-2 rounded-lg mr-3">{service.icon}</div>
+                    <div className="bg-gray-700 p-2 rounded-lg mr-3">
+                      {service.icon}
+                    </div>
                     <span className="font-medium">{service.name}</span>
                     <span className="ml-auto bg-black bg-opacity-30 px-2 py-1 rounded-lg text-yellow-300 font-bold">
                       ${service.price.toFixed(2)}
@@ -244,7 +316,8 @@ const Home = () => {
               </div>
               <div className="text-xs text-gray-400 mt-4 flex items-center justify-between">
                 <span>
-                  Available Services: <span className="text-white font-bold">1102</span>
+                  Available Services:{" "}
+                  <span className="text-white font-bold">1102</span>
                 </span>
                 <button className="text-[#BB86FC] hover:underline flex items-center">
                   Show All <ChevronDown className="w-4 h-4 ml-1" />
@@ -283,7 +356,11 @@ const Home = () => {
                 {popularServices.map((item, index) => (
                   <tr
                     key={index}
-                    className={index !== popularServices.length - 1 ? "border-b border-gray-700" : ""}
+                    className={
+                      index !== popularServices.length - 1
+                        ? "border-b border-gray-700"
+                        : ""
+                    }
                   >
                     <td className="py-4 pl-4">
                       <div className="flex items-center">
@@ -348,8 +425,13 @@ const Home = () => {
               <Shield className="w-8 h-8 text-white" />
             </div>
             <h3 className="font-bold mb-2 text-lg">24/7 Support</h3>
-            <p className="text-sm text-gray-400 mb-4">Any questions? Our manager is here to help!</p>
-            <a href="#" className="text-[#BB86FC] inline-flex items-center text-sm font-bold hover:underline">
+            <p className="text-sm text-gray-400 mb-4">
+              Any questions? Our manager is here to help!
+            </p>
+            <a
+              href="#"
+              className="text-[#BB86FC] inline-flex items-center text-sm font-bold hover:underline"
+            >
               Ask a question
             </a>
           </div>
@@ -359,8 +441,13 @@ const Home = () => {
               <MessageSquare className="w-8 h-8 text-white" />
             </div>
             <h3 className="font-bold mb-2 text-lg">Telegram Bot</h3>
-            <p className="text-sm text-gray-400 mb-4">Receive SMS directly in Telegram!</p>
-            <a href="#" className="text-[#BB86FC] inline-flex items-center text-sm font-bold hover:underline">
+            <p className="text-sm text-gray-400 mb-4">
+              Receive SMS directly in Telegram!
+            </p>
+            <a
+              href="#"
+              className="text-[#BB86FC] inline-flex items-center text-sm font-bold hover:underline"
+            >
               Connect Now
             </a>
           </div>
@@ -370,8 +457,13 @@ const Home = () => {
               <Phone className="w-8 h-8 text-white" />
             </div>
             <h3 className="font-bold mb-2 text-lg">Group Chat</h3>
-            <p className="text-sm text-gray-400 mb-4">Join our special Telegram group chat.</p>
-            <a href="#" className="text-[#BB86FC] inline-flex items-center text-sm font-bold hover:underline">
+            <p className="text-sm text-gray-400 mb-4">
+              Join our special Telegram group chat.
+            </p>
+            <a
+              href="#"
+              className="text-[#BB86FC] inline-flex items-center text-sm font-bold hover:underline"
+            >
               Join Group
             </a>
           </div>
@@ -381,8 +473,13 @@ const Home = () => {
               <Clock className="w-8 h-8 text-white" />
             </div>
             <h3 className="font-bold mb-2 text-lg">SMS on Desktop</h3>
-            <p className="text-sm text-gray-400 mb-4">We offer a dedicated solution for PC users.</p>
-            <a href="#" className="text-[#BB86FC] inline-flex items-center text-sm font-bold hover:underline">
+            <p className="text-sm text-gray-400 mb-4">
+              We offer a dedicated solution for PC users.
+            </p>
+            <a
+              href="#"
+              className="text-[#BB86FC] inline-flex items-center text-sm font-bold hover:underline"
+            >
               Download App
             </a>
           </div>
@@ -400,19 +497,34 @@ const Home = () => {
             </div>
           </div>
           <div className="flex flex-wrap justify-center gap-6 text-sm mb-8">
-            <a href="#" className="text-[#7E57C2] hover:text-[#BB86FC] transition">
+            <a
+              href="#"
+              className="text-[#7E57C2] hover:text-[#BB86FC] transition"
+            >
               Receive SMS online
             </a>
-            <a href="#" className="text-[#7E57C2] hover:text-[#BB86FC] transition">
+            <a
+              href="#"
+              className="text-[#7E57C2] hover:text-[#BB86FC] transition"
+            >
               Rent Number
             </a>
-            <a href="#" className="text-[#7E57C2] hover:text-[#BB86FC] transition">
+            <a
+              href="#"
+              className="text-[#7E57C2] hover:text-[#BB86FC] transition"
+            >
               API Connection
             </a>
-            <a href="#" className="text-[#7E57C2] hover:text-[#BB86FC] transition">
+            <a
+              href="#"
+              className="text-[#7E57C2] hover:text-[#BB86FC] transition"
+            >
               Referral Program
             </a>
-            <a href="#" className="text-[#7E57C2] hover:text-[#BB86FC] transition">
+            <a
+              href="#"
+              className="text-[#7E57C2] hover:text-[#BB86FC] transition"
+            >
               Partnership
             </a>
           </div>

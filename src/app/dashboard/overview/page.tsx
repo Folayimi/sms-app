@@ -119,7 +119,7 @@ const Overview: React.FC = () => {
   }, [searchQuery]);
 
   return (
-    <div className="min-h-screen bg-[#121212] mt-[75px] text-white px-10 pt-12">
+    <div className="min-h-screen bg-[#121212] mt-[75px] h-[calc(100vh-75px)] text-white px-10 pt-12">
       {!userToken && (
         <div>
           <div className="flex items-center justify-between">

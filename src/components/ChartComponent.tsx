@@ -1,6 +1,6 @@
 "use client";
-import { CartesianGrid, Line, LineChart, XAxis } from "recharts";
 
+import { CartesianGrid, Line, LineChart, XAxis } from "recharts";
 import {
   Card,
   CardContent,
@@ -15,6 +15,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+
 const chartData = [
   { month: "January", desktop: 186, mobile: 80 },
   { month: "February", desktop: 305, mobile: 200 },
@@ -27,11 +28,11 @@ const chartData = [
 const chartConfig = {
   desktop: {
     label: "Desktop",
-    color: "hsl(var(--chart-1))",
+    color: "#8AB4F8", // light blue
   },
   mobile: {
     label: "Mobile",
-    color: "hsl(var(--chart-2))",
+    color: "#BB86FC", // purple
   },
 } satisfies ChartConfig;
 
@@ -49,11 +50,14 @@ export function ChartComponent({
   trending?: React.ReactNode;
 }) {
   return (
-    <Card>
+    <Card className="bg-[#1A1A1A] text-white border border-white/10 shadow-md rounded-xl">
       <CardHeader>
-        <CardTitle>{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
+        <CardTitle className="text-white">{title}</CardTitle>
+        <CardDescription className="text-gray-400">
+          {description}
+        </CardDescription>
       </CardHeader>
+
       <CardContent>
         <ChartContainer config={chartConfig}>
           <LineChart
@@ -64,12 +68,13 @@ export function ChartComponent({
               right: 12,
             }}
           >
-            <CartesianGrid vertical={false} />
+            <CartesianGrid stroke="#2C2C2C" vertical={false} />
             <XAxis
               dataKey="month"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
+              tick={{ fill: "#CCCCCC" }}
               tickFormatter={(value) => value.slice(0, 3)}
             />
             <ChartTooltip
@@ -79,23 +84,20 @@ export function ChartComponent({
             <Line
               dataKey="desktop"
               type="natural"
-              stroke="#0187FF"
+              stroke="#8AB4F8"
               strokeWidth={2}
-              dot={{
-                fill: "#0187FF",
-              }}
-              activeDot={{
-                r: 6,
-              }}
+              dot={{ fill: "#8AB4F8" }}
+              activeDot={{ r: 6 }}
             />
           </LineChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none">
+
+      <CardFooter className="flex-col items-start gap-2 text-sm text-gray-300">
+        <div className="flex gap-2 font-medium leading-none text-white">
           {comment1} {trending}
         </div>
-        <div className="leading-none text-muted-foreground">{comment2}</div>
+        <div className="leading-none text-gray-400">{comment2}</div>
       </CardFooter>
     </Card>
   );

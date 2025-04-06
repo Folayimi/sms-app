@@ -20,7 +20,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <Nav />
           <div className="flex flex-row h-screen bg-gray-100">
             <SideBar />
-            <div className="flex-1 overflow-y-auto">{children}</div>
+            <div className="flex-1 overflow-y-auto dark">{children}</div>
           </div>
         </>
       ) : (
