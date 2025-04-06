@@ -9,7 +9,6 @@ import { useRouter } from "next/navigation";
 import Loader from "./Loader";
 import { userLogin } from "@/services/request";
 
-// Define interface for login details
 interface LoginDetails {
   email: string;
   password: string;
@@ -22,11 +21,11 @@ interface StudentSignInProps {
 
 const StudentSignIn = ({ setLoginType, setForgot }: StudentSignInProps) => {
   const eMail = useRef<HTMLInputElement>(null);
-  const [valid, setValid] = useState<boolean>(false);
-  const [changing, setChanging] = useState<boolean>(false);
-  const [emailError, setEmailError] = useState<boolean>(false);
-  const [hide, setHide] = useState<boolean>(true);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [valid, setValid] = useState(false);
+  const [changing, setChanging] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [hide, setHide] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [loginDetails, setLoginDetails] = useState<LoginDetails>({
     email: "",
     password: "",
@@ -34,15 +33,11 @@ const StudentSignIn = ({ setLoginType, setForgot }: StudentSignInProps) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (
-      loginDetails["email"].trim().length > 0 &&
-      loginDetails["password"].trim().length > 0
-    ) {
-      setValid(true);
-    } else {
-      setValid(false);
-    }
-  }, [changing]);
+    const isValid =
+      loginDetails.email.trim().length > 0 &&
+      loginDetails.password.trim().length > 0;
+    setValid(isValid);
+  }, [changing, loginDetails]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -54,143 +49,135 @@ const StudentSignIn = ({ setLoginType, setForgot }: StudentSignInProps) => {
     e.preventDefault();
     if (valid) {
       setLoading(true);
-      // Handle login submission here, e.g., API call
       await userLogin(loginDetails);
       setLoading(false);
+    } else {
+      setEmailError(true);
     }
   };
 
   return (
-    <div className="cflexss px-[30px] max-w-[650px] h-full w-full gap-[28px]">
+    <div className="w-full max-w-[500px] h-full bg-white/5 lg:backdrop-blur-md border border-white/10 text-white shadow-2xl rounded-2xl lg:px-8 px-4 lg:py-10 py-5 space-y-6">
+      {/* Back Button */}
       <div
-        className="flexss bg-blue-500 rounded-[0.5em] p-[0.4em] cursor-pointer"
-        onClick={() => {
-          router.back();
-        }}
+        className="flexss rounded-full w-fit p-[0.4em] cursor-pointer bg-purple-800 bg-opacity-30 hover:bg-opacity-50 transition-all"
+        onClick={() => router.back()}
       >
-        <div className="w-[1.2em] h-[1.2em] rounded-full bg-blue-500 flexmm">
-          <ArrowLeftOutline
-            className="w-4 h-4 text-white"
-            onPointerEnterCapture={() => {}}
-            onPointerLeaveCapture={() => {}}
-          />
+        <div className="w-[1.2em] h-[1.2em] flexmm">
+          <ArrowLeftOutline size={15} color="white" />
         </div>
       </div>
-      <div className="cflexss gap-[12px]">
-        <h1 className="text-[1.7rem] font-[700] sm:font-[800] text-blue-500">
-          Sign In
-        </h1>
-        <p className="text-[18px] lg:text-[16px] ls:text-[14px] sm:text-[20px] font-400 text-[#52525B] leading-[1.5em]">
-          Sign in to continue your learning journey and explore a world of
-          endless possibilities.
+
+      {/* Header */}
+      <div className="space-y-2">
+        <h1 className="text-3xl font-bold text-purple-300">Sign In</h1>
+        <p className="text-gray-400 text-sm">
+          Continue your learning journey and explore a world of endless
+          possibilities.
         </p>
       </div>
-      <form
-        className="cflexss gap-[1em] w-full"
-        method="POST"
-        onSubmit={handleSubmit}
-      >
-        <div className="text-black cflexss gap-[10px]">
-          <p>Email address</p>
-          <div className="w-[500px]">
-            <input
-              className="w-full rounded-[10px] outline-none shadow-md border border-transparent focus:border-blue-500 px-[20px] py-[10px]"
-              type="email"
-              name="email"
-              placeholder="E.g annette.black@example.com"
-              value={loginDetails["email"]}
-              ref={eMail}
-              onChange={handleChange}
-            />
-          </div>
+
+      {/* Form */}
+      <form className="space-y-5" method="POST" onSubmit={handleSubmit}>
+        {/* Email Input */}
+        <div className="space-y-1">
+          <label htmlFor="email" className="text-sm font-medium text-gray-300">
+            Email Address
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            ref={eMail}
+            placeholder="E.g. annette.black@example.com"
+            className="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-purple-500 transition"
+            value={loginDetails.email}
+            onChange={handleChange}
+          />
           {emailError && (
-            <p className="text-[12px] text-red-700">* Fill in a valid email</p>
+            <p className="text-sm text-red-500 mt-1">
+              * Please enter a valid email
+            </p>
           )}
         </div>
 
-        <div className="text-black cflexss gap-[10px]">
-          <p>Password</p>
-          <div className="w-[500px] flexmm gap-[10px] shadow-md rounded-[10px] px-[20px] py-[10px] border-blue-500 border">
+        {/* Password Input */}
+        <div className="space-y-1">
+          <label
+            htmlFor="password"
+            className="text-sm font-medium text-gray-300"
+          >
+            Password
+          </label>
+          <div className="flex items-center bg-zinc-900 border border-zinc-700 rounded-lg px-4 py-3">
             <input
-              className="w-full outline-none"
-              type={hide ? "password" : "text"}
+              id="password"
               name="password"
+              type={hide ? "password" : "text"}
               placeholder="Password"
-              value={loginDetails["password"]}
+              className="flex-1 bg-transparent outline-none text-sm"
+              value={loginDetails.password}
               onChange={handleChange}
             />
-            {hide ? (
-              <EyeOutline
-                className="w-5 h-5 text-gray-500 cursor-pointer"
-                onClick={() => {
-                  setHide(!hide);
-                }}
-                onPointerEnterCapture={() => {}}
-                onPointerLeaveCapture={() => {}}
-              />
-            ) : (
-              <EyeOffOutline
-                className="w-5 h-5 text-gray-500 cursor-pointer"
-                onClick={() => {
-                  setHide(!hide);
-                }}
-                onPointerEnterCapture={() => {}}
-                onPointerLeaveCapture={() => {}}
-              />
-            )}
+            <div
+              className="cursor-pointer text-gray-500 hover:text-purple-400 transition"
+              onClick={() => setHide(!hide)}
+            >
+              {hide ? (
+                <EyeOutline className="w-5 h-5" />
+              ) : (
+                <EyeOffOutline className="w-5 h-5" />
+              )}
+            </div>
           </div>
         </div>
 
+        {/* Validation */}
         {!valid && (
-          <div className="text-[12px] text-red-700">
-            <p>*All fields are required.</p>
-          </div>
+          <p className="text-sm text-red-500">* All fields are required</p>
         )}
 
-        <div className="flexbm gap-[320px] mt-[20px] w-full text-[16px] lg:text-[14px] text-black sm:text-[20px]">
-          <div className="flexmm gap-[12px]">
-            <input type="checkbox" />
-            <p>Remember me</p>
-          </div>
-          <p
-            className="text-sec1 cursor-pointer"
-            onClick={() => {
-              setForgot(true);
-            }}
+        {/* Options Row */}
+        <div className="flex items-center justify-between text-sm text-gray-400">
+          <label className="flex items-center gap-2">
+            <input type="checkbox" className="accent-purple-500" />
+            Remember me
+          </label>
+          <span
+            className="cursor-pointer hover:text-purple-400 transition"
+            onClick={() => setForgot(true)}
           >
             Forgot password?
-          </p>
+          </span>
         </div>
 
+        {/* Submit Button */}
         <button
           type="submit"
-          className="flexmm gap-[0.5em] rounded-[2em] bg-blue-500 px-[2.5em] py-[1em] text-white text-[18px] sm:text-[1rem] font-[600] sm:font-[400]"
           disabled={loading}
+          className="w-full bg-purple-600 hover:bg-purple-500 transition rounded-full py-3 flex items-center justify-center gap-2 font-semibold text-white shadow-md disabled:opacity-60"
         >
           {loading ? (
             <Loader />
           ) : (
             <>
-              <p>Sign In</p>
-              <ArrowRightOutline
-                size={12}
-                onPointerEnterCapture={() => {}}
-                onPointerLeaveCapture={() => {}}
-              />
+              <span>Sign In</span>
+              <ArrowRightOutline className="w-4 h-4" />
             </>
           )}
         </button>
       </form>
-      <div className="text-[16px] text-black pb-[30px] lg:text-[14px] sm:text-[18rem] font-[400]">
-        <p>
-          Don't have an account?{" "}
-          <a href="/signup">
-            <span className="text-sec1 font-[700] cursor-pointer">
-              Create free account
-            </span>
-          </a>
-        </p>
-      </div>
+
+      {/* Footer */}
+      <p className="text-center text-sm text-gray-400 pt-2">
+        Don't have an account?{" "}
+        <a
+          href="/signup"
+          className="text-purple-400 font-semibold hover:text-purple-300 transition"
+        >
+          Create free account
+        </a>
+      </p>
     </div>
   );
 };

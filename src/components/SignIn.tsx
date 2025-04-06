@@ -7,7 +7,7 @@ const SignIn = () => {
   const [forgot, setForgot] = useState(false);
 
   return (
-    <div className="min-h-screen w-full flex font-inter">
+    <div className="w-full mt-[40px] h-[calc(100vh-40px)] lg:h-[calc(100vh-70px)] lg:mt-[70px] flex font-inter">
       {/* Left Panel */}
       <div className="w-[45%] hidden lg:flex flex-col justify-center bg-gradient-to-br from-purple-700 via-indigo-800 to-black text-white px-12 py-10 relative">
         <div className="absolute top-6 left-6 text-xl font-bold tracking-wide">
@@ -32,8 +32,8 @@ const SignIn = () => {
       </div>
 
       {/* Right Panel */}
-      <div className="w-full lg:w-[55%] flex justify-center items-center bg-[#0F0F0F] p-8">
-        <div className="w-full max-w-[480px] bg-white/5 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-white/10 text-white">
+      <div className="w-full lg:w-[55%] h-full flex justify-center items-center bg-[#0F0F0F] p-4 lg:p-8 overflow-y-auto">
+        <div className="w-full max-w-[480px] mt-[50px] lg:mt-0 bg-white/5 lg:backdrop-blur-md rounded-2xl p-4 lg:p-8 shadow-xl border border-white/10 text-white">
           {loginType === "user" && !forgot && (
             <UserSignin setLoginType={setLoginType} setForgot={setForgot} />
           )}

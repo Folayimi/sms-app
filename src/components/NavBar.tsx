@@ -1,8 +1,9 @@
 "use client";
-import { Button } from "./ui/button";
+
 import React, { useState } from "react";
 import { RiMenuFill } from "react-icons/ri";
 import { HiX } from "react-icons/hi";
+import { Button } from "./ui/button";
 import Link from "next/link";
 
 type NavBarProps = {
@@ -10,98 +11,100 @@ type NavBarProps = {
   background?: string;
 };
 
-const NavBar: React.FC<NavBarProps> = ({ active = 0 }) => {
+const NavBar: React.FC<NavBarProps> = ({
+  active = 0,
+  background = "#FFFFFF",
+}) => {
   const nav = [
     { title: "Home", link: "/" },
-    { title: "About Us", link: "/" },
-    { title: "Contact", link: "/" },
+    { title: "About Us", link: "/about" },
+    { title: "Contact", link: "/contact" },
   ];
 
-  const [showNav, setShowNav] = useState<boolean>(false);
+  const [showNav, setShowNav] = useState(false);
 
   return (
-    <>
-      <div
-        className={`px-[40px] fixed top-0 left-0 z-50 w-full flex justify-between items-center py-[20px] transition-all ${
-          showNav && "fixed"
-        } bg-[#121212] text-white shadow-md`}
-      >
-        <h1 className="font-bold text-[20px] text-[#BB86FC]">SMS-APP-LOGO</h1>
+    <header
+      style={{ background }}
+      className="fixed top-0 left-0 w-full z-50 bg-opacity-95 px-6 py-4 flex items-center justify-between shadow-lg"
+    >
+      {/* LOGO */}
+      <Link href="/">
+        <h1 className="text-[#BB86FC] font-bold text-xl">SMS-APP</h1>
+      </Link>
 
-        <div className="hidden text-white flexmm gap-[60px] md:block">
+      {/* Desktop Nav */}
+      <nav className="hidden md:flex gap-10 items-center text-[#121212]">
+        {nav.map((item, i) => (
+          <Link
+            key={i}
+            href={item.link}
+            className={`text-sm font-semibold hover:text-[#BB86FC] transition-colors duration-300 ${
+              active === i ? "text-[#BB86FC]" : ""
+            }`}
+          >
+            {item.title}
+          </Link>
+        ))}
+        <Link href="/signup">
+          <Button className="bg-transparent cursor-pointer border-2 border-[#BB86FC] text-[#BB86FC] hover:bg-[#BB86FC] hover:text-white rounded-full px-5 py-2 text-sm font-semibold">
+            Sign Up
+          </Button>
+        </Link>
+        <Link href="/signin">
+          <Button className="bg-[#7E57C2] cursor-pointer hover:bg-[#BB86FC] text-white rounded-full px-5 py-2 text-sm font-semibold">
+            Login
+          </Button>
+        </Link>
+      </nav>
+
+      {/* Mobile Hamburger */}
+      <div className="md:hidden text-white z-50">
+        {showNav ? (
+          <HiX size={28} onClick={() => setShowNav(false)} />
+        ) : (
+          <RiMenuFill size={28} onClick={() => setShowNav(true)} />
+        )}
+      </div>
+
+      {/* Mobile Menu */}
+      <div
+        className={`fixed top-0 right-0 w-3/4 h-full bg-[#1A1A1A] text-white transform transition-transform duration-300 ease-in-out ${
+          showNav ? "translate-x-0" : "translate-x-full"
+        } px-6 pt-20`}
+      >
+        <div className="flex flex-col gap-6">
           {nav.map((item, i) => (
-            <a
-              href={item.link}
+            <Link
               key={i}
-              className={`text-[16px] lg:text-[14px] font-semibold ${
-                active === i
-                  ? "text-[#BB86FC]"
-                  : "hover:text-[#9B59B6] transition"
+              href={item.link}
+              onClick={() => setShowNav(false)}
+              className={`text-base font-medium hover:text-[#BB86FC] ${
+                active === i ? "text-[#BB86FC]" : ""
               }`}
             >
               {item.title}
-            </a>
+            </Link>
           ))}
-        </div>
-
-        <div className="w-fit flex gap-6 lf:hidden">
           <Link href="/signup">
-            <Button className="rounded-full border-2 border-[#BB86FC] bg-transparent px-[30px] py-[10px] text-[16px] text-[#BB86FC] hover:bg-[#BB86FC] hover:text-white transition font-semibold">
+            <Button
+              onClick={() => setShowNav(false)}
+              className="bg-transparent border-2 border-[#BB86FC] cursor-pointer text-[#BB86FC] hover:bg-[#BB86FC] hover:text-white rounded-full w-full py-2 text-sm font-semibold"
+            >
               Sign Up
             </Button>
           </Link>
           <Link href="/signin">
-            <Button className="rounded-full px-[30px] py-[12px] text-[16px] text-white bg-[#7E57C2] hover:bg-[#9B59B6] transition">
+            <Button
+              onClick={() => setShowNav(false)}
+              className="bg-[#7E57C2] hover:bg-[#BB86FC] cursor-pointer text-white rounded-full w-full py-2 text-sm font-semibold"
+            >
               Login
             </Button>
           </Link>
         </div>
-
-        <div className="hidden lf:block text-white">
-          {showNav ? (
-            <HiX size={24} onClick={() => setShowNav(false)} />
-          ) : (
-            <RiMenuFill size={24} onClick={() => setShowNav(true)} />
-          )}
-        </div>
-
-        <div
-          className={`fixed top-[70px] sm:top-[60px] w-full h-full p-xpadding bg-[#1A1A1A] ${
-            showNav ? "left-0" : "left-[100%]"
-          } transition-all z-[999]`}
-        >
-          <div className="flex gap-6 flex-col text-white">
-            {nav.map((item, i) => (
-              <a
-                href={item.link}
-                key={i}
-                className={`text-[0.8em] ${
-                  active === i
-                    ? "text-[#BB86FC] font-bold"
-                    : "hover:text-[#9B59B6] transition"
-                }`}
-              >
-                {item.title}
-              </a>
-            ))}
-          </div>
-
-          <div className="w-fit flex gap-6 mt-10">
-            <Link href="/signup">
-              <Button className="rounded-full border-2 border-white bg-transparent px-[30px] py-[10px] text-[16px] text-white hover:bg-[#BB86FC] hover:border-[#BB86FC] transition font-semibold">
-                Sign Up
-              </Button>
-            </Link>
-
-            <Link href="/signin">
-              <Button className="rounded-full px-[30px] py-[12px] text-[16px] text-white bg-[#7E57C2] hover:bg-[#9B59B6] transition">
-                Login
-              </Button>
-            </Link>
-          </div>
-        </div>
       </div>
-    </>
+    </header>
   );
 };
 

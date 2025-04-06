@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useRef, useEffect, ChangeEvent, FormEvent } from "react";
 import {
   EyeOutline,
@@ -6,10 +8,8 @@ import {
   ArrowLeftOutline,
 } from "heroicons-react";
 import Link from "next/link";
-import Image from "next/image";
-import Loader from "./Loader";
 import { useRouter } from "next/navigation";
-// import { useDispatch } from "react-redux";
+import Loader from "./Loader";
 
 interface UserDetails {
   fullName: string;
@@ -22,7 +22,6 @@ const StudentAccount = ({
 }: {
   setAccountType: (type: string) => void;
 }) => {
-  // const dispatch = useDispatch()
   const router = useRouter();
   const EMAIL_REGEX = /^(\w+)([\.\-]?\w+)*\@(\w+)([\.\-]?\w+)*(\.[a-z|A-Z]+)$/;
   const fName = useRef<HTMLInputElement>(null);
@@ -38,10 +37,6 @@ const StudentAccount = ({
     email: "",
     password: "",
   });
-
-  // useEffect(() => {
-  //   fName.current.focus();
-  // }, []);
 
   useEffect(() => {
     if (
@@ -105,166 +100,145 @@ const StudentAccount = ({
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (valid && !passError) {
-      // ENDPOINT FOR SUBMITTING USER DETAILS
       setLoading(true);
-      // await studentRegister(
-      //   dispatch,
-      //   userDetails.fullName,
-      //   userDetails.email,
-      //   userDetails.productKey,
-      //   userDetails.password
-      // );
-      // setLoading(false);
-      console.log(userDetails);
+      // Simulate async
+      setTimeout(() => {
+        setLoading(false);
+        console.log(userDetails);
+      }, 1000);
     }
   };
 
   return (
-    <div className="cflexss max-w-[650px] px-[30px] h-full w-full gap-[28px]">
+    <div className="font-inter h-full bg-white/5 lg:backdrop-blur-md border border-white/10 shadow-2xl rounded-2xl max-w-[650px] lg:px-8 px-4 lg:py-10 py-5 space-y-6 w-full text-white">
       <div
-        className="flexss bg-blue-500 rounded-[0.5em] p-[0.4em] cursor-pointer"
-        onClick={() => {
-          // setAccountType("none");
-          router.back();
-        }}
+        className="flexss w-fit rounded-full p-[0.4em] cursor-pointer bg-purple-800 bg-opacity-30 hover:bg-opacity-50 transition-all"
+        onClick={() => router.back()}
       >
-        <div className="w-[1.2em] h-[1.2em] rounded-full bg-blue-500 flexmm">
-          <ArrowLeftOutline
-            size={15}
-            color="white"
-            onPointerEnterCapture={() => {}}
-            onPointerLeaveCapture={() => {}}
-          />
+        <div className="w-[1.2em] h-[1.2em] flexmm">
+          <ArrowLeftOutline className="w-4 h-4 text-white" role="img" aria-label="Back" />
         </div>
       </div>
+
       <div className="cflexss gap-[12px]">
-        <h1 className="text-[1.7rem] font-[700] sm:font-[800] text-blue-500">
+        <h1 className="text-[1.7rem] font-[700] text-purple-300">
           Create an Account
         </h1>
-        <p className="text-[18px] lg:text-[16px] ls:text-[14px] sm:text-[20px] font-400 text-[#52525B] leading-[1.5em]">
+        <p className="text-[16px] font-[400] text-gray-400 leading-[1.5em]">
           Join the SMS-App Services and experience a seamlessly smooth buying of
           numbers.
         </p>
       </div>
-      <form className="cflexss gap-[1em] w-full" onSubmit={handleSubmit}>
-        <div className="text-black cflexss gap-[10px]">
-          <p>Full name</p>
-          <div className="w-[500px]">
-            <input
-              className="w-full rounded-[10px] outline-none shadow-md border border-transparent focus:border-blue-500 px-[20px] py-[10px]"
-              type="text"
-              name="fullName"
-              placeholder="E.g First Name Last Name Other Name"
-              value={userDetails["fullName"]}
-              ref={fName}
-              onChange={handleChange}
-            />
-          </div>
+
+      <form className="cflexss gap-[1.5em] w-full" onSubmit={handleSubmit}>
+        {/* Full Name */}
+        <div className="cflexss gap-[10px] w-full">
+          <p className="text-gray-300">Full Name</p>
+          <input
+            className="w-full rounded-xl border border-transparent focus:border-purple-400 bg-white/5 backdrop-blur-md px-5 py-3 text-white placeholder-gray-400 outline-none transition"
+            type="text"
+            name="fullName"
+            placeholder="E.g First Name Last Name"
+            value={userDetails.fullName}
+            ref={fName}
+            onChange={handleChange}
+          />
           {exceedChar === "fullName" && (
-            <p className="text-[12px] text-red-700">
-              *can't exceed 50 characters
+            <p className="text-[12px] text-red-400">
+              * Can't exceed 50 characters
             </p>
           )}
         </div>
 
-        <div className="text-black cflexss gap-[10px]">
-          <p>Email address</p>
-          <div className="w-[500px]">
-            <input
-              className="w-full rounded-[10px] outline-none shadow-md border border-transparent focus:border-blue-500 px-[20px] py-[10px]"
-              type="text"
-              name="email"
-              placeholder="E.g annette.black@example.com"
-              value={userDetails["email"]}
-              onChange={handleChange}
-            />
-          </div>
+        {/* Email */}
+        <div className="cflexss gap-[10px] w-full">
+          <p className="text-gray-300">Email Address</p>
+          <input
+            className="w-full rounded-xl border border-transparent focus:border-purple-400 bg-white/5 backdrop-blur-md px-5 py-3 text-white placeholder-gray-400 outline-none transition"
+            type="text"
+            name="email"
+            placeholder="E.g annette.black@example.com"
+            value={userDetails.email}
+            onChange={handleChange}
+          />
           {emailError && (
-            <p className="text-[12px] text-red-700">
+            <p className="text-[12px] text-red-400">
               * Fill in a valid email address
             </p>
           )}
         </div>
 
-        <div className="text-black cflexss gap-[10px]">
-          <p>Password</p>
-          <div className="w-[500px] flexmm gap-[10px] shadow-md rounded-[10px] px-[20px] py-[10px] border-blue-500 border">
+        {/* Password */}
+        <div className="cflexss gap-[10px] w-full">
+          <p className="text-gray-300">Password</p>
+          <div className="w-full flex items-center gap-2 rounded-xl border border-purple-400 bg-white/5 backdrop-blur-md px-5 py-3">
             <input
-              className="w-full outline-none"
+              className="w-full bg-transparent text-white outline-none"
               type={hide ? "password" : "text"}
               name="password"
               placeholder="Password"
-              value={userDetails["password"]}
+              value={userDetails.password}
               onChange={handleChange}
             />
             {hide ? (
               <EyeOutline
-                className="w-5 h-5 text-gray-500 cursor-pointer"
-                onClick={() => {
-                  setHide(!hide);
-                }}
-                onPointerEnterCapture={() => {}}
-                onPointerLeaveCapture={() => {}}
+                className="w-5 h-5 text-gray-400 cursor-pointer"
+                onClick={() => setHide(false)}
+                role="img"
+                aria-label="Show Password"
               />
             ) : (
               <EyeOffOutline
-                className="w-5 h-5 text-gray-500 cursor-pointer"
-                onClick={() => {
-                  setHide(!hide);
-                }}
-                onPointerEnterCapture={() => {}}
-                onPointerLeaveCapture={() => {}}
+                className="w-5 h-5 text-gray-400 cursor-pointer"
+                onClick={() => setHide(true)}
               />
             )}
           </div>
           {passError && (
-            <p className="text-gray-500 text-[14px] lg:text-[12px] font-[400] flex flex-wrap w-[30em] sm:w-full">
-              * Password should be at least 8 characters long and must contain
-              at least one special character
+            <p className="text-[12px] text-red-400">
+              * Password must be at least 8 characters and include a special
+              character
             </p>
           )}
         </div>
 
+        {/* Validation Message */}
         {!valid && (
-          <div className="text-[12px] text-red-700">
-            <p>*All fields are required.</p>
-          </div>
+          <p className="text-[12px] text-red-400">* All fields are required.</p>
         )}
 
-        <div className="flexbm w-full text-[16px] lg:text-[14px] text-black sm:text-[20px]">
-          <div className="flexmm gap-[12px]">
-            <input type="checkbox" />
-            <p>Remember me</p>
-          </div>
+        {/* Remember Me */}
+        <div className="flex items-center gap-3 text-sm text-gray-400">
+          <input type="checkbox" className="accent-purple-500" />
+          <p>Remember me</p>
         </div>
 
+        {/* Submit Button */}
         <button
           type="submit"
-          className="flexmm gap-[0.5em] rounded-[2em] bg-blue-500 px-[2.5em] py-[1em] text-white text-[18px] sm:text-[1rem] font-[600] sm:font-[400]"
           disabled={loading}
+          className="flex items-center lg:w-fit w-full justify-center gap-2 rounded-full bg-purple-600 hover:bg-purple-700 px-6 py-3 text-white font-semibold shadow-md transition disabled:opacity-60"
         >
           {loading ? (
             <Loader />
           ) : (
             <>
-              <p>Create account</p>
-              <ArrowRightOutline
-                size={12}
-                onPointerEnterCapture={() => {}}
-                onPointerLeaveCapture={() => {}}
-              />
+              <span>Create Account</span>
+              <ArrowRightOutline size={14} />
             </>
           )}
         </button>
       </form>
-      <div className="text-[14px] pb-[30px] text-black lg:text-[12px] sm:text-[16px] font-[400]">
-        <p>
-          Already have an account?{" "}
-          <Link href="/signin">
-            <span className="text-sec1 font-[700] cursor-pointer">Log In</span>
-          </Link>
-        </p>
-      </div>
+
+      {/* Footer Link */}
+      <p className="text-sm text-gray-400 pb-[30px]">
+        Already have an account?{" "}
+        <Link href="/signin">
+          <span className="text-purple-400 font-semibold cursor-pointer">
+            Log In
+          </span>
+        </Link>
+      </p>
     </div>
   );
 };

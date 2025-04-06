@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { RiMenuFill } from "react-icons/ri";
-import { HiSearch, HiCreditCard, HiUserCircle, HiChevronDown, HiBell, HiCog, HiSun, HiMoon } from "react-icons/hi";
+import { HiSearch, HiCreditCard, HiUserCircle, HiChevronDown, HiBell, HiCog, HiSun, HiMoon, HiX } from "react-icons/hi";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
