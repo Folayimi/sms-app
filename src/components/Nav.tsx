@@ -1,7 +1,17 @@
 "use client";
 import React, { useState } from "react";
 import { RiMenuFill } from "react-icons/ri";
-import { HiSearch, HiCreditCard, HiUserCircle, HiChevronDown, HiBell, HiCog, HiSun, HiMoon, HiX } from "react-icons/hi";
+import {
+  HiSearch,
+  HiCreditCard,
+  HiUserCircle,
+  HiChevronDown,
+  HiBell,
+  HiCog,
+  HiSun,
+  HiMoon,
+  HiX,
+} from "react-icons/hi";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
@@ -13,12 +23,16 @@ const Nav: React.FC = () => {
 
   return (
     <div
-      className={`px-6 fixed top-0 left-0 z-50 bg-[#1A1A1A] w-full flex justify-between items-center py-4 font-inter text-[#E0E0E0] shadow-lg ${isDarkMode ? 'bg-[#1A1A1A]' : 'bg-[#FFFFFF]'} transition-all`}
+      className={`px-6 fixed top-0 left-0 z-50 bg-[#1A1A1A] w-full flex justify-between items-center py-4 font-inter text-[#E0E0E0] shadow-lg ${
+        isDarkMode ? "bg-[#1A1A1A]" : "bg-[#FFFFFF]"
+      } transition-all`}
       style={{ backdropFilter: "blur(8px)" }}
     >
       {/* Left: Logo */}
       <div className="flex items-center gap-4">
-        <h1 className="font-semibold text-[#BB86FC] text-lg tracking-wide">SMS-APP</h1>
+        <h1 className="font-semibold text-[#BB86FC] text-lg tracking-wide">
+          SMS-APP
+        </h1>
       </div>
 
       {/* Center: Search Bar */}
@@ -34,19 +48,29 @@ const Nav: React.FC = () => {
       <div className="flex items-center gap-6">
         {/* Notifications Icon */}
         <div className="relative cursor-pointer">
-          <HiBell size={24} color="#E0E0E0" />
+          <HiBell size={24} color={`${isDarkMode ? "#E0E0E0" : "#1A1A1A"}`} />
           <div className="absolute top-0 right-0 w-3 h-3 bg-red-500 rounded-full"></div>
         </div>
 
         {/* Balance and Top Up */}
         <div className="flex items-center gap-4">
           <div className="flex flex-col">
-            <p className="text-xs text-[#AAAAAA]">Balance</p>
-            <p className="text-xl font-semibold text-white">0 $</p>
+            <p
+              className={`text-xs ${
+                isDarkMode ? "text-[#AAAAAA]" : "text-[#1A1A1A]"
+              } `}
+            >
+              Balance
+            </p>
+            <p
+              className={`text-xl font-semibold ${
+                isDarkMode ? "text-white" : "text-[#1A1A1A]"
+              } `}
+            >
+              0 $
+            </p>
           </div>
-          <div
-            className="flex items-center gap-2 bg-[#7E57C2] text-white font-semibold px-4 py-2 rounded-lg cursor-pointer hover:bg-[#BB86FC] transition"
-          >
+          <div className="flex items-center gap-2 bg-[#7E57C2] text-white font-semibold px-4 py-2 rounded-lg cursor-pointer hover:bg-[#BB86FC] transition">
             <HiCreditCard size={20} />
             <p>Top Up</p>
           </div>
@@ -64,20 +88,17 @@ const Nav: React.FC = () => {
         </div>
 
         {/* Theme Toggle */}
-        <div
-          className="cursor-pointer text-[#E0E0E0]"
-          onClick={toggleTheme}
-        >
-          {isDarkMode ? (
-            <HiSun size={24} />
-          ) : (
-            <HiMoon size={24} />
-          )}
-        </div>
+        {/* <div className="cursor-pointer text-[#E0E0E0]" onClick={toggleTheme}>
+          {isDarkMode ? <HiSun size={24} /> : <HiMoon size={24} />}
+        </div> */}
 
         {/* Hamburger Menu for Small Screens */}
         <div className="lg:hidden flex items-center">
-          <RiMenuFill size={30} color="#E0E0E0" onClick={() => setShowNav(!showNav)} />
+          <RiMenuFill
+            size={30}
+            color="#E0E0E0"
+            onClick={() => setShowNav(!showNav)}
+          />
         </div>
       </div>
 
@@ -87,7 +108,11 @@ const Nav: React.FC = () => {
           <div className="bg-[#1A1A1A] w-64 h-full p-6 flex flex-col items-start text-[#E0E0E0]">
             <div className="flex justify-between w-full mb-6">
               <h2 className="text-lg font-semibold">Menu</h2>
-              <HiX size={30} color="#E0E0E0" onClick={() => setShowNav(false)} />
+              <HiX
+                size={30}
+                color="#E0E0E0"
+                onClick={() => setShowNav(false)}
+              />
             </div>
             <Link href="/dashboard/overview">
               <a className="text-lg mb-4 hover:text-[#BB86FC]">Overview</a>

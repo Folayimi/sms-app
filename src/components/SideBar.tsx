@@ -46,26 +46,56 @@ const SideBar: React.FC = () => {
   const accountLinks: Link[] = [
     {
       title: "Profile",
-      icon: <UserGroupOutline size={20} />,
+      icon: (
+        <UserGroupOutline
+          size={20}
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+        />
+      ),
     },
     {
       title: "Receive SMS",
-      icon: <UsersOutline size={20} />,
+      icon: (
+        <UsersOutline
+          size={20}
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+        />
+      ),
     },
   ];
 
   const managementLinks: Link[] = [
     {
       title: "Top up your balance",
-      icon: <UserGroupOutline size={20} />,
+      icon: (
+        <UserGroupOutline
+          size={20}
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+        />
+      ),
     },
     {
       title: "Earn money on SMS",
-      icon: <UsersOutline size={20} />,
+      icon: (
+        <UsersOutline
+          size={20}
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+        />
+      ),
     },
     {
       title: "Instructions",
-      icon: <LocationMarkerOutline size={20} />,
+      icon: (
+        <LocationMarkerOutline
+          size={20}
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+        />
+      ),
     },
     { title: "Feedback", icon: <MdLocalActivity size={20} /> },
   ];
@@ -91,7 +121,13 @@ const SideBar: React.FC = () => {
       <LinkBar
         title="Overview"
         routePath={routePath}
-        icon={<ClockOutline size={20} />}
+        icon={
+          <ClockOutline
+            size={20}
+            onPointerEnterCapture={() => {}}
+            onPointerLeaveCapture={() => {}}
+          />
+        }
       />
 
       <div className="w-full flex flex-col mt-4">
