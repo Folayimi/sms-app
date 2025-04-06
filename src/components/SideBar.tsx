@@ -1,166 +1,116 @@
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { MdLocalActivity } from "react-icons/md";
+"use client";
+
 import {
-  UserGroupOutline,
-  UsersOutline,
-  LocationMarkerOutline,
-  ClockOutline,
-} from "heroicons-react";
+  ShieldCheck,
+  Phone,
+  CreditCard,
+  MessageSquareText,
+  RefreshCw,
+} from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+// import { Separator } from "@/components/ui/separator";
 
-interface LinkBarProps {
-  title: string;
-  routePath: string;
-  icon: any;
-}
-
-const LinkBar: React.FC<LinkBarProps> = ({ title, routePath, icon }) => {
-  const route = `/dashboard/${title
-    .replaceAll(" ", "-")
-    .replaceAll("&", "")
-    .toLowerCase()}`;
-  const isActive =
-    routePath === title.replaceAll(" ", "-").replaceAll("&", "").toLowerCase();
-
+export default function InstructionGuide() {
   return (
-    <a
-      href={route}
-      className={`group w-full pl-11 py-[10px] text-[14px] flex items-center rounded-[15px] gap-[20px] my-2 transition-all ${
-        isActive
-          ? "bg-[#7E57C2] text-white font-bold"
-          : "text-[#E0E0E0] hover:text-[#BB86FC]"
-      }`}
-    >
-      {icon}
-      <div className="flex items-center">{title}</div>
-    </a>
-  );
-};
+    <div className="max-w-5xl mx-auto py-16 px-4 space-y-12 text-white">
+      <h1 className="text-4xl font-bold text-center text-white">How the SMS App Works</h1>
+      <p className="text-center text-gray-400 max-w-2xl mx-auto text-base">
+        Follow this simple step-by-step guide to understand how to get started with your SMS number, receive messages, and make payments.
+      </p>
 
-interface Link {
-  title: string;
-  icon: any;
-}
+      {/* <Separator className="my-6 bg-purple-800/50" /> */}
 
-const SideBar: React.FC = () => {
-  const accountLinks: Link[] = [
-    {
-      title: "Profile",
-      icon: (
-        <UserGroupOutline
-          size={20}
-          onPointerEnterCapture={() => {}}
-          onPointerLeaveCapture={() => {}}
-        />
-      ),
-    },
-    {
-      title: "Receive SMS",
-      icon: (
-        <UsersOutline
-          size={20}
-          onPointerEnterCapture={() => {}}
-          onPointerLeaveCapture={() => {}}
-        />
-      ),
-    },
-  ];
+      <div className="grid md:grid-cols-2 gap-10">
+        {/* Step 1 */}
+        <Card className="bg-[#111111] border border-purple-900/30 backdrop-blur-md shadow-md rounded-2xl">
+          <CardHeader className="flex items-center gap-3">
+            <Phone className="text-purple-500" size={24} />
+            <CardTitle className="text-lg text-white">Step 1: Choose a Virtual Number</CardTitle>
+          </CardHeader>
+          <CardContent className="text-sm text-gray-400 space-y-4">
+            <p>
+              Browse available countries and service providers. Select a number that fits your needs (e.g., for Telegram, WhatsApp, Facebook, etc.).
+            </p>
+            <div className="w-full h-40 bg-black/30 rounded-xl border border-purple-800/30 flex items-center justify-center text-sm text-purple-300">
+              Screenshot Placeholder (Number Selection)
+            </div>
+          </CardContent>
+        </Card>
 
-  const managementLinks: Link[] = [
-    {
-      title: "Top up your balance",
-      icon: (
-        <UserGroupOutline
-          size={20}
-          onPointerEnterCapture={() => {}}
-          onPointerLeaveCapture={() => {}}
-        />
-      ),
-    },
-    {
-      title: "Earn money on SMS",
-      icon: (
-        <UsersOutline
-          size={20}
-          onPointerEnterCapture={() => {}}
-          onPointerLeaveCapture={() => {}}
-        />
-      ),
-    },
-    {
-      title: "Instructions",
-      icon: (
-        <LocationMarkerOutline
-          size={20}
-          onPointerEnterCapture={() => {}}
-          onPointerLeaveCapture={() => {}}
-        />
-      ),
-    },
-    { title: "Feedback", icon: <MdLocalActivity size={20} /> },
-  ];
+        {/* Step 2 */}
+        <Card className="bg-[#111111] border border-purple-900/30 backdrop-blur-md shadow-md rounded-2xl">
+          <CardHeader className="flex items-center gap-3">
+            <MessageSquareText className="text-purple-400" size={24} />
+            <CardTitle className="text-lg text-white">Step 2: Use the Number for Verification</CardTitle>
+          </CardHeader>
+          <CardContent className="text-sm text-gray-400 space-y-4">
+            <p>
+              Copy and paste the number on the platform you’re verifying. Complete the registration or verification process.
+            </p>
+            <div className="w-full h-40 bg-black/30 rounded-xl border border-purple-800/30 flex items-center justify-center text-sm text-purple-300">
+              Screenshot Placeholder (Platform Signup)
+            </div>
+          </CardContent>
+        </Card>
 
-  const [routePath, setRoutePath] = useState<string>("overview");
+        {/* Step 3 */}
+        <Card className="bg-[#111111] border border-purple-900/30 backdrop-blur-md shadow-md rounded-2xl">
+          <CardHeader className="flex items-center gap-3">
+            <RefreshCw className="text-green-400" size={24} />
+            <CardTitle className="text-lg text-white">Step 3: Wait for Incoming SMS</CardTitle>
+          </CardHeader>
+          <CardContent className="text-sm text-gray-400 space-y-4">
+            <p>
+              Your SMS will show up in your inbox shortly. Copy the verification code and finish your signup.
+            </p>
+            <div className="w-full h-40 bg-black/30 rounded-xl border border-purple-800/30 flex items-center justify-center text-sm text-purple-300">
+              Screenshot Placeholder (Inbox View)
+            </div>
+          </CardContent>
+        </Card>
 
-  const getPageRoute = () => {
-    const currentPath = window.location.pathname;
-    const parts = currentPath.split("/");
-    const route = parts[2]?.toLowerCase() || "overview";
-    setRoutePath(route);
-  };
+        {/* Step 4 */}
+        <Card className="bg-[#111111] border border-purple-900/30 backdrop-blur-md shadow-md rounded-2xl">
+          <CardHeader className="flex items-center gap-3">
+            <CreditCard className="text-pink-400" size={24} />
+            <CardTitle className="text-lg text-white">Step 4: Make a Payment</CardTitle>
+          </CardHeader>
+          <CardContent className="text-sm text-gray-400 space-y-4">
+            <p>
+              Once satisfied, proceed to pay via USDT (TRC-20), Paystack, or Stripe—whichever suits you best.
+            </p>
+            <div className="w-full h-40 bg-black/30 rounded-xl border border-purple-800/30 flex items-center justify-center text-sm text-purple-300">
+              Screenshot Placeholder (Payment Options)
+            </div>
+          </CardContent>
+        </Card>
 
-  useEffect(() => {
-    getPageRoute();
-  }, []);
+        {/* Step 5 */}
+        <Card className="bg-[#111111] border border-purple-900/30 backdrop-blur-md shadow-md rounded-2xl">
+          <CardHeader className="flex items-center gap-3">
+            <ShieldCheck className="text-yellow-400" size={24} />
+            <CardTitle className="text-lg text-white">Step 5: Enjoy Secure & Seamless Usage</CardTitle>
+          </CardHeader>
+          <CardContent className="text-sm text-gray-400 space-y-4">
+            <p>
+              Your dashboard lets you monitor incoming SMS and manage numbers securely, with fraud protection built-in.
+            </p>
+            <div className="w-full h-40 bg-black/30 rounded-xl border border-purple-800/30 flex items-center justify-center text-sm text-purple-300">
+              Screenshot Placeholder (Dashboard Overview)
+            </div>
+          </CardContent>
+        </Card>
+      </div>
 
-  return (
-    <div
-      className="mt-[75px] p-[20px] bg-[#1A1A1A] text-white w-[300px] overflow-y-auto"
-      style={{ height: "calc(100vh - 75px)" }}
-    >
-      <LinkBar
-        title="Overview"
-        routePath={routePath}
-        icon={
-          <ClockOutline
-            size={20}
-            onPointerEnterCapture={() => {}}
-            onPointerLeaveCapture={() => {}}
-          />
-        }
-      />
+      {/* <Separator className="my-10 bg-purple-800/50" /> */}
 
-      <div className="w-full flex flex-col mt-4">
-        <h1 className="ml-11 text-[10px] py-[10px] font-bold text-[#BB86FC]">
-          ACCOUNT
-        </h1>
-        <div className="w-full flex flex-col">
-          {accountLinks.map((link, i) => (
-            <LinkBar
-              key={i}
-              title={link.title}
-              routePath={routePath}
-              icon={link.icon}
-            />
-          ))}
-        </div>
-
-        <h1 className="ml-11 text-[10px] py-[10px] font-bold text-[#BB86FC] mt-6">
-          MANAGEMENT
-        </h1>
-        <div className="w-full flex flex-col">
-          {managementLinks.map((link, i) => (
-            <LinkBar
-              key={i}
-              title={link.title}
-              routePath={routePath}
-              icon={link.icon}
-            />
-          ))}
-        </div>
+      <div className="text-center space-y-4">
+        <h2 className="text-2xl font-semibold text-white">How the SMS App Operates</h2>
+        <p className="text-gray-400 max-w-3xl mx-auto text-sm">
+          Our app lets you rent virtual SMS numbers from multiple countries, receive SMS in real time, and pay securely.
+          It’s ideal for one-time verifications or services where privacy and simplicity matter. All actions can be managed directly from your sleek, dark-mode-friendly dashboard.
+        </p>
       </div>
     </div>
   );
-};
-
-export default SideBar;
+}
