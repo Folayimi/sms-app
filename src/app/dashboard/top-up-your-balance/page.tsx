@@ -1,17 +1,24 @@
 const TopUpBalance = () => {
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gray-100 p-6 mt-[100px]">
-      <div className="w-full max-w-3xl bg-white shadow-lg rounded-2xl p-6">
-        <h2 className="text-2xl font-semibold text-gray-800 text-center mb-4">
-          💳 Top Up Your Balance
-        </h2>
+    <div className="min-h-screen bg-[#121212] mt-[75px] px-8 py-12">
+      <div className="max-w-4xl mx-auto bg-[#1A1A1A] shadow-2xl rounded-3xl p-8">
+        {/* Heading */}
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-[#BB86FC] mb-4">
+            💳 Top Up Your Balance
+          </h2>
+          <p className="text-lg text-gray-400">
+            Choose your payment method and top-up amount
+          </p>
+        </div>
 
         {/* Step 1: Choose Payment Method */}
-        <div className="mb-6">
-          <h3 className="text-lg font-medium text-gray-700 mb-3">
-            1. Choose a payment method
+        <div className="mb-8">
+          <h3 className="text-2xl font-semibold text-[#BB86FC] mb-6">
+            1. Choose a Payment Method
           </h3>
-          <div className="grid grid-cols-4 gap-3">
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
             {[
               "visa",
               "wechat",
@@ -26,7 +33,7 @@ const TopUpBalance = () => {
             ].map((method, index) => (
               <button
                 key={index}
-                className="bg-gray-200 p-3 rounded-xl hover:bg-blue-100 transition"
+                className="flex items-center justify-center bg-[#333333] p-4 rounded-xl hover:bg-[#BB86FC] hover:text-white transition"
               >
                 <img
                   src={`/images/${method}.png`} // Replace with actual image paths
@@ -39,43 +46,40 @@ const TopUpBalance = () => {
         </div>
 
         {/* Step 2: Specify Top-up Amount */}
-        <div className="mb-6">
-          <h3 className="text-lg font-medium text-gray-700 mb-3">
-            2. Specify top-up amount 💲
+        <div className="mb-8">
+          <h3 className="text-2xl font-semibold text-[#BB86FC] mb-6">
+            2. Specify Top-up Amount 💲
           </h3>
-          <div className="flex gap-3">
+          {/* Amount Selection */}
+          <div className="flex gap-6 justify-center mb-6">
             {[10, 50, 100].map((amount) => (
               <button
                 key={amount}
-                className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-blue-500 hover:text-white transition font-medium"
+                className="px-6 py-3 bg-[#333333] text-[#BB86FC] rounded-lg hover:bg-[#BB86FC] hover:text-white transition font-medium"
               >
                 {amount}$
               </button>
             ))}
-            <button className="px-4 py-2 bg-gray-300 text-gray-600 rounded-lg cursor-pointer">
+            <button className="px-6 py-3 bg-[#444444] text-gray-400 rounded-lg cursor-pointer hover:bg-[#BB86FC] hover:text-white transition">
               Other Amount
             </button>
           </div>
         </div>
 
         {/* Pay Button */}
-        <button className="w-full bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium text-lg transition">
-          Pay Now
-        </button>
+        <div className="text-center mb-8">
+          <button className="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium text-lg transition">
+            Pay Now
+          </button>
+        </div>
 
         {/* Info Text */}
-        <p className="text-gray-500 text-sm mt-3 text-center">
+        <p className="text-gray-400 text-sm mt-3 text-center">
           You will be redirected to the payment page of the chosen service.
         </p>
-
-        {/* Currency Rates */}
-        <div className="mt-4 text-gray-600 text-sm text-center">
-          <p>1 ¥ = 11.60 ₽</p>
-          <p>1 $ = 84.87 ₽</p>
-        </div>
       </div>
     </div>
   );
-}
+};
 
 export default TopUpBalance;

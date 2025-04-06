@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/signin/page.jsx", "src/app/signup/page.jsx", "src/app/dashboard/profile/page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/signin/page.jsx", "src/app/signup/page.jsx", "src/app/dashboard/profile/page.jsx", "src/services/toastify.js", "src/services/request.js"],
   "exclude": ["node_modules"]
 }

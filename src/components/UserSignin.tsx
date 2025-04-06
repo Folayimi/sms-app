@@ -7,6 +7,7 @@ import {
 } from "heroicons-react";
 import { useRouter } from "next/navigation";
 import Loader from "./Loader";
+import { userLogin } from "@/services/request";
 
 // Define interface for login details
 interface LoginDetails {
@@ -54,8 +55,8 @@ const StudentSignIn = ({ setLoginType, setForgot }: StudentSignInProps) => {
     if (valid) {
       setLoading(true);
       // Handle login submission here, e.g., API call
-      // await studentLogin(dispatch, loginDetails.email, loginDetails.password)
-      // setLoading(false);
+      await userLogin(loginDetails);
+      setLoading(false);
     }
   };
 

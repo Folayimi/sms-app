@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Layout from "@/components/Layout";
+import { ToastContainer } from "react-toastify";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Inter } from "next/font/google";
 
@@ -34,6 +35,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased font-inter`}
       >
+        <ToastContainer />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Layout children={children} />
         </ThemeProvider>
