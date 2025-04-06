@@ -63,9 +63,11 @@ const StudentSignIn = ({ setLoginType, setForgot }: StudentSignInProps) => {
         className="flexss rounded-full w-fit p-[0.4em] cursor-pointer bg-purple-800 bg-opacity-30 hover:bg-opacity-50 transition-all"
         onClick={() => router.back()}
       >
-        <div className="w-[1.2em] h-[1.2em] flexmm">
-          <ArrowLeftOutline size={15} color="white" />
-        </div>
+        <ArrowLeftOutline
+          className="w-[1.2em] h-[1.2em] flexmm text-white"
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+        />
       </div>
 
       {/* Header */}
@@ -124,9 +126,23 @@ const StudentSignIn = ({ setLoginType, setForgot }: StudentSignInProps) => {
               onClick={() => setHide(!hide)}
             >
               {hide ? (
-                <EyeOutline className="w-5 h-5" />
+                <EyeOutline
+                  className="w-5 h-5 text-gray-500 cursor-pointer"
+                  onClick={() => {
+                    setHide(!hide);
+                  }}
+                  onPointerEnterCapture={() => {}}
+                  onPointerLeaveCapture={() => {}}
+                />
               ) : (
-                <EyeOffOutline className="w-5 h-5" />
+                <EyeOffOutline
+                  className="w-5 h-5 text-gray-500 cursor-pointer"
+                  onClick={() => {
+                    setHide(!hide);
+                  }}
+                  onPointerEnterCapture={() => {}}
+                  onPointerLeaveCapture={() => {}}
+                />
               )}
             </div>
           </div>
@@ -162,7 +178,11 @@ const StudentSignIn = ({ setLoginType, setForgot }: StudentSignInProps) => {
           ) : (
             <>
               <span>Sign In</span>
-              <ArrowRightOutline className="w-4 h-4" />
+              <ArrowRightOutline
+                size={12}
+                onPointerEnterCapture={() => {}}
+                onPointerLeaveCapture={() => {}}
+              />
             </>
           )}
         </button>

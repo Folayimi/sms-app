@@ -116,7 +116,12 @@ const StudentAccount = ({
         onClick={() => router.back()}
       >
         <div className="w-[1.2em] h-[1.2em] flexmm">
-          <ArrowLeftOutline className="w-4 h-4 text-white" role="img" aria-label="Back" />
+          <ArrowLeftOutline
+            className="w-4 h-4 text-white"
+            size={12}
+            onPointerEnterCapture={() => {}}
+            onPointerLeaveCapture={() => {}}
+          />
         </div>
       </div>
 
@@ -182,15 +187,21 @@ const StudentAccount = ({
             />
             {hide ? (
               <EyeOutline
-                className="w-5 h-5 text-gray-400 cursor-pointer"
-                onClick={() => setHide(false)}
-                role="img"
-                aria-label="Show Password"
+                className="w-5 h-5 text-gray-500 cursor-pointer"
+                onClick={() => {
+                  setHide(!hide);
+                }}
+                onPointerEnterCapture={() => {}}
+                onPointerLeaveCapture={() => {}}
               />
             ) : (
               <EyeOffOutline
-                className="w-5 h-5 text-gray-400 cursor-pointer"
-                onClick={() => setHide(true)}
+                className="w-5 h-5 text-gray-500 cursor-pointer"
+                onClick={() => {
+                  setHide(!hide);
+                }}
+                onPointerEnterCapture={() => {}}
+                onPointerLeaveCapture={() => {}}
               />
             )}
           </div>
@@ -224,7 +235,11 @@ const StudentAccount = ({
           ) : (
             <>
               <span>Create Account</span>
-              <ArrowRightOutline size={14} />
+              <ArrowRightOutline
+                size={14}
+                onPointerEnterCapture={() => {}}
+                onPointerLeaveCapture={() => {}}
+              />
             </>
           )}
         </button>
