@@ -36,13 +36,13 @@ const Nav: React.FC = () => {
       </div>
 
       {/* Center: Search Bar */}
-      <div className="w-[350px]">
+      {/* <div className="w-[350px]">
         <input
           type="text"
           placeholder="Search"
           className="w-full px-4 py-2 rounded-lg bg-[#2A2A2A] border border-[#444] text-[#E0E0E0] placeholder:text-[#888] focus:ring-2 focus:ring-[#7E57C2] transition"
         />
-      </div>
+      </div> */}
 
       {/* Right: Notifications, Balance, Top Up, Profile */}
       <div className="flex items-center gap-6">

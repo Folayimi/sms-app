@@ -119,9 +119,9 @@ const Overview: React.FC = () => {
   }, [searchQuery]);
 
   return (
-    <div className="min-h-screen bg-[#121212] mt-[75px] h-[calc(100vh-75px)] text-white px-10 pt-12 overflow-y-auto">
+    <div className="bg-[#121212] mt-[75px] text-white px-10 pt-12">
       {!userToken && (
-        <div>
+        <div className="w-full h-full cflexss">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-semibold text-[#BB86FC]">
@@ -135,7 +135,7 @@ const Overview: React.FC = () => {
           </div>
 
           {/* Stats Section */}
-          <div className="my-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="w-full my-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {overviewData.map((data, index) => (
               <div
                 key={index}
@@ -167,7 +167,7 @@ const Overview: React.FC = () => {
           </div>
 
           {/* Quick Actions */}
-          <div className="my-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="w-full my-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {quickActions.map((action, index) => (
               <div
                 key={index}
@@ -218,7 +218,7 @@ const Overview: React.FC = () => {
           </div>
 
           {/* System Health Status */}
-          <div className="my-8 p-6 bg-[#1A1A1A] rounded-xl flex items-center justify-between shadow-md">
+          <div className="w-full my-8 p-6 bg-[#1A1A1A] rounded-xl flex items-center justify-between shadow-md">
             <div className="flex items-center gap-4">
               <Cpu className="w-6 h-6 text-blue-400" />
               <span className="text-lg text-white">System Health: Online</span>
