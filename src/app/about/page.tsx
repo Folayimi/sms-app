@@ -7,7 +7,7 @@ const About = () => {
     <div className="bg-[#1A1A1A] text-gray-100 w-full min-h-screen">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-[#7E57C2] to-[#BB86FC] py-16 px-4 md:px-16 rounded-b-3xl shadow-lg relative overflow-hidden w-full">
-        <div className="w-full relative z-10 max-w-6xl mx-auto">
+        <div className="w-full relative mt-[50px] z-10 max-w-6xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">About SMS-App</h1>
           <p className="text-lg mb-8 max-w-2xl">
             SMS-App is your go-to solution for secure, instant, and anonymous SMS verification.

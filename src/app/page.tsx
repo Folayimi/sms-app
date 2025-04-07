@@ -125,10 +125,10 @@ const Home = () => {
   );
 
   return (
-    <div className="bg-[#1A1A1A] min-h-screen lg:mt-[100px] mt-[80px] text-gray-100 w-full">
+    <div className="bg-[#1A1A1A] min-h-screen lg:mt-[70px] mt-[50px] text-gray-100 w-full">
       {/* Hero Section */}
       <div className="bg-gradient-to-br  from-[#7E57C2] to-[#BB86FC] text-white p-8 md:p-16 rounded-b-3xl shadow-lg relative overflow-hidden w-full">
-        <div className="w-full px-4 relative z-10">
+        <div className="w-full px-4 mt-[50px] relative z-10">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             Receive SMS Online
           </h1>
