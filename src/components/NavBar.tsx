@@ -13,7 +13,7 @@ type NavBarProps = {
 
 const NavBar: React.FC<NavBarProps> = ({
   active = 0,
-  background = "#FFFFFF",
+  background = "000000",
 }) => {
   const nav = [
     { title: "Home", link: "/" },
@@ -26,7 +26,7 @@ const NavBar: React.FC<NavBarProps> = ({
   return (
     <header
       style={{ background }}
-      className="fixed top-0 left-0 w-full z-50 bg-opacity-95 px-6 py-4 flex items-center justify-between shadow-lg"
+      className="fixed top-0 left-0 w-full z-50 bg-black bg-opacity-95 px-6 py-4 flex items-center justify-between shadow-lg"
     >
       {/* LOGO */}
       <Link href="/">
@@ -34,7 +34,7 @@ const NavBar: React.FC<NavBarProps> = ({
       </Link>
 
       {/* Desktop Nav */}
-      <nav className="hidden md:flex gap-10 items-center text-[#121212]">
+      <nav className="hidden md:flex gap-10 items-center text-white">
         {nav.map((item, i) => (
           <Link
             key={i}
