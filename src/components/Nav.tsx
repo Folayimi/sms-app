@@ -128,14 +128,30 @@ const Nav = ({ hidden, setHidden }: NavProps) => {
 
       {/* Mobile Navigation (hamburger menu) */}
       {showNav && (
-        <div className="fixed w-64 top-[75px] left-0 h-[calc(100vh-75px)] bg-[#1A1A1A] z-10">
-          <div className="w-full h-full p-6 flex flex-col items-start text-[#E0E0E0]">           
-            <Link href="/dashboard/overview">
-              <div className="text-lg mb-4 hover:text-[#BB86FC]">Overview</div>
-            </Link>
-            <Link href="/dashboard/profile">
-              <div className="text-lg mb-4 hover:text-[#BB86FC]">Profile</div>
-            </Link>
+        <div className="fixed w-64 top-[70px] left-0 h-[calc(100vh-70px)] bg-[#1A1A1A] z-10">
+          <div className="w-full h-full p-6 flex flex-col gap-[15px] items-start text-[#E0E0E0]">
+            <div className="w-full flex items-center gap-4 mb-4">
+              <div className="flex flex-col">
+                <p
+                  className={`text-xs ${
+                    isDarkMode ? "text-[#AAAAAA]" : "text-[#1A1A1A]"
+                  } `}
+                >
+                  Balance
+                </p>
+                <p
+                  className={`text-xl font-semibold ${
+                    isDarkMode ? "text-white" : "text-[#1A1A1A]"
+                  } `}
+                >
+                  0 $
+                </p>
+              </div>
+              <div className="flex items-center gap-2 bg-[#7E57C2] text-white font-semibold px-4 py-2 rounded-lg cursor-pointer hover:bg-[#BB86FC] transition">
+                <HiCreditCard size={20} />
+                <p>Top Up</p>
+              </div>
+            </div>
             <Link href="/dashboard/settings">
               <div className="text-lg mb-4 hover:text-[#BB86FC]">Settings</div>
             </Link>
