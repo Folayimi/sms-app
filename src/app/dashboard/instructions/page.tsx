@@ -12,7 +12,7 @@ import { Separator } from "@/components/ui/separator";
 
 export default function InstructionGuide() {
   return (
-    <div className="w-full bg-[#121212] mt-[75px] py-16 px-4 space-y-12 text-white">
+    <div className="w-full bg-[#121212] mt-[50px] lg:mt-[75px] py-16 px-4 space-y-12 text-white">
       <h1 className="text-4xl font-bold text-center text-white">How the SMS App Works</h1>
       <p className="text-center text-gray-400 max-w-2xl mx-auto text-base">
         Follow this simple step-by-step guide to understand how to get started with your SMS number, receive messages, and make payments.
