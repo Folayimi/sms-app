@@ -17,11 +17,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface NavProps {
   setHidden: (hidden: boolean) => void;
+  setShowNav: (showNav: boolean) => void;
+  showNav: boolean;
   hidden: boolean;
 }
 
-const Nav = ({ hidden, setHidden }: NavProps) => {
-  const [showNav, setShowNav] = useState<boolean>(false);
+const Nav = ({ hidden, setHidden, showNav, setShowNav }: NavProps) => {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(true); // Dark mode state
 
   const toggleTheme = () => setIsDarkMode(!isDarkMode); // Theme toggle function
@@ -37,7 +38,10 @@ const Nav = ({ hidden, setHidden }: NavProps) => {
       <div className="flex items-center gap-4">
         <div
           className="flex lg:hidden justify-center items-center rounded-[10px] bg-[#BB86FC] font-bols text-white cursor-pointer px-[12px] py-[8px] transition-all duration-300"
-          onClick={() => setHidden(!hidden)}
+          onClick={() => {
+            setHidden(!hidden);
+            setShowNav(false)
+          }}
         >
           {hidden ? (
             <>
