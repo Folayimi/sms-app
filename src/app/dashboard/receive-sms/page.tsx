@@ -1,6 +1,6 @@
 export default function NewSMS() {
   return (
-    <div className="min-h-screen bg-[#121212] px-8 mt-[75px] py-12">
+    <div className="min-h-screen bg-[#121212] px-8 mt-[50px] lg:mt-[75px] py-12">
       <div className="max-w-4xl mx-auto bg-[#1A1A1A] shadow-2xl rounded-3xl p-8">
         {/* Heading */}
         <div className="text-center mb-8">
@@ -26,7 +26,7 @@ export default function NewSMS() {
             />
           </div>
 
-          <div className="flex space-x-6 justify-between">
+          <div className="lg:flex space-x-6 justify-between lg:gap-[10px] flex-wrap">
             {[
               { name: "VKontakte", icon: "vk.png", available: true },
               { name: "WeChat", icon: "wechat.png", available: true },
@@ -35,7 +35,7 @@ export default function NewSMS() {
             ].map((service, index) => (
               <button
                 key={index}
-                className={`flex flex-col items-center justify-center w-24 h-24 bg-[#333333] p-4 rounded-xl ${
+                className={`flex flex-col items-center justify-center w-full lg:w-24 h-24 bg-[#333333] p-4 rounded-xl ${
                   service.available
                     ? "hover:bg-[#BB86FC] hover:text-white"
                     : "opacity-50"
