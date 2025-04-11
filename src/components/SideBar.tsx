@@ -42,7 +42,12 @@ interface Link {
   icon: any;
 }
 
-const SideBar: React.FC = () => {
+interface SideBarProps {
+  setHidden: (hidden: boolean) => void;
+  hidden: boolean;
+}
+
+const SideBar = ({ hidden, setHidden }: SideBarProps) => {
   const accountLinks: Link[] = [
     {
       title: "Profile",
@@ -111,12 +116,14 @@ const SideBar: React.FC = () => {
 
   useEffect(() => {
     getPageRoute();
+    console.log(hidden);
   }, []);
 
   return (
     <div
-      className="mt-[75px] p-[20px] bg-[#1A1A1A] text-white w-[300px] overflow-y-auto"
-      style={{ height: "calc(100vh - 75px)" }}
+      className={`mt-0 fixed top-[50px] lg:top-0 z-25 lg:left-[0px] left-[${
+        hidden ? "-100vw" : "0px"
+      }] lg:relative lg:mt-[75px] p-[20px] bg-[#1A1A1A] h-[calc(100vh-50px)] lg:h-[calc(100vh-75px)] text-white w-[300px] overflow-y-auto transition-all duration-300`}
     >
       <LinkBar
         title="Overview"

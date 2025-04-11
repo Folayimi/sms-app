@@ -15,7 +15,12 @@ import {
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-const Nav: React.FC = () => {
+interface NavProps {
+  setHidden: (hidden: boolean) => void;
+  hidden: boolean;
+}
+
+const Nav = ({ hidden, setHidden }: NavProps) => {
   const [showNav, setShowNav] = useState<boolean>(false);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(true); // Dark mode state
 
@@ -30,6 +35,18 @@ const Nav: React.FC = () => {
     >
       {/* Left: Logo */}
       <div className="flex items-center gap-4">
+        <div
+          className="flex lg:hidden justify-center items-center rounded-[10px] bg-[#BB86FC] font-bols text-white cursor-pointer px-[12px] py-[8px] transition-all duration-300"
+          onClick={() => setHidden(!hidden)}
+        >
+          {hidden ? (
+            <>
+              <p>Menu</p>
+            </>
+          ) : (
+            <HiX size={20} color="#E0E0E0" />
+          )}
+        </div>
         <h1 className="font-semibold text-[#BB86FC] text-lg tracking-wide">
           SMS-APP
         </h1>
@@ -53,7 +70,7 @@ const Nav: React.FC = () => {
         </div>
 
         {/* Balance and Top Up */}
-        <div className="flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-4">
           <div className="flex flex-col">
             <p
               className={`text-xs ${
@@ -77,7 +94,7 @@ const Nav: React.FC = () => {
         </div>
 
         {/* Profile */}
-        <div className="flex items-center gap-3 text-[#E0E0E0] cursor-pointer">
+        <div className="hidden lg:flex items-center gap-3 text-[#E0E0E0] cursor-pointer">
           <div className="flex items-center gap-2">
             <Avatar>
               <AvatarImage src="https://github.com/shadcn.png" />
@@ -94,37 +111,36 @@ const Nav: React.FC = () => {
 
         {/* Hamburger Menu for Small Screens */}
         <div className="lg:hidden flex items-center">
-          <RiMenuFill
-            size={30}
-            color="#E0E0E0"
-            onClick={() => setShowNav(!showNav)}
-          />
+          {showNav ? (
+            <HiX size={30} color="#E0E0E0" onClick={() => setShowNav(false)} />
+          ) : (
+            <RiMenuFill
+              size={30}
+              color="#E0E0E0"
+              onClick={() => {
+                setShowNav(true);
+                setHidden(true);
+              }}
+            />
+          )}
         </div>
       </div>
 
       {/* Mobile Navigation (hamburger menu) */}
       {showNav && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-40">
-          <div className="bg-[#1A1A1A] w-64 h-full p-6 flex flex-col items-start text-[#E0E0E0]">
-            <div className="flex justify-between w-full mb-6">
-              <h2 className="text-lg font-semibold">Menu</h2>
-              <HiX
-                size={30}
-                color="#E0E0E0"
-                onClick={() => setShowNav(false)}
-              />
-            </div>
+        <div className="fixed w-64 top-[75px] left-0 h-[calc(100vh-75px)] bg-[#1A1A1A] z-10">
+          <div className="w-full h-full p-6 flex flex-col items-start text-[#E0E0E0]">           
             <Link href="/dashboard/overview">
-              <a className="text-lg mb-4 hover:text-[#BB86FC]">Overview</a>
+              <div className="text-lg mb-4 hover:text-[#BB86FC]">Overview</div>
             </Link>
             <Link href="/dashboard/profile">
-              <a className="text-lg mb-4 hover:text-[#BB86FC]">Profile</a>
+              <div className="text-lg mb-4 hover:text-[#BB86FC]">Profile</div>
             </Link>
             <Link href="/dashboard/settings">
-              <a className="text-lg mb-4 hover:text-[#BB86FC]">Settings</a>
+              <div className="text-lg mb-4 hover:text-[#BB86FC]">Settings</div>
             </Link>
             <Link href="/dashboard/logout">
-              <a className="text-lg mb-4 hover:text-[#BB86FC]">Logout</a>
+              <div className="text-lg mb-4 hover:text-[#BB86FC]">Logout</div>
             </Link>
           </div>
         </div>

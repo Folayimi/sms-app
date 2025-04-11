@@ -119,7 +119,7 @@ const Overview: React.FC = () => {
   }, [searchQuery]);
 
   return (
-    <div className="bg-[#121212] mt-[75px] text-white px-10 pt-12">
+    <div className="bg-[#121212] lg:mt-[75px] mt-[50px] text-white px-10 pt-12">
       {!userToken && (
         <div className="w-full h-full cflexss">
           <div className="flex items-center justify-between">
@@ -186,7 +186,7 @@ const Overview: React.FC = () => {
           </div>
 
           {/* Chart Section */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+          <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
             <ChartComponent
               title="Total Active Users"
               description="January - June 2024"

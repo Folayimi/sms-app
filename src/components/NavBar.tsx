@@ -34,7 +34,7 @@ const NavBar: React.FC<NavBarProps> = ({
       </Link>
 
       {/* Desktop Nav */}
-      <nav className="hidden md:flex gap-10 items-center text-white">
+      <nav className="hidden md:flex gap-10 items-center text-[#1A1A1A]">
         {nav.map((item, i) => (
           <Link
             key={i}
@@ -59,7 +59,7 @@ const NavBar: React.FC<NavBarProps> = ({
       </nav>
 
       {/* Mobile Hamburger */}
-      <div className="md:hidden text-white z-50">
+      <div className="md:hidden text-[#1A1A1A] z-50">
         {showNav ? (
           <HiX size={28} onClick={() => setShowNav(false)} />
         ) : (

@@ -4,22 +4,23 @@ import NavBar from "./NavBar";
 import Nav from "./Nav";
 import SideBar from "./SideBar";
 import { usePathname } from "next/navigation";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 
 type LayoutProps = {
   children: ReactNode;
 };
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const [hidden, setHidden] = useState(true);
   const pathname = usePathname();
   const isDashboard = pathname?.includes("/dashboard");
   return (
     <>
       {isDashboard ? (
         <>
-          <Nav />
+          <Nav hidden={hidden} setHidden={setHidden}/>
           <div className="flex flex-row h-screen bg-gray-100">
-            <SideBar />
+            <SideBar hidden={hidden} setHidden={setHidden}/>
             <div className="flex-1 overflow-y-auto dark">{children}</div>
           </div>
         </>
