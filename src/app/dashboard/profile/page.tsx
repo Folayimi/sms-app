@@ -1,7 +1,7 @@
 const Dashboard = () => {
   return (
-    <div className="min-h-screen mt-[75px] bg-[#121212] px-6 py-12">
-      <div className="max-w-3xl mx-auto bg-[#1A1A1A] shadow-xl rounded-2xl p-8">
+    <div className="min-h-screen bg-[#101827] backdrop-blur-[12px] lg:mt-[55px] mt-[40px] px-6 py-12">
+      <div className="max-w-3xl mx-auto bg-[#29303D] backdrop-blur-[12px] shadow-xl rounded-2xl p-8">
         {/* Account Header */}
         <div className="flex items-center justify-between mb-6">
           <div>

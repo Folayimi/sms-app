@@ -1,7 +1,7 @@
 const TopUpBalance = () => {
   return (
-    <div className="min-h-screen bg-[#121212] mt-[75px] px-8 py-12">
-      <div className="max-w-4xl mx-auto bg-[#1A1A1A] shadow-2xl rounded-3xl p-8">
+    <div className="min-h-screen bg-[#101827] backdrop-blur-[12px] lg:mt-[55px] mt-[40px] px-8 py-12">
+      <div className="max-w-4xl mx-auto bg-[#29303D] backdrop-blur-[12px] shadow-2xl rounded-3xl p-8">
         {/* Heading */}
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-[#BB86FC] mb-4">

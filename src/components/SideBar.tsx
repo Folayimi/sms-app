@@ -1,11 +1,14 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { MdLocalActivity } from "react-icons/md";
+import { MdLocalActivity, MdWallet, MdSms, MdEvent } from "react-icons/md";
 import {
   UserGroupOutline,
   UsersOutline,
   LocationMarkerOutline,
   ClockOutline,
+  PhoneOutline,
+  CalendarOutline,
+  Phone,
 } from "heroicons-react";
 
 interface LinkBarProps {
@@ -25,14 +28,22 @@ const LinkBar: React.FC<LinkBarProps> = ({ title, routePath, icon }) => {
   return (
     <a
       href={route}
-      className={`group w-full pl-11 py-[10px] text-[14px] flex items-center rounded-[15px] gap-[20px] my-2 transition-all ${
-        isActive
-          ? "bg-[#7E57C2] text-white font-bold"
-          : "text-[#E0E0E0] hover:text-[#BB86FC]"
+      className={`flex items-center gap-3 px-4 py-3 rounded-[12px] ${
+        isActive ? "bg-[#8B5CF6]/10 text-[#8B5CF6]" : "hover:bg-gray-800"
       }`}
     >
       {icon}
-      <div className="flex items-center">{title}</div>
+      <span>{title}</span>
+      {title === "New SMS" && (
+        <span className="text-xs px-2 py-0.5 bg-blue-500/20 text-blue-400 rounded-full">
+          Buy
+        </span>
+      )}
+      {title === "Rent Numbers" && (
+        <span className="text-xs px-2 py-0.5 bg-green-500/20 text-green-400 rounded-full">
+          New
+        </span>
+      )}
     </a>
   );
 };
@@ -50,18 +61,22 @@ interface SideBarProps {
 const SideBar = ({ hidden, setHidden }: SideBarProps) => {
   const accountLinks: Link[] = [
     {
+      title: "Overview",
+      icon: (
+        <UserGroupOutline
+          size={20}
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
+        />
+      ),
+    },
+    {
+      title: "New SMS",
+      icon: <MdSms size={20} />,
+    },    
+    {
       title: "Profile",
       icon: (
-        <UserGroupOutline
-          size={20}
-          onPointerEnterCapture={() => {}}
-          onPointerLeaveCapture={() => {}}
-        />
-      ),
-    },
-    {
-      title: "Receive SMS",
-      icon: (
         <UsersOutline
           size={20}
           onPointerEnterCapture={() => {}}
@@ -69,13 +84,10 @@ const SideBar = ({ hidden, setHidden }: SideBarProps) => {
         />
       ),
     },
-  ];
-
-  const managementLinks: Link[] = [
     {
-      title: "Top up your balance",
+      title: "Subscription",
       icon: (
-        <UserGroupOutline
+        <CalendarOutline
           size={20}
           onPointerEnterCapture={() => {}}
           onPointerLeaveCapture={() => {}}
@@ -83,26 +95,17 @@ const SideBar = ({ hidden, setHidden }: SideBarProps) => {
       ),
     },
     {
-      title: "Earn money on SMS",
-      icon: (
-        <UsersOutline
-          size={20}
-          onPointerEnterCapture={() => {}}
-          onPointerLeaveCapture={() => {}}
-        />
-      ),
+      title: "Earn Money On SMS",
+      icon: <MdWallet size={20} />,
     },
     {
       title: "Instructions",
-      icon: (
-        <LocationMarkerOutline
-          size={20}
-          onPointerEnterCapture={() => {}}
-          onPointerLeaveCapture={() => {}}
-        />
-      ),
+      icon: <MdEvent size={20} />,
     },
-    { title: "Feedback", icon: <MdLocalActivity size={20} /> },
+    {
+      title: "Blogs",
+      icon: <MdEvent size={20} />,
+    },
   ];
 
   const [routePath, setRoutePath] = useState<string>("overview");
@@ -130,99 +133,16 @@ const SideBar = ({ hidden, setHidden }: SideBarProps) => {
       </div>
       <nav className="mt-8">
         <div className="px-3 space-y-1">
-          <Link
-            href="/dashboard/overview"
-            className="flex items-center gap-3 px-4 py-3 rounded-[12px] bg-[#8B5CF6]/10 text-[#8B5CF6]"
-          >
-            <span className="w-5 h-5 flex items-center justify-center">
-              <i className="before:content-[\ec12]"></i>
-            </span>
-            <span>Dashboard</span>
-          </Link>
-          <a
-            href="/dashboard/receive-sms"
-            id="newSmsButton"
-            className="flex items-center gap-3 px-4 py-3 rounded-[12px] hover:bg-gray-800"
-          >
-            <span className="w-5 h-5 flex items-center justify-center">
-              <i className="before:content-[\ef44]"></i>
-            </span>
-            <div className="flex items-center justify-between flex-1">
-              <span>New SMS</span>
-              <span className="text-xs px-2 py-0.5 bg-blue-500/20 text-blue-400 rounded-full">
-                Buy
-              </span>
-            </div>
-          </a>
-          <a
-            href="#"
-            id="rentNumbersButton"
-            className="flex items-center gap-3 px-4 py-3 rounded-[12px] hover:bg-gray-800"
-          >
-            <span className="w-5 h-5 flex items-center justify-center">
-              <i className="ri-phone-line"></i>
-            </span>
-            <div className="flex items-center justify-between flex-1">
-              <span>Rent Numbers</span>
-              <span className="text-xs px-2 py-0.5 bg-green-500/20 text-green-400 rounded-full">
-                New
-              </span>
-            </div>
-          </a>
-          <a
-            href="#"
-            className="flex items-center gap-3 px-4 py-3 rounded-[12px] hover:bg-gray-800"
-          >
-            <span className="w-5 h-5 flex items-center justify-center">
-              <i className="ri-calendar-line"></i>
-            </span>
-            <span>Subscriptions</span>
-          </a>
-          <a
-            href="#"
-            className="flex items-center gap-3 px-4 py-3 rounded-[12px] hover:bg-gray-800"
-          >
-            <span className="w-5 h-5 flex items-center justify-center">
-              <i className="ri-wallet-3-line"></i>
-            </span>
-            <span>Balance</span>
-          </a>
-          <a
-            href="#"
-            className="flex items-center gap-3 px-4 py-3 rounded-[12px] hover:bg-gray-800"
-          >
-            <span className="w-5 h-5 flex items-center justify-center">
-              <i className="ri-team-line"></i>
-            </span>
-            <span>Affiliate</span>
-          </a>
-          <a
-            href="#"
-            className="flex items-center gap-3 px-4 py-3 rounded-[12px] hover:bg-gray-800"
-          >
-            <span className="w-5 h-5 flex items-center justify-center">
-              <i className="ri-code-line"></i>
-            </span>
-            <span>API</span>
-          </a>
-          <a
-            href="#"
-            className="flex items-center gap-3 px-4 py-3 rounded-[12px] hover:bg-gray-800"
-          >
-            <span className="w-5 h-5 flex items-center justify-center">
-              <i className="ri-question-line"></i>
-            </span>
-            <span>FAQ</span>
-          </a>
-          <a
-            href="#"
-            className="flex items-center gap-3 px-4 py-3 rounded-[12px] hover:bg-gray-800"
-          >
-            <span className="w-5 h-5 flex items-center justify-center">
-              <i className="ri-article-line"></i>
-            </span>
-            <span>Blogs</span>
-          </a>
+          {accountLinks.map((item, index) => {
+            return (
+              <LinkBar
+                key={index}
+                title={item.title}
+                routePath={routePath}
+                icon={item.icon}
+              />
+            );
+          })}
         </div>
       </nav>
     </aside>

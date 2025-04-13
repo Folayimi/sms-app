@@ -621,11 +621,7 @@ const Overview: React.FC = () => {
                       cursor={false}
                       content={<ChartTooltipContent hideLabel />}
                     />
-                    <Bar
-                      dataKey="desktop"
-                      fill="#FC996A"
-                      radius={8}
-                    />
+                    <Bar dataKey="desktop" fill="#FC996A" radius={8} />
                   </BarChart>
                 </ChartContainer>
               </CardContent>

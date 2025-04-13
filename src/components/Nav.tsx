@@ -51,7 +51,7 @@ const Nav = ({ hidden, setHidden, showNav, setShowNav }: NavProps) => {
           )} */}
         </div>
         <h1 className="font-semibold text-[#E0E0E0] text-lg tracking-wide">
-          SMS-APP
+          Dashboard
         </h1>
       </div>
 

@@ -1,56 +1,48 @@
+import { SearchIcon } from "lucide-react";
+import { MdWhatsapp } from "react-icons/md";
+
 export default function NewSMS() {
   return (
-    <div className="min-h-screen bg-[#121212] px-8 mt-[50px] lg:mt-[75px] py-12">
-      <div className="max-w-4xl mx-auto bg-[#1A1A1A] shadow-2xl rounded-3xl p-8">
-        {/* Heading */}
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-[#BB86FC] mb-4">
-            📩 New SMS Purchase
-          </h2>
-          <p className="text-lg text-gray-400">
-            Select a service and country to purchase SMS credits
-          </p>
-        </div>
-
+    <div className="min-h-screen bg-[#101827] backdrop-blur-[12px] px-6 lg:mt-[55px] mt-[40px] py-12">
+      <div className="w-full bg-[#29303D] backdrop-blur-[12px] text-[14px]shadow-2xl rounded-3xl p-6">
         {/* Step 1: Select a Service */}
-        <div className="mb-8">
-          <h3 className="text-2xl font-semibold text-[#BB86FC] mb-6">
-            1. Choose a Service
-          </h3>
+        <div className="w-full mb-8">
+          <div className="flexsm gap-[10px] mb-6 text-[18px]">
+            <div className="text-[#8B5CF6] w-6 h-6 flexmm rounded-full bg-[#8B5CF6]/10">
+              1
+            </div>
+            <p className="font-semibold">Select a service</p>
+          </div>
           {/* Service Search */}
-          <div className="mb-6">
+          <div className="relative mb-6 bg-gray-800/50 flexmm gap-[15px] px-[15px] py-2.5 rounded-[15px]">
+            <SearchIcon color="gray" size={20} />
             <input
               type="text"
-              placeholder="🔍 Search for a service"
-              className="w-full px-4 py-2 bg-[#333333] text-white border rounded-lg focus:ring-2 focus:ring-[#BB86FC] placeholder-gray-500"
+              placeholder="Search by service"
+              className="w-full border-none outline-none text-sm"
             />
           </div>
 
-          <div className="lg:flex space-x-6 justify-between lg:gap-[10px] flex-wrap">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              { name: "VKontakte", icon: "vk.png", available: true },
-              { name: "WeChat", icon: "wechat.png", available: true },
-              { name: "Telegram", icon: "telegram.png", available: true },
-              { name: "OK", icon: "ok.png", available: false },
+              { name: "Telegram", icon: "vk.png", available: true },
+              { name: "Whatsapp", icon: "wechat.png", available: true },
+              { name: "Google/YouTube", icon: "telegram.png", available: true },
+              { name: "Twitter", icon: "ok.png", available: false },
             ].map((service, index) => (
-              <button
-                key={index}
-                className={`flex flex-col items-center justify-center w-full lg:w-24 h-24 bg-[#333333] p-4 rounded-xl ${
-                  service.available
-                    ? "hover:bg-[#BB86FC] hover:text-white"
-                    : "opacity-50"
-                } transition`}
-              >
-                <img
-                  src={`/images/${service.icon}`}
-                  alt={service.name}
-                  className="w-12 h-12 mb-2"
-                />
-                <span className="text-white font-medium">{service.name}</span>
-                {!service.available && (
-                  <span className="text-red-500 text-xs">Unavailable</span>
-                )}
-              </button>
+              <>
+                <div className="p-4 bg-gray-800/30 hover:bg-gray-800/50 border border-gray-700 rounded-lg flex items-center gap-3 cursor-pointer group">
+                  <div className="w-10 h-10 flex items-center justify-center">
+                    <span className="w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center">
+                      <i className="ri-telegram-fill"></i>
+                    </span>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-medium">Telegram</h3>
+                    <p className="text-xs text-gray-400">1376227</p>
+                  </div>
+                </div>
+              </>
             ))}
           </div>
         </div>

@@ -16,8 +16,8 @@ export default function ReferralProgram() {
   };
 
   return (
-    <section className="w-full bg-[#121212] px-6 pt-[120px] pb-16">
-      <Card className="bg-gradient-to-br from-[#121212] to-[#1f1f1f] border border-purple-800/20 text-white shadow-2xl rounded-2xl">
+    <section className="w-full bg-[#101827] backdrop-blur-[12px] px-6 lg:pt-[90px] pt-[75px] pb-16">
+      <Card className="bg-[#29303D] backdrop-blur-[12px] border border-purple-800/20 text-white shadow-2xl rounded-2xl">
         <CardHeader className="pb-4">
           <CardTitle className="text-2xl md:text-3xl font-bold text-white">
             Join Our Referral Program
