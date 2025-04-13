@@ -11,6 +11,7 @@ import {
   HiSun,
   HiMoon,
   HiX,
+  HiMenuAlt3,
 } from "react-icons/hi";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -29,71 +30,49 @@ const Nav = ({ hidden, setHidden, showNav, setShowNav }: NavProps) => {
 
   return (
     <div
-      className={`px-6 fixed top-0 left-0 z-50 bg-[#1A1A1A] w-full flex justify-between items-center py-4 font-inter text-[#E0E0E0] shadow-lg ${
-        isDarkMode ? "bg-[#1A1A1A]" : "bg-[#FFFFFF]"
+      className={`px-[35px] fixed top-0 left-0 lg:left-[270px]  border-b border-gray-800 z-50 bg-[#101827] backdrop-blur-[12px] w-full lg:w-[calc(100vw-270px)] flex justify-between items-center py-4 font-inter text-[#E0E0E0] shadow-lg ${
+        isDarkMode ? "bg-[#101827]" : "bg-[#FFFFFF]"
       } transition-all`}
-      style={{ backdropFilter: "blur(8px)" }}
     >
       {/* Left: Logo */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-[25px]">
         <div
-          className="flex lg:hidden justify-center items-center rounded-[10px] bg-[#BB86FC] font-bols text-white cursor-pointer px-[12px] py-[8px] transition-all duration-300"
+          className="flex justify-center items-center cursor-pointer transition-all duration-300"
           onClick={() => {
             setHidden(!hidden);
-            setShowNav(false)
+            setShowNav(false);
           }}
         >
-          {hidden ? (
-            <>
-              <p>Menu</p>
-            </>
+          <HiMenuAlt3 size={25} color="#E0E0E0" />
+          {/* {hidden ? (
+            
           ) : (
             <HiX size={20} color="#E0E0E0" />
-          )}
+          )} */}
         </div>
-        <h1 className="font-semibold text-[#BB86FC] text-lg tracking-wide">
+        <h1 className="font-semibold text-[#E0E0E0] text-lg tracking-wide">
           SMS-APP
         </h1>
       </div>
 
-      {/* Center: Search Bar */}
-      {/* <div className="w-[350px]">
-        <input
-          type="text"
-          placeholder="Search"
-          className="w-full px-4 py-2 rounded-lg bg-[#2A2A2A] border border-[#444] text-[#E0E0E0] placeholder:text-[#888] focus:ring-2 focus:ring-[#7E57C2] transition"
-        />
-      </div> */}
-
-      {/* Right: Notifications, Balance, Top Up, Profile */}
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-[35px]">
         {/* Notifications Icon */}
         <div className="relative cursor-pointer">
-          <HiBell size={24} color={`${isDarkMode ? "#E0E0E0" : "#1A1A1A"}`} />
-          <div className="absolute top-0 right-0 w-3 h-3 bg-red-500 rounded-full"></div>
+          <HiBell size={20} color={`${isDarkMode ? "#E0E0E0" : "#1A1A1A"}`} />
+          <div className="absolute top-0 right-0 w-2 h-2 bg-[#8B5CF6] rounded-full"></div>
         </div>
 
         {/* Balance and Top Up */}
-        <div className="hidden lg:flex items-center gap-4">
-          <div className="flex flex-col">
-            <p
-              className={`text-xs ${
-                isDarkMode ? "text-[#AAAAAA]" : "text-[#1A1A1A]"
-              } `}
-            >
-              Balance
-            </p>
-            <p
-              className={`text-xl font-semibold ${
-                isDarkMode ? "text-white" : "text-[#1A1A1A]"
-              } `}
-            >
-              0 $
-            </p>
-          </div>
-          <div className="flex items-center gap-2 bg-[#7E57C2] text-white font-semibold px-4 py-2 rounded-lg cursor-pointer hover:bg-[#BB86FC] transition">
-            <HiCreditCard size={20} />
-            <p>Top Up</p>
+        <div className="hidden lg:flex items-center gap-4 text-[14px]">
+          <p
+            className={`font-semibold ${
+              isDarkMode ? "text-white" : "text-[#1A1A1A]"
+            } `}
+          >
+            0 $
+          </p>
+          <div className="flex items-center gap-2 bg-[#8B5CF6] text-white font-semibold px-4 py-2 rounded-[12px] cursor-pointer hover:bg-[#7E57C2] transition-all duration-300">
+            <p>Top up</p>
           </div>
         </div>
 
@@ -104,16 +83,10 @@ const Nav = ({ hidden, setHidden, showNav, setShowNav }: NavProps) => {
               <AvatarImage src="https://github.com/shadcn.png" />
               <AvatarFallback>JD</AvatarFallback>
             </Avatar>
-            <HiChevronDown size={18} color="#BB86FC" />
+            <HiChevronDown size={18} color="#8B5CF6" />
           </div>
         </div>
 
-        {/* Theme Toggle */}
-        {/* <div className="cursor-pointer text-[#E0E0E0]" onClick={toggleTheme}>
-          {isDarkMode ? <HiSun size={24} /> : <HiMoon size={24} />}
-        </div> */}
-
-        {/* Hamburger Menu for Small Screens */}
         <div className="lg:hidden flex items-center">
           {showNav ? (
             <HiX size={30} color="#E0E0E0" onClick={() => setShowNav(false)} />
@@ -134,33 +107,24 @@ const Nav = ({ hidden, setHidden, showNav, setShowNav }: NavProps) => {
       {showNav && (
         <div className="fixed w-64 top-[70px] left-0 h-[calc(100vh-70px)] bg-[#1A1A1A] z-10">
           <div className="w-full h-full p-6 flex flex-col gap-[15px] items-start text-[#E0E0E0]">
-            <div className="w-full flex items-center gap-4 mb-4">
-              <div className="flex flex-col">
-                <p
-                  className={`text-xs ${
-                    isDarkMode ? "text-[#AAAAAA]" : "text-[#1A1A1A]"
-                  } `}
-                >
-                  Balance
-                </p>
-                <p
-                  className={`text-xl font-semibold ${
-                    isDarkMode ? "text-white" : "text-[#1A1A1A]"
-                  } `}
-                >
-                  0 $
-                </p>
-              </div>
-              <div className="flex items-center gap-2 bg-[#7E57C2] text-white font-semibold px-4 py-2 rounded-lg cursor-pointer hover:bg-[#BB86FC] transition">
-                <HiCreditCard size={20} />
-                <p>Top Up</p>
+            <div className="hidden lg:flex items-center gap-4 text-[14px]">
+              <p
+                className={`font-semibold ${
+                  isDarkMode ? "text-white" : "text-[#1A1A1A]"
+                } `}
+              >
+                0 $
+              </p>
+              <div className="flex items-center gap-2 bg-[#8B5CF6] text-white font-semibold px-4 py-2 rounded-[12px] cursor-pointer hover:bg-[#7E57C2] transition-all duration-300">
+                <p>Top up</p>
               </div>
             </div>
+
             <Link href="/dashboard/settings">
-              <div className="text-lg mb-4 hover:text-[#BB86FC]">Settings</div>
+              <div className="text-lg mb-4 hover:text-[#8B5CF6]">Settings</div>
             </Link>
             <Link href="/dashboard/logout">
-              <div className="text-lg mb-4 hover:text-[#BB86FC]">Logout</div>
+              <div className="text-lg mb-4 hover:text-[#8B5CF6]">Logout</div>
             </Link>
           </div>
         </div>

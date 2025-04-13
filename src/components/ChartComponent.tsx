@@ -42,15 +42,19 @@ export function ChartComponent({
   comment1,
   comment2,
   trending,
+  className,
 }: {
   title: string;
   description: string;
   comment1: string;
   comment2: string;
   trending?: React.ReactNode;
+  className?: string;
 }) {
   return (
-    <Card className="bg-[#1A1A1A] text-white border border-white/10 shadow-md rounded-xl">
+    <Card
+      className={`bg-[#1A1A1A] text-white border border-white/10 shadow-md rounded-xl ${className}`}
+    >
       <CardHeader>
         <CardTitle className="text-white">{title}</CardTitle>
         <CardDescription className="text-gray-400">

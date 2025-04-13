@@ -12,16 +12,21 @@ type LayoutProps = {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [hidden, setHidden] = useState(true);
-  const [showNav, setShowNav] = useState(false)
+  const [showNav, setShowNav] = useState(false);
   const pathname = usePathname();
   const isDashboard = pathname?.includes("/dashboard");
   return (
     <>
       {isDashboard ? (
         <>
-          <Nav hidden={hidden} setHidden={setHidden} showNav={showNav} setShowNav={setShowNav}/>
+          <Nav
+            hidden={hidden}
+            setHidden={setHidden}
+            showNav={showNav}
+            setShowNav={setShowNav}
+          />
           <div className="flex flex-row h-screen bg-gray-100">
-            <SideBar hidden={hidden} setHidden={setHidden}/>
+            <SideBar hidden={hidden} setHidden={setHidden} />
             <div className="flex-1 overflow-y-auto dark">{children}</div>
           </div>
         </>

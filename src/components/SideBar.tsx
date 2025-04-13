@@ -120,53 +120,112 @@ const SideBar = ({ hidden, setHidden }: SideBarProps) => {
   }, []);
 
   return (
-    <div
+    <aside
       className={`mt-0 fixed top-[50px] lg:top-0 z-25 lg:left-[0px] left-[${
         hidden ? "-100vw" : "0px"
-      }] lg:relative lg:mt-[75px] p-[20px] bg-[#1A1A1A] h-[calc(100vh-50px)] lg:h-[calc(100vh-75px)] text-white w-[300px] overflow-y-auto transition-all duration-300`}
+      }] lg:relative bg-[#101827] backdrop-blur-[12px] border-r border-gray-800 h-[calc(100vh-50px)] lg:h-[100vh] w-[270px] overflow-y-auto transition-all duration-300`}
     >
-      <LinkBar
-        title="Overview"
-        routePath={routePath}
-        icon={
-          <ClockOutline
-            size={20}
-            onPointerEnterCapture={() => {}}
-            onPointerLeaveCapture={() => {}}
-          />
-        }
-      />
-
-      <div className="w-full flex flex-col mt-4">
-        <h1 className="ml-11 text-[10px] py-[10px] font-bold text-[#BB86FC]">
-          ACCOUNT
-        </h1>
-        <div className="w-full flex flex-col">
-          {accountLinks.map((link, i) => (
-            <LinkBar
-              key={i}
-              title={link.title}
-              routePath={routePath}
-              icon={link.icon}
-            />
-          ))}
-        </div>
-
-        <h1 className="ml-11 text-[10px] py-[10px] font-bold text-[#BB86FC] mt-6">
-          MANAGEMENT
-        </h1>
-        <div className="w-full flex flex-col">
-          {managementLinks.map((link, i) => (
-            <LinkBar
-              key={i}
-              title={link.title}
-              routePath={routePath}
-              icon={link.icon}
-            />
-          ))}
-        </div>
+      <div className="p-4 flex items-center gap-3">
+        <span className="text-2xl text-[#8B5CF6]">SET LOGO</span>
       </div>
-    </div>
+      <nav className="mt-8">
+        <div className="px-3 space-y-1">
+          <Link
+            href="/dashboard/overview"
+            className="flex items-center gap-3 px-4 py-3 rounded-[12px] bg-[#8B5CF6]/10 text-[#8B5CF6]"
+          >
+            <span className="w-5 h-5 flex items-center justify-center">
+              <i className="before:content-[\ec12]"></i>
+            </span>
+            <span>Dashboard</span>
+          </Link>
+          <a
+            href="/dashboard/receive-sms"
+            id="newSmsButton"
+            className="flex items-center gap-3 px-4 py-3 rounded-[12px] hover:bg-gray-800"
+          >
+            <span className="w-5 h-5 flex items-center justify-center">
+              <i className="before:content-[\ef44]"></i>
+            </span>
+            <div className="flex items-center justify-between flex-1">
+              <span>New SMS</span>
+              <span className="text-xs px-2 py-0.5 bg-blue-500/20 text-blue-400 rounded-full">
+                Buy
+              </span>
+            </div>
+          </a>
+          <a
+            href="#"
+            id="rentNumbersButton"
+            className="flex items-center gap-3 px-4 py-3 rounded-[12px] hover:bg-gray-800"
+          >
+            <span className="w-5 h-5 flex items-center justify-center">
+              <i className="ri-phone-line"></i>
+            </span>
+            <div className="flex items-center justify-between flex-1">
+              <span>Rent Numbers</span>
+              <span className="text-xs px-2 py-0.5 bg-green-500/20 text-green-400 rounded-full">
+                New
+              </span>
+            </div>
+          </a>
+          <a
+            href="#"
+            className="flex items-center gap-3 px-4 py-3 rounded-[12px] hover:bg-gray-800"
+          >
+            <span className="w-5 h-5 flex items-center justify-center">
+              <i className="ri-calendar-line"></i>
+            </span>
+            <span>Subscriptions</span>
+          </a>
+          <a
+            href="#"
+            className="flex items-center gap-3 px-4 py-3 rounded-[12px] hover:bg-gray-800"
+          >
+            <span className="w-5 h-5 flex items-center justify-center">
+              <i className="ri-wallet-3-line"></i>
+            </span>
+            <span>Balance</span>
+          </a>
+          <a
+            href="#"
+            className="flex items-center gap-3 px-4 py-3 rounded-[12px] hover:bg-gray-800"
+          >
+            <span className="w-5 h-5 flex items-center justify-center">
+              <i className="ri-team-line"></i>
+            </span>
+            <span>Affiliate</span>
+          </a>
+          <a
+            href="#"
+            className="flex items-center gap-3 px-4 py-3 rounded-[12px] hover:bg-gray-800"
+          >
+            <span className="w-5 h-5 flex items-center justify-center">
+              <i className="ri-code-line"></i>
+            </span>
+            <span>API</span>
+          </a>
+          <a
+            href="#"
+            className="flex items-center gap-3 px-4 py-3 rounded-[12px] hover:bg-gray-800"
+          >
+            <span className="w-5 h-5 flex items-center justify-center">
+              <i className="ri-question-line"></i>
+            </span>
+            <span>FAQ</span>
+          </a>
+          <a
+            href="#"
+            className="flex items-center gap-3 px-4 py-3 rounded-[12px] hover:bg-gray-800"
+          >
+            <span className="w-5 h-5 flex items-center justify-center">
+              <i className="ri-article-line"></i>
+            </span>
+            <span>Blogs</span>
+          </a>
+        </div>
+      </nav>
+    </aside>
   );
 };
 
