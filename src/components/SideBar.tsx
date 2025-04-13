@@ -73,7 +73,7 @@ const SideBar = ({ hidden, setHidden }: SideBarProps) => {
     {
       title: "New SMS",
       icon: <MdSms size={20} />,
-    },    
+    },
     {
       title: "Profile",
       icon: (
@@ -124,9 +124,9 @@ const SideBar = ({ hidden, setHidden }: SideBarProps) => {
 
   return (
     <aside
-      className={`mt-0 fixed top-[50px] lg:top-0 z-25 lg:left-[0px] left-[${
-        hidden ? "-100vw" : "0px"
-      }] lg:relative bg-[#101827] backdrop-blur-[12px] border-r border-gray-800 h-[calc(100vh-50px)] lg:h-[100vh] w-[270px] overflow-y-auto transition-all duration-300`}
+      className={`mt-0 fixed top-[50px] lg:top-0 z-25 lg:left-[0px] ${
+        hidden ? "left-[-100vw]" : "left-[0px]"
+      } lg:relative bg-[#101827] backdrop-blur-[12px] border-r border-gray-800 h-[calc(100vh-50px)] lg:h-[100vh] w-[270px] overflow-y-auto transition-all duration-300`}
     >
       <div className="p-4 flex items-center gap-3">
         <span className="text-2xl text-[#8B5CF6]">SET LOGO</span>

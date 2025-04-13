@@ -41,6 +41,7 @@ const Nav = ({ hidden, setHidden, showNav, setShowNav }: NavProps) => {
           onClick={() => {
             setHidden(!hidden);
             setShowNav(false);
+            console.log(hidden);
           }}
         >
           <HiMenuAlt3 size={25} color="#E0E0E0" />
@@ -105,9 +106,9 @@ const Nav = ({ hidden, setHidden, showNav, setShowNav }: NavProps) => {
 
       {/* Mobile Navigation (hamburger menu) */}
       {showNav && (
-        <div className="fixed w-64 top-[70px] left-0 h-[calc(100vh-70px)] bg-[#1A1A1A] z-10">
+        <div className="fixed w-64 top-[50px] left-0 h-[calc(100vh-70px)] bg-[#101827] backdrop-blur-[12px] z-10">
           <div className="w-full h-full p-6 flex flex-col gap-[15px] items-start text-[#E0E0E0]">
-            <div className="hidden lg:flex items-center gap-4 text-[14px]">
+            <div className="flex items-center gap-4 text-[14px]">
               <p
                 className={`font-semibold ${
                   isDarkMode ? "text-white" : "text-[#1A1A1A]"

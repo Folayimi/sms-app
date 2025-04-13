@@ -23,7 +23,7 @@ export default function NewSMS() {
             />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {[
               { name: "Telegram", icon: "vk.png", available: true },
               { name: "Whatsapp", icon: "wechat.png", available: true },
