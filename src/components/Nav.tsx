@@ -6,12 +6,12 @@ import {
   HiCreditCard,
   HiUserCircle,
   HiChevronDown,
-  HiBell,
+  HiOutlineBell,
   HiCog,
   HiSun,
   HiMoon,
   HiX,
-  HiMenuAlt3,
+  HiMenu,
 } from "react-icons/hi";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -30,7 +30,7 @@ const Nav = ({ hidden, setHidden, showNav, setShowNav }: NavProps) => {
 
   return (
     <div
-      className={`px-[35px] fixed top-0 left-0 lg:left-[270px]  border-b border-gray-800 z-50 bg-[#101827] backdrop-blur-[12px] w-full lg:w-[calc(100vw-270px)] flex justify-between items-center py-4 font-inter text-[#E0E0E0] shadow-lg ${
+      className={`px-[35px] fixed top-0 left-0 lg:left-[250px]  border-b border-gray-800 z-50 bg-[#101827] backdrop-blur-[12px] w-full lg:w-[calc(100vw-250px)] flex justify-between items-center py-4 font-inter text-[#E0E0E0] shadow-lg ${
         isDarkMode ? "bg-[#101827]" : "bg-[#FFFFFF]"
       } transition-all`}
     >
@@ -44,7 +44,7 @@ const Nav = ({ hidden, setHidden, showNav, setShowNav }: NavProps) => {
             console.log(hidden);
           }}
         >
-          <HiMenuAlt3 size={25} color="#E0E0E0" />
+          <HiMenu size={20} color="#E0E0E0" />
           {/* {hidden ? (
             
           ) : (
@@ -59,7 +59,7 @@ const Nav = ({ hidden, setHidden, showNav, setShowNav }: NavProps) => {
       <div className="flex items-center gap-[35px]">
         {/* Notifications Icon */}
         <div className="relative cursor-pointer">
-          <HiBell size={20} color={`${isDarkMode ? "#E0E0E0" : "#1A1A1A"}`} />
+          <HiOutlineBell size={20} color={`${isDarkMode ? "#E0E0E0" : "#1A1A1A"}`} />
           <div className="absolute top-0 right-0 w-2 h-2 bg-[#8B5CF6] rounded-full"></div>
         </div>
 
@@ -70,7 +70,7 @@ const Nav = ({ hidden, setHidden, showNav, setShowNav }: NavProps) => {
               isDarkMode ? "text-white" : "text-[#1A1A1A]"
             } `}
           >
-            0 $
+            $0
           </p>
           <div className="flex items-center gap-2 bg-[#8B5CF6] text-white font-semibold px-4 py-2 rounded-[12px] cursor-pointer hover:bg-[#7E57C2] transition-all duration-300">
             <p>Top up</p>

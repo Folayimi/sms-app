@@ -19,20 +19,12 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 import { ChartComponent } from "@/components/ChartComponent";
-import {
-  Bell,
-  CheckCircle,
-  LogIn,
-  MessageSquare,
-  PhoneCall,
-  Wallet,
-} from "lucide-react";
-import { DotsVertical, ChevronRightOutline } from "heroicons-react";
+import { DotsVertical, ChevronRightOutline, Phone } from "heroicons-react";
 import { useRouter } from "next/navigation";
 import { ArrowRightOutline } from "heroicons-react";
 import {
-  TrendingUp,
-  TrendingDown,
+  ArrowUp,
+  ArrowDown,
   ShoppingCart,
   Users,
   Package,
@@ -41,6 +33,15 @@ import {
   Activity,
   Cpu,
   ContactRoundIcon,
+  Bell,
+  ChartBar,
+  CheckCircle,
+  LogIn,
+  MessageSquare,
+  PhoneCall,
+  Wallet,
+  AlertTriangleIcon,
+  HeadsetIcon,
 } from "lucide-react";
 
 type AnalysisData = {
@@ -52,7 +53,8 @@ type Stat = {
   title: string;
   value: string;
   change: string;
-  increased: boolean;
+  increased?: boolean;
+  lowBalance?: boolean;
   icon: any;
   status: any;
 };
@@ -109,27 +111,27 @@ const Overview: React.FC = () => {
 
   const overviewData: Stat[] = [
     {
-      title: "Total Sales",
-      value: "$24,560",
-      change: "+12.5%",
+      title: "Active Numbers",
+      value: "5",
+      change: "+1 this month",
       increased: true,
-      icon: <ShoppingCart className="w-4 h-4 text-[#8B5CF6]" />,
+      icon: <PhoneCall className="w-4 h-4 text-[#8B5CF6]" />,
       status: "3 active * 2 expiring",
     },
     {
-      title: "New Users",
-      value: "3,120",
-      change: "-4.8%",
-      increased: false,
-      icon: <Users className="w-4 h-4 text-[#8B5CF6]" />,
+      title: "Recent Messages",
+      value: "127",
+      change: "+23 today",
+      increased: true,
+      icon: <MessageSquare className="w-4 h-4 text-[#8B5CF6]" />,
       status: "24h volume",
     },
     {
-      title: "Orders Processed",
-      value: "8,431",
-      change: "+6.2%",
-      increased: true,
-      icon: <Package className="w-4 h-4 text-[#8B5CF6]" />,
+      title: "Available Balance",
+      value: "$24.50",
+      change: "Low balance",
+      lowBalance: true,
+      icon: <Wallet className="w-4 h-4 text-[#8B5CF6]" />,
       status: (
         <div className="flex items-center gap-2 bg-[#8B5CF6] text-white text-[12px] font-semibold px-2 py-2 rounded-[12px] cursor-pointer hover:bg-[#7E57C2] transition-all duration-300">
           <p>Top up</p>
@@ -137,29 +139,29 @@ const Overview: React.FC = () => {
       ),
     },
     {
-      title: "Customer Reviews",
-      value: "1,245",
-      change: "-2.1%",
-      increased: false,
-      icon: <Star className="w-4 h-4 text-[#8B5CF6]" />,
+      title: "Message Activity",
+      value: "342",
+      change: "+12% this week",
+      increased: true,
+      icon: <ChartBar className="w-4 h-4 text-[#8B5CF6]" />,
       status: "7d volume",
     },
   ];
 
   const quickActions = [
     {
-      title: "Add New User",
-      icon: <Users className="w-4 h-4 text-[#8B5CF6]" />,
+      title: "Receive SMS",
+      icon: <MessageSquare className="w-4 h-4 text-[#8B5CF6]" />,
       action: () => router.push("/users/add"),
     },
     {
-      title: "View SMS Logs",
-      icon: <MessageCircle className="w-4 h-4 text-[#8B5CF6]" />,
+      title: "Rent Numbers",
+      icon: <PhoneCall className="w-4 h-4 text-[#8B5CF6]" />,
       action: () => router.push("/sms/logs"),
     },
     {
-      title: "Manage Routes",
-      icon: <Activity className="w-4 h-4 text-[#8B5CF6]" />,
+      title: "Analytics",
+      icon: <ChartBar className="w-4 h-4 text-[#8B5CF6]" />,
       action: () => router.push("/routes/manage"),
     },
   ];
@@ -313,7 +315,7 @@ const Overview: React.FC = () => {
   }, [searchQuery]);
 
   return (
-    <div className="bg-[#101827] backdrop-blur-[12px] lg:mt-[55px] mt-[40px] pb-[40px] text-white px-[30px] pt-12">
+    <div className="bg-[#101827] backdrop-blur-[12px] lg:mt-[50px] mt-[40px] pb-[40px] text-white px-[30px] pt-12">
       {!userToken && (
         <div className="w-full h-full cflexss">
           {/* Stats Section */}
@@ -321,20 +323,24 @@ const Overview: React.FC = () => {
             {overviewData.map((data, index) => (
               <div
                 key={index}
-                className="bg-[#29303D] backdrop-blur-[12px] text-[14px] rounded-2xl px-5 py-4 flexbm shadow-lg"
+                className="bg-[#29303D] backdrop-blur-[12px] text-[12px] rounded-2xl px-5 py-4 flexbm shadow-lg"
               >
                 <div className="cflexss gap-[12px]">
                   <h3 className="font-medium text-[#9CA3AF]">{data.title}</h3>
                   <p className="text-[25px] font-bold">{data.value}</p>
                   <div
-                    className={`flex items-center text-sm font-medium mt-2 ${
+                    className={`flex items-center font-medium ${
                       data.increased ? "text-green-400" : "text-red-400"
-                    }`}
+                    } ${data.lowBalance && "text-yellow-400"}`}
                   >
-                    {data.increased ? (
-                      <TrendingUp className="w-5 h-5 mr-1" />
-                    ) : (
-                      <TrendingDown className="w-5 h-5 mr-1" />
+                    {data.increased && !data.lowBalance && (
+                      <ArrowUp className="w-5 h-5 mr-1" />
+                    )}
+                    {!data.increased && !data.lowBalance && (
+                      <ArrowDown className="w-5 h-5 mr-1" />
+                    )}
+                    {data.lowBalance && (
+                      <AlertTriangleIcon className="w-5 h-5 mr-1 text-yellow-400" />
                     )}
                     {data.change}
                   </div>
@@ -358,18 +364,26 @@ const Overview: React.FC = () => {
               description="January - June 2024"
               comment1="Trending up by 5.2% this month"
               comment2="Showing total visitors for the last 6 months"
-              trending={<TrendingUp className="h-4 w-4 text-green-400" />}
+              trending={<ArrowUp className="h-4 w-4 text-green-400" />}
               className="w-full lg:w-[60%] "
             /> */}
             <Card className="w-full lg:w-[60%] bg-[#29303D] rounded-[20px] backdrop-blur-[12px] border border-gray-800">
-              <CardHeader>
-                <CardTitle>Area Chart - Stacked</CardTitle>
-                <CardDescription>
-                  Showing total visitors for the last 6 months
-                </CardDescription>
+              <CardHeader className="w-full flexbm">
+                <CardTitle>Message Activity</CardTitle>
+                <div className="flex space-x-1 bg-gray-800 rounded-full p-[3px]">
+                  <button className="px-3 py-1 text-xs font-medium rounded-full bg-[#8B5CF6]/10 text-[#8B5CF6]">
+                    24h
+                  </button>
+                  <button className="px-3 py-1 text-xs font-medium rounded-full">
+                    7d
+                  </button>
+                  <button className="px-3 py-1 text-xs font-medium rounded-full">
+                    30d
+                  </button>
+                </div>
               </CardHeader>
-              <CardContent>
-                <ChartContainer config={chartConfig}>
+              <CardContent className="w-full">
+                <ChartContainer className="w-full max-h-[290px]" config={chartConfig}>
                   <AreaChart
                     accessibilityLayer
                     data={chartData}
@@ -414,7 +428,7 @@ const Overview: React.FC = () => {
                   <div className="grid gap-2">
                     <div className="flex items-center gap-2 font-medium leading-none">
                       Trending up by 5.2% this month{" "}
-                      <TrendingUp className="h-4 w-4" />
+                      <ArrowUp className="h-4 w-4" />
                     </div>
                     <div className="flex items-center gap-2 leading-none text-muted-foreground">
                       January - June 2024
@@ -447,7 +461,7 @@ const Overview: React.FC = () => {
               <div className="w-full bg-[#242C39] hover:bg-[#1F2937] p-4 rounded-[20px] flexbm cursor-pointer">
                 <div className="flexmm gap-4">
                   <div className="h-8 w-8 rounded-full flexmm bg-[#8B5CF6]/10">
-                    <ContactRoundIcon className="w-4 h-4 text-[#8B5CF6]" />
+                    <HeadsetIcon className="w-4 h-4 text-[#8B5CF6]" />
                   </div>
                   <p>Contact Support</p>
                 </div>
@@ -461,7 +475,7 @@ const Overview: React.FC = () => {
           </div>
 
           <div className="w-full flexbs mt-6 gap-4 flex-wrap lg:flex-nowrap">
-            <Card className="w-full bg-[#29303D] rounded-[20px] backdrop-blur-[12px] border border-gray-800 lg:w-[60%]">
+            <Card className="w-full bg-[#29303D] rounded-[20px] h-[500px] backdrop-blur-[12px] border border-gray-800 lg:w-[60%]">
               <CardContent className="w-full p-4">
                 <div className="flex justify-between items-center mb-4">
                   <h2 className="text-[14px] font-semibold">Recent Messages</h2>
@@ -518,7 +532,7 @@ const Overview: React.FC = () => {
               </CardContent>
             </Card>
 
-            <Card className="w-full lg:w-[40%] bg-[#1F2634] text-white">
+            <Card className="w-full lg:w-[40%] h-[500px] bg-[#1F2634] text-white">
               <CardContent className="w-full">
                 <h2 className="text-[14px] font-semibold mb-4">
                   Recent Activity
@@ -548,7 +562,7 @@ const Overview: React.FC = () => {
           </div>
 
           <div className="w-full flexbs mt-6 gap-4 flex-wrap lg:flex-nowrap">
-            <Card className="w-full bg-[#29303D] rounded-[20px] backdrop-blur-[12px] border border-gray-800 p-3 lg:w-[60%]">
+            <Card className="w-full bg-[#29303D] rounded-[20px] h-[500px] backdrop-blur-[12px] border border-gray-800 p-3 lg:w-[50%]">
               <CardContent className="w-full p-4">
                 <div className="flex justify-between items-center mb-4">
                   <h2 className="text-[14px] font-semibold">Your Numbers</h2>
@@ -601,13 +615,20 @@ const Overview: React.FC = () => {
               </CardContent>
             </Card>
 
-            <Card className="w-full bg-[#29303D] rounded-[20px] backdrop-blur-[12px] border border-gray-800 p-3 lg:w-[40%]">
-              <CardHeader>
-                <CardTitle>Bar Chart</CardTitle>
-                <CardDescription>January - June 2024</CardDescription>
+            <Card className="w-full bg-[#29303D] rounded-[20px] max-h-[500px] backdrop-blur-[12px] border border-gray-800 lg:w-[50%]">
+              <CardHeader className="w-full flexbm">
+                <CardTitle>Usage Statistics</CardTitle>
+                <div className="flex space-x-1 bg-gray-800 rounded-full p-[3px]">
+                  <button className="px-3 py-1 text-xs font-medium rounded-full bg-[#8B5CF6]/10 text-[#8B5CF6]">
+                    7d
+                  </button>
+                  <button className="px-3 py-1 text-xs font-medium rounded-full">
+                    30d
+                  </button>
+                </div>
               </CardHeader>
-              <CardContent>
-                <ChartContainer config={chartConfig}>
+              <CardContent className="w-ful">
+                <ChartContainer className="max-h-[250px] w-full" config={chartConfig}>
                   <BarChart accessibilityLayer data={chartData}>
                     <CartesianGrid vertical={false} />
                     <XAxis
@@ -625,13 +646,21 @@ const Overview: React.FC = () => {
                   </BarChart>
                 </ChartContainer>
               </CardContent>
-              <CardFooter className="flex-col items-start gap-2 text-sm">
-                <div className="flex gap-2 font-medium leading-none">
-                  Trending up by 5.2% this month{" "}
-                  <TrendingUp className="h-4 w-4" />
+              <CardFooter className="grid grid-cols-3 gap-4 pb-8">
+                <div className="p-3 bg-gray-800/50 rounded-[20px] text-center">
+                  <h4 className="text-xs text-gray-400 mb-1">Total Messages</h4>
+                  <p className="text-xl font-bold">342</p>
+                  <span className="text-xs text-green-400">+12%</span>
                 </div>
-                <div className="leading-none text-muted-foreground">
-                  Showing total visitors for the last 6 months
+                <div className="p-3 bg-gray-800/50 rounded-lg text-center">
+                  <h4 className="text-xs text-gray-400 mb-1">Avg. per Day</h4>
+                  <p className="text-xl font-bold">48.9</p>
+                  <span className="text-xs text-green-400">+5%</span>
+                </div>
+                <div className="p-3 bg-gray-800/50 rounded-lg text-center">
+                  <h4 className="text-xs text-gray-400 mb-1">Peak Time</h4>
+                  <p className="text-xl font-bold">2-4 PM</p>
+                  <span className="text-xs text-gray-400">Consistent</span>
                 </div>
               </CardFooter>
             </Card>

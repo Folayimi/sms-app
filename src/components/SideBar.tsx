@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { MdLocalActivity, MdWallet, MdSms, MdEvent } from "react-icons/md";
+import { MdLocalActivity, MdWallet, MdEvent } from "react-icons/md";
 import {
   UserGroupOutline,
   UsersOutline,
@@ -10,6 +10,8 @@ import {
   CalendarOutline,
   Phone,
 } from "heroicons-react";
+
+import { LayoutDashboard, MessageSquare } from "lucide-react";
 
 interface LinkBarProps {
   title: string;
@@ -28,7 +30,7 @@ const LinkBar: React.FC<LinkBarProps> = ({ title, routePath, icon }) => {
   return (
     <a
       href={route}
-      className={`flex items-center gap-3 px-4 py-3 rounded-[12px] ${
+      className={`flex items-center gap-3 text-white px-4 py-3 rounded-[12px] ${
         isActive ? "bg-[#8B5CF6]/10 text-[#8B5CF6]" : "hover:bg-gray-800"
       }`}
     >
@@ -62,17 +64,11 @@ const SideBar = ({ hidden, setHidden }: SideBarProps) => {
   const accountLinks: Link[] = [
     {
       title: "Overview",
-      icon: (
-        <UserGroupOutline
-          size={20}
-          onPointerEnterCapture={() => {}}
-          onPointerLeaveCapture={() => {}}
-        />
-      ),
+      icon: <LayoutDashboard size={20} />,
     },
     {
       title: "New SMS",
-      icon: <MdSms size={20} />,
+      icon: <MessageSquare size={20} />,
     },
     {
       title: "Profile",
@@ -126,7 +122,7 @@ const SideBar = ({ hidden, setHidden }: SideBarProps) => {
     <aside
       className={`mt-0 fixed top-[50px] lg:top-0 z-25 lg:left-[0px] ${
         hidden ? "left-[-100vw]" : "left-[0px]"
-      } lg:relative bg-[#101827] backdrop-blur-[12px] border-r border-gray-800 h-[calc(100vh-50px)] lg:h-[100vh] w-[270px] overflow-y-auto transition-all duration-300`}
+      } lg:relative bg-[#101827] backdrop-blur-[12px] border-r border-gray-800 h-[calc(100vh-50px)] lg:h-[100vh] w-[250px] overflow-y-auto transition-all duration-300`}
     >
       <div className="p-4 flex items-center gap-3">
         <span className="text-2xl text-[#8B5CF6]">SET LOGO</span>
