@@ -407,17 +407,25 @@ const Overview: React.FC = () => {
                     <Area
                       dataKey="mobile"
                       type="natural"
-                      fill="#2b486B"
+                      fill="#4B575D"
                       fillOpacity={0.4}
-                      stroke="cyan"
+                      stroke="#FBBF72"
                       stackId="a"
                     />
                     <Area
                       dataKey="desktop"
                       type="natural"
-                      fill="#132C65"
+                      fill="#374C5A"
                       fillOpacity={0.4}
-                      stroke="#8B5CF6"
+                      stroke="#8DD3C7"
+                      stackId="a"
+                    />
+                    <Area
+                      dataKey="desktop"
+                      type="natural"
+                      fill="#2E3C4E"
+                      fillOpacity={0.4}
+                      stroke="#57B5E7"
                       stackId="a"
                     />
                   </AreaChart>
