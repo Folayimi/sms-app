@@ -15,15 +15,14 @@ import {
 } from "react-icons/hi";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useDispatch, useSelector } from "react-redux";
+import { setHidden, setShowNav } from "@/redux/features/register/registerSlice";
+import { RootState } from "@/redux/store";
 
-interface NavProps {
-  setHidden: (hidden: boolean) => void;
-  setShowNav: (showNav: boolean) => void;
-  showNav: boolean;
-  hidden: boolean;
-}
-
-const Nav = ({ hidden, setHidden, showNav, setShowNav }: NavProps) => {
+const Nav = () => {
+  const dispatch = useDispatch();
+  const hidden = useSelector((state: RootState) => state.register.hidden);
+  const showNav = useSelector((state: RootState) => state.register.showNav);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(true); // Dark mode state
 
   const toggleTheme = () => setIsDarkMode(!isDarkMode); // Theme toggle function
@@ -39,8 +38,8 @@ const Nav = ({ hidden, setHidden, showNav, setShowNav }: NavProps) => {
         <div
           className="flex justify-center items-center cursor-pointer transition-all duration-300"
           onClick={() => {
-            setHidden(!hidden);
-            setShowNav(false);
+            dispatch(setHidden(!hidden));
+            dispatch(setShowNav(false));
             console.log(hidden);
           }}
         >
@@ -59,7 +58,10 @@ const Nav = ({ hidden, setHidden, showNav, setShowNav }: NavProps) => {
       <div className="flex items-center gap-[35px]">
         {/* Notifications Icon */}
         <div className="relative cursor-pointer">
-          <HiOutlineBell size={20} color={`${isDarkMode ? "#E0E0E0" : "#1A1A1A"}`} />
+          <HiOutlineBell
+            size={20}
+            color={`${isDarkMode ? "#E0E0E0" : "#1A1A1A"}`}
+          />
           <div className="absolute top-0 right-0 w-2 h-2 bg-[#8B5CF6] rounded-full"></div>
         </div>
 
@@ -96,8 +98,8 @@ const Nav = ({ hidden, setHidden, showNav, setShowNav }: NavProps) => {
               size={30}
               color="#E0E0E0"
               onClick={() => {
-                setShowNav(true);
-                setHidden(true);
+                dispatch(setShowNav(true));
+                dispatch(setHidden(true));
               }}
             />
           )}

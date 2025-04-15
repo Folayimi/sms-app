@@ -12,6 +12,8 @@ import {
 } from "heroicons-react";
 
 import { LayoutDashboard, MessageSquare } from "lucide-react";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 interface LinkBarProps {
   title: string;
@@ -55,12 +57,9 @@ interface Link {
   icon: any;
 }
 
-interface SideBarProps {
-  setHidden: (hidden: boolean) => void;
-  hidden: boolean;
-}
 
-const SideBar = ({ hidden, setHidden }: SideBarProps) => {
+const SideBar = () => {  
+  const hidden = useSelector((state: RootState) => state.register.hidden);
   const accountLinks: Link[] = [
     {
       title: "Overview",

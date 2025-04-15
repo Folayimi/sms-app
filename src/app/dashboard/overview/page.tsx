@@ -17,6 +17,7 @@ import {
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import TopUp from "@/components/popups/TopUp";
 
 import { ChartComponent } from "@/components/ChartComponent";
 import { DotsVertical, ChevronRightOutline, Phone } from "heroicons-react";
@@ -108,6 +109,8 @@ const Overview: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [dataToShow, setDataToShow] = useState<number>(10);
   const [rawData, setRawData] = useState<UserData[]>([]);
+  const [topUp, setTopUp] = useState<boolean>(false);
+
 
   const overviewData: Stat[] = [
     {
@@ -133,7 +136,13 @@ const Overview: React.FC = () => {
       lowBalance: true,
       icon: <Wallet className="w-4 h-4 text-[#8B5CF6]" />,
       status: (
-        <div className="flex items-center gap-2 bg-[#8B5CF6] text-white text-[12px] font-semibold px-2 py-2 rounded-[12px] cursor-pointer hover:bg-[#7E57C2] transition-all duration-300">
+        <div
+          className="flex items-center gap-2 bg-[#8B5CF6] text-white text-[12px] font-semibold px-2 py-2 rounded-[12px] cursor-pointer hover:bg-[#7E57C2] transition-all duration-300"
+          onClick={() => {
+            setTopUp(true);
+            console.log("clicked")
+          }}
+        >
           <p>Top up</p>
         </div>
       ),
@@ -316,6 +325,7 @@ const Overview: React.FC = () => {
 
   return (
     <div className="bg-[#101827] backdrop-blur-[12px] lg:mt-[50px] mt-[40px] pb-[40px] text-white px-[30px] pt-12">
+      {topUp && <TopUp />}
       {!userToken && (
         <div className="w-full h-full cflexss">
           {/* Stats Section */}
@@ -383,7 +393,10 @@ const Overview: React.FC = () => {
                 </div>
               </CardHeader>
               <CardContent className="w-full">
-                <ChartContainer className="w-full max-h-[290px]" config={chartConfig}>
+                <ChartContainer
+                  className="w-full h-auto lg:max-h-[290px]"
+                  config={chartConfig}
+                >
                   <AreaChart
                     accessibilityLayer
                     data={chartData}
@@ -623,7 +636,7 @@ const Overview: React.FC = () => {
               </CardContent>
             </Card>
 
-            <Card className="w-full bg-[#29303D] rounded-[20px] max-h-[500px] backdrop-blur-[12px] border border-gray-800 lg:w-[50%]">
+            <Card className="w-full bg-[#29303D] rounded-[20px] backdrop-blur-[12px] border border-gray-800 lg:w-[50%]">
               <CardHeader className="w-full flexbm">
                 <CardTitle>Usage Statistics</CardTitle>
                 <div className="flex space-x-1 bg-gray-800 rounded-full p-[3px]">
@@ -636,7 +649,10 @@ const Overview: React.FC = () => {
                 </div>
               </CardHeader>
               <CardContent className="w-ful">
-                <ChartContainer className="max-h-[250px] w-full" config={chartConfig}>
+                <ChartContainer
+                  className="h-auto lg:max-h-[250px] w-full"
+                  config={chartConfig}
+                >
                   <BarChart accessibilityLayer data={chartData}>
                     <CartesianGrid vertical={false} />
                     <XAxis
@@ -654,7 +670,7 @@ const Overview: React.FC = () => {
                   </BarChart>
                 </ChartContainer>
               </CardContent>
-              <CardFooter className="grid grid-cols-3 gap-4 pb-8">
+              <CardFooter className="grid lg:grid-cols-3 grid-cols-1 gap-4 pb-8">
                 <div className="p-3 bg-gray-800/50 rounded-[20px] text-center">
                   <h4 className="text-xs text-gray-400 mb-1">Total Messages</h4>
                   <p className="text-xl font-bold">342</p>
