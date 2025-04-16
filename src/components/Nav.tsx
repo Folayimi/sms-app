@@ -16,7 +16,11 @@ import {
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useDispatch, useSelector } from "react-redux";
-import { setHidden, setShowNav } from "@/redux/features/register/registerSlice";
+import {
+  setHidden,
+  setShowNav,
+  setTopUp,
+} from "@/redux/features/register/registerSlice";
 import { RootState } from "@/redux/store";
 
 const Nav = () => {
@@ -74,7 +78,12 @@ const Nav = () => {
           >
             $0
           </p>
-          <div className="flex items-center gap-2 bg-[#8B5CF6] text-white font-semibold px-4 py-2 rounded-[12px] cursor-pointer hover:bg-[#7E57C2] transition-all duration-300">
+          <div
+            className="flex items-center gap-2 bg-[#8B5CF6] text-white font-semibold px-4 py-2 rounded-[12px] cursor-pointer hover:bg-[#7E57C2] transition-all duration-300"
+            onClick={() => {
+              dispatch(setTopUp(true));
+            }}
+          >
             <p>Top up</p>
           </div>
         </div>
