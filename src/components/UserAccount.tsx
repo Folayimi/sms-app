@@ -10,6 +10,7 @@ import {
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Loader from "./Loader";
+import { userRegistration } from "@/services/request";
 
 interface UserDetails {
   fullName: string;
@@ -99,13 +100,14 @@ const StudentAccount = ({
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (valid && !passError) {
+    if (!loading && valid && !passError) {
       setLoading(true);
-      // Simulate async
-      setTimeout(() => {
-        setLoading(false);
-        console.log(userDetails);
-      }, 1000);
+      await userRegistration({
+        email: userDetails.email,
+        password: userDetails.password,
+      });
+      setLoading(false);
+      console.log("registering");
     }
   };
 
@@ -135,7 +137,11 @@ const StudentAccount = ({
         </p>
       </div>
 
-      <form className="cflexss gap-[1.5em] w-full" onSubmit={handleSubmit}>
+      <form
+        className="cflexss gap-[1.5em] w-full"
+        target="_blank"
+        onSubmit={handleSubmit}
+      >
         {/* Full Name */}
         <div className="cflexss gap-[10px] w-full">
           <p className="text-gray-300">Full Name</p>
@@ -227,11 +233,18 @@ const StudentAccount = ({
         {/* Submit Button */}
         <button
           type="submit"
-          disabled={loading}
           className="flex items-center lg:w-fit w-full justify-center gap-2 rounded-full bg-purple-600 hover:bg-purple-700 px-6 py-3 text-white font-semibold shadow-md transition disabled:opacity-60"
         >
           {loading ? (
-            <Loader />
+            <>
+              <Loader />
+              <span>Create Account</span>
+              <ArrowRightOutline
+                size={14}
+                onPointerEnterCapture={() => {}}
+                onPointerLeaveCapture={() => {}}
+              />
+            </>
           ) : (
             <>
               <span>Create Account</span>

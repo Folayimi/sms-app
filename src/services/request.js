@@ -2,7 +2,7 @@ import axios from "axios";
 import { notify, notifyError } from "./toastify";
 
 // const api = BASE_URL;
-const api = "http://localhost:5000/api"
+const api = "https://smsbackend-iota.vercel.app/api"
 // const api = axios.create({
 //   baseURL: "http://localhost:5000/api",
 // });
@@ -96,6 +96,7 @@ export const userRegistration = async (data) => {
       withCredentials: true,
     })
     .then((response) => {
+      console.log(response)
       if (response.data.status === "success") {
         localStorage.setItem(
           "userData",
@@ -106,6 +107,7 @@ export const userRegistration = async (data) => {
       }
     })
     .catch((err) => {
+      console.log(err);
       if (err.response.data.message) {
         notifyError(err.response.data.message);
       } else {

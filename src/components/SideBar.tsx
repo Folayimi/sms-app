@@ -32,8 +32,8 @@ const LinkBar: React.FC<LinkBarProps> = ({ title, routePath, icon }) => {
   return (
     <a
       href={route}
-      className={`flex items-center gap-3 text-white px-4 py-3 rounded-[12px] ${
-        isActive ? "bg-[#8B5CF6]/10 text-[#8B5CF6]" : "hover:bg-gray-800"
+      className={`flex items-center gap-3 px-4 py-3 rounded-[12px] ${
+        isActive ? "bg-[#8B5CF6]/10 text-[#8B5CF6]" : "hover:bg-gray-800 text-white"
       }`}
     >
       {icon}
@@ -63,11 +63,11 @@ const SideBar = () => {
   const accountLinks: Link[] = [
     {
       title: "Overview",
-      icon: <LayoutDashboard size={20} />,
+      icon: <LayoutDashboard size={15} />,
     },
     {
       title: "New SMS",
-      icon: <MessageSquare size={20} />,
+      icon: <MessageSquare size={15} />,
     },
     {
       title: "Profile",
@@ -91,15 +91,15 @@ const SideBar = () => {
     },
     {
       title: "Earn Money On SMS",
-      icon: <MdWallet size={20} />,
+      icon: <MdWallet size={15} />,
     },
     {
       title: "Instructions",
-      icon: <MdEvent size={20} />,
+      icon: <MdEvent size={15} />,
     },
     {
       title: "Blogs",
-      icon: <MdEvent size={20} />,
+      icon: <MdEvent size={15} />,
     },
   ];
 
@@ -127,7 +127,7 @@ const SideBar = () => {
         <span className="text-2xl text-[#8B5CF6]">SET LOGO</span>
       </div>
       <nav className="mt-8">
-        <div className="px-3 space-y-1">
+        <div className="px-3 space-y-1 text-white">
           {accountLinks.map((item, index) => {
             return (
               <LinkBar

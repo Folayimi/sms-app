@@ -25,6 +25,8 @@ import { ChartComponent } from "@/components/ChartComponent";
 import { DotsVertical, ChevronRightOutline, Phone } from "heroicons-react";
 import { useRouter } from "next/navigation";
 import { ArrowRightOutline } from "heroicons-react";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import {
   ArrowUp,
   ArrowDown,
@@ -106,11 +108,12 @@ const Overview: React.FC = () => {
     lastname?: string;
   }>({});
 
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [width1, setWidth1] = useState("calc((100vw - 250px) * 0.56)");
+  const [width2, setWidth2] = useState("calc((100vw - 250px) * 0.36)");
+  const [mobile, setMobile] = useState(false);
   const [users, setUsers] = useState<UserData[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [dataToShow, setDataToShow] = useState<number>(10);
-  const [rawData, setRawData] = useState<UserData[]>([]);
+  const [overviewLoading, setOverviewLoading] = useState(false);
   const dispatch = useDispatch();
   const topUp = useSelector((state: RootState) => state.register.topUp);
 
@@ -320,16 +323,90 @@ const Overview: React.FC = () => {
       description: "Expires in 27 days",
     },
   ];
+  useEffect(() => {
+    const handleResize = () => {
+      const screenWidth = window.innerWidth;
+      if (screenWidth < 640) {
+        setWidth1("85vw");
+        setWidth2("85vw");
+      } else if (screenWidth < 1024) {
+        setWidth1("calc((100vw - 250px) * 0.8)");
+        setWidth2("calc((100vw - 250px) * 0.6)");
+      } else {
+        setWidth1("calc((100vw - 250px) * 0.56)");
+        setWidth2("calc((100vw - 250px) * 0.36)");
+      }
+    };
+
+    handleResize(); // Initial call
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
-    // Fetch user data logic here
-  }, [searchQuery]);
+    setOverviewLoading(true);
+    setTimeout(() => {
+      setOverviewLoading(false);
+    }, 5000);
+  }, []);
 
   return (
     <>
       {topUp && <TopUp />}
       <div className="bg-[#101827] backdrop-blur-[12px] lg:mt-[50px] mt-[40px] pb-[40px] text-white px-[30px] pt-12">
-        {!userToken && (
+        {overviewLoading ? (
+          <SkeletonTheme
+            baseColor="#29303D"
+            highlightColor="#343b49"
+            width={"100%"}
+          >
+            <div className="w-full h-full cflexss">
+              <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {new Array(4).fill(null).map((_, i) => (
+                  <Skeleton key={i} height={"150px"} borderRadius={"16px"} />
+                ))}
+              </div>
+              <div className="w-full flex justify-between items-start lg:flex-nowrap flex-wrap mt-6 gap-6 ">
+                <Skeleton
+                  height={"400px"}
+                  width={width1}
+                  borderRadius={"20px"}
+                />
+                <Skeleton
+                  height={"400px"}
+                  width={width2}
+                  borderRadius={"20px"}
+                />
+              </div>
+              <div className="w-full flex justify-between items-start lg:flex-nowrap flex-wrap mt-6 gap-6 ">
+                <Skeleton
+                  height={"400px"}
+                  width={width1}
+                  borderRadius={"20px"}
+                />
+                <Skeleton
+                  height={"400px"}
+                  width={width2}
+                  borderRadius={"20px"}
+                />
+              </div>
+              <div className="w-full flex justify-between items-start lg:flex-nowrap flex-wrap mt-6 gap-6 ">
+                <Skeleton
+                  height={"400px"}
+                  width={width1}
+                  borderRadius={"20px"}
+                />
+                <Skeleton
+                  height={"400px"}
+                  width={width2}
+                  borderRadius={"20px"}
+                />
+              </div>
+              {/* <Skeleton circle width={"20px"} height={"20px"} />
+               */}
+            </div>
+          </SkeletonTheme>
+        ) : (
           <div className="w-full h-full cflexss">
             {/* Stats Section */}
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
