@@ -1,548 +1,361 @@
-"use client";
-import React, { useState, useMemo } from "react";
-import {
-  Search,
-  Phone,
-  Shield,
-  MessageSquare,
-  Clock,
-  ChevronDown,
-  RefreshCcw,
-  Globe,
-  Gift,
-  Zap,
-} from "lucide-react";
+import React, { useState } from 'react';
+import { Globe, MessageSquare, Shield, Star, ThumbsUp, Clock, DollarSign, Check, ChevronDown, Phone, Send, User, HelpCircle, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 
-const Home = () => {
-  const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
-  const [selectedService, setSelectedService] = useState<string | null>(null);
-  const [searchCountry, setSearchCountry] = useState("");
-  const [searchService, setSearchService] = useState("");
-
+export default function SMSOnlineService() {
+  const [selectedCountry, setSelectedCountry] = useState('United States');
+  const [selectedPlan, setSelectedPlan] = useState(null);
+  
   const countries = [
-    { code: "US", name: "USA", flag: "🇺🇸" },
-    { code: "CN", name: "China", flag: "🇨🇳" },
-    { code: "KZ", name: "Kazakhstan", flag: "🇰🇿" },
-    { code: "MY", name: "Malaysia", flag: "🇲🇾" },
-    { code: "ID", name: "Indonesia", flag: "🇮🇩" },
-    { code: "PH", name: "Philippines", flag: "🇵🇭" },
-    { code: "MM", name: "Myanmar", flag: "🇲🇲" },
-    { code: "VN", name: "Vietnam", flag: "🇻🇳" },
-    { code: "RO", name: "Romania", flag: "🇷🇴" },
+    { name: 'United States', flag: '🇺🇸' },
+    { name: 'Russia', flag: '🇷🇺' },
+    { name: 'United Kingdom', flag: '🇬🇧' },
+    { name: 'Germany', flag: '🇩🇪' },
+    { name: 'Poland', flag: '🇵🇱' },
+    { name: 'Canada', flag: '🇨🇦' },
+    { name: 'Spain', flag: '🇪🇸' },
+    { name: 'France', flag: '🇫🇷' },
+    { name: 'Italy', flag: '🇮🇹' }
   ];
-
-  const services = [
-    { name: "LiveScore", price: 0.14, icon: <Phone className="w-5 h-5" /> },
-    { name: "PaxFul", price: 0.26, icon: <Shield className="w-5 h-5" /> },
-    {
-      name: "Okcupid",
-      price: 0.45,
-      icon: <MessageSquare className="w-5 h-5" />,
-    },
-    { name: "paysafecard", price: 0.58, icon: <Clock className="w-5 h-5" /> },
-    { name: "JustDating", price: 0.18, icon: <Phone className="w-5 h-5" /> },
-    {
-      name: "Tantan/探探",
-      price: 0.18,
-      icon: <MessageSquare className="w-5 h-5" />,
-    },
-    { name: "DiDi/滴滴出行", price: 0.18, icon: <Phone className="w-5 h-5" /> },
-    {
-      name: "Potato Chat",
-      price: 0.29,
-      icon: <MessageSquare className="w-5 h-5" />,
-    },
-    { name: "Prepaid2Cash", price: 0.6, icon: <Clock className="w-5 h-5" /> },
-    { name: "MobiKwik", price: 0.23, icon: <Shield className="w-5 h-5" /> },
+  
+  const popularCountries = [
+    { name: 'United States', flag: '🇺🇸' },
+    { name: 'Russia', flag: '🇷🇺' },
+    { name: 'United Kingdom', flag: '🇬🇧' },
+    { name: 'Germany', flag: '🇩🇪' },
+    { name: 'Canada', flag: '🇨🇦' },
+    { name: 'Spain', flag: '🇪🇸' }
   ];
-
-  const popularServices = [
-    {
-      country: "Indonesia",
-      service: "Instagram",
-      icon: "📷",
-      activated: 1711,
-      cost: 0.08,
-    },
-    {
-      country: "South Africa",
-      service: "Facebook",
-      icon: "👤",
-      activated: 519,
-      cost: 0.18,
-    },
-    {
-      country: "Indonesia",
-      service: "Telegram",
-      icon: "📱",
-      activated: 215,
-      cost: 0.29,
-    },
-    {
-      country: "Indonesia",
-      service: "Google/youtube/Gmail",
-      icon: "📺",
-      activated: 156,
-      cost: 0.15,
-    },
-    {
-      country: "Philippines",
-      service: "Facebook",
-      icon: "👤",
-      activated: 103,
-      cost: 0.27,
-    },
+  
+  const testimonials = [
+    { rating: 5, text: "This service is amazing! So easy to use and reliable for all my verification needs." },
+    { rating: 5, text: "I've tried many SMS services but this one stands out for its affordable pricing and excellent functionality." },
+    { rating: 5, text: "Perfect solution for my privacy needs. I don't have to share my personal number anymore." },
+    { rating: 5, text: "The interface is intuitive and the service works flawlessly. Highly recommend!" },
+    { rating: 5, text: "Been using this for 6 months now. Never had any issues with delivery or functionality." },
+    { rating: 5, text: "Great customer support! They resolved my issue within minutes." }
   ];
-
-  const socialIcons = [
-    "telegram",
-    "youtube",
-    "instagram",
-    "facebook",
-    "twitter",
-    "gmail",
-    "whatsapp",
+  
+  const faqs = [
+    "What is temporary SMS number?",
+    "How long can I use my temporary number?",
+    "Is this service legal?",
+    "What payment methods do you accept?",
+    "Do I need to give you my phone number?",
+    "Can I get free SMS messages?"
   ];
-
-  // Memoize random positions for social icons
-  const socialIconPositions = useMemo(
-    () =>
-      socialIcons.map(() => ({
-        top: `${Math.random() * 80}%`,
-        left: `${Math.random() * 80}%`,
-        size: `${Math.random() * 20 + 30}px`,
-        opacity: Math.random() * 0.5 + 0.5,
-      })),
-    []
-  );
-
-  const filteredCountries = countries.filter((country) =>
-    country.name.toLowerCase().includes(searchCountry.toLowerCase())
-  );
-
-  const filteredServices = services.filter((service) =>
-    service.name.toLowerCase().includes(searchService.toLowerCase())
-  );
 
   return (
-    <div className="bg-[#1A1A1A] min-h-screen lg:mt-[70px] mt-[50px] text-gray-100 w-full">
+    <div className="flex flex-col min-h-screen bg-gray-50 text-gray-900">
+      {/* Header */}
+      <header className="bg-white shadow">
+        <nav className="flex justify-between items-center px-4 py-3">
+          <div className="flex items-center space-x-4">
+            <span className="font-bold text-xl text-blue-600">SMS Online</span>
+            <div className="hidden md:flex space-x-4">
+              <a href="#" className="text-gray-700">Home</a>
+              <a href="#" className="text-gray-700">About</a>
+              <a href="#" className="text-gray-700">Pricing</a>
+              <a href="#" className="text-gray-700">FAQ</a>
+              <a href="#" className="text-gray-700">Blog</a>
+            </div>
+          </div>
+          <button className="bg-blue-600 text-white px-4 py-2 rounded">Sign In</button>
+        </nav>
+      </header>
+
       {/* Hero Section */}
-      <div className="bg-gradient-to-br  from-[#7E57C2] to-[#BB86FC] text-white p-8 md:p-16 rounded-b-3xl shadow-lg relative overflow-hidden w-full">
-        <div className="w-full px-4 mt-[50px] relative z-10">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Receive SMS Online
-          </h1>
-          <p className="mb-8 text-lg">
-            Register on social networks, marketplaces, exchanges and online
-            services{" "}
-            <span className="text-yellow-300 font-semibold">
-              without spam and disclosure of personal data
-            </span>
-            .
-          </p>
-          <div className="flex flex-wrap gap-4 mb-12">
-            <button className="bg-gray-900 text-white font-bold py-3 px-8 rounded-full hover:bg-[#BB86FC] transition duration-300 shadow-lg">
-              Receive SMS
-            </button>
-            <button className="bg-black bg-opacity-30 text-white font-bold py-3 px-8 rounded-full border-2 border-white hover:bg-[#BB86FC] hover:border-transparent transition duration-300">
-              Rent Number
-            </button>
-          </div>
-          {/* Notification Preview */}
-          <div className="bg-gray-900 rounded-xl p-4 shadow-xl max-w-sm mt-8 md:mt-0 md:absolute md:bottom-[-40px] md:right-4 transform rotate-2 border-l-4 border-[#7E57C2]">
-            <p className="text-gray-300 text-sm">
-              Your SMS code for registration in the service is{" "}
-              <span className="font-bold text-[#BB86FC]">12344</span>. Enter it
-              on the site! 👍
-            </p>
+      <section className="bg-blue-600 text-white py-16">
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-4xl font-bold mb-4">Receive SMS Online</h1>
+          <p className="text-xl mb-8">Get temporary phone numbers to verify accounts and receive messages from anywhere.</p>
+          <div className="flex justify-center space-x-4">
+            <button className="bg-white text-blue-600 font-bold px-6 py-3 rounded-md">Get Started</button>
+            <button className="border border-white text-white px-6 py-3 rounded-md">Learn More</button>
           </div>
         </div>
-        {/* Social Media Icons Cloud */}
-        <div className="absolute right-0 top-0 w-full h-full opacity-20">
-          {socialIcons.map((icon, index) => (
-            <div
-              key={index}
-              className="absolute rounded-full bg-gray-900 flex items-center justify-center shadow-lg transform rotate-12"
-              style={{
-                top: socialIconPositions[index].top,
-                left: socialIconPositions[index].left,
-                width: socialIconPositions[index].size,
-                height: socialIconPositions[index].size,
-                opacity: socialIconPositions[index].opacity,
-              }}
-            >
-              {icon.charAt(0).toUpperCase()}
-            </div>
-          ))}
-        </div>
-      </div>
+      </section>
 
-      {/* How It Works Section */}
-      <div className="py-16 text-center w-full px-4">
-        <div className="inline-block bg-[#7E57C2] px-6 py-2 rounded-full text-white font-bold text-lg mb-8">
-          Check How It Works!
-        </div>
-        <div className="w-full px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-gray-800 rounded-xl p-6 text-center shadow-lg transform hover:scale-105 transition duration-300">
-            <div className="bg-[#7E57C2] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Search className="w-8 h-8 text-white" />
+      {/* Country Selection */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold text-center mb-8">Choose SMS Service</h2>
+          <p className="text-center mb-8 text-gray-600">Select a country to receive SMS messages from anywhere in the world.</p>
+          
+          <div className="bg-white rounded-lg shadow-lg p-6 max-w-md mx-auto">
+            <h3 className="font-bold mb-4">Popular Countries</h3>
+            <div className="grid grid-cols-3 gap-4 mb-6">
+              {popularCountries.map((country) => (
+                <button 
+                  key={country.name}
+                  className={`flex items-center justify-center p-2 rounded ${selectedCountry === country.name ? 'bg-blue-100 text-blue-600' : 'bg-gray-100'}`}
+                  onClick={() => setSelectedCountry(country.name)}
+                >
+                  <span className="text-xl mr-2">{country.flag}</span>
+                  <span className="text-sm">{country.name}</span>
+                </button>
+              ))}
             </div>
-            <h3 className="text-xl font-bold mb-2">
-              1. Choose Country &amp; Service
-            </h3>
-            <p className="text-gray-400">
-              Select from our global range of numbers and services
-            </p>
-          </div>
-
-          <div className="bg-gray-800 rounded-xl p-6 text-center shadow-lg transform hover:scale-105 transition duration-300">
-            <div className="bg-[#7E57C2] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-              <RefreshCcw className="w-8 h-8 text-white" />
-            </div>
-            <h3 className="text-xl font-bold mb-2">2. Complete Payment</h3>
-            <p className="text-gray-400">
-              Choose your preferred payment method
-            </p>
-          </div>
-
-          <div className="bg-gray-800 rounded-xl p-6 text-center shadow-lg transform hover:scale-105 transition duration-300">
-            <div className="bg-[#7E57C2] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-              <MessageSquare className="w-8 h-8 text-white" />
-            </div>
-            <h3 className="text-xl font-bold mb-2">3. Receive SMS</h3>
-            <p className="text-gray-400">
-              Get verification codes instantly on our platform
-            </p>
+            <button className="w-full bg-blue-600 text-white py-2 rounded">Continue</button>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Service Selection Section */}
-      <div className="w-full px-4 pb-16">
-        <h2 className="text-3xl font-bold text-center mb-2">
-          Choose Your Number
-        </h2>
-        <p className="text-center text-gray-400 mb-8">
-          Receive SMS messages instantly from anywhere in the world
-        </p>
-        <div className="bg-gray-800 rounded-xl shadow-lg p-6">
-          <div className="grid md:grid-cols-2 gap-6">
-            {/* Country Selection */}
-            <div className="bg-gray-900 rounded-lg p-4">
-              <h3 className="font-bold mb-4 flex items-center text-[#BB86FC]">
-                <Globe className="w-5 h-5 mr-2" />
-                Select Country
-              </h3>
-              <div className="mb-4 relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Search className="h-4 w-4 text-gray-400" />
+      {/* How it Works */}
+      <section className="py-12 bg-blue-600 text-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold text-center mb-12">How our service works</h2>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="bg-blue-500 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
+                <Globe size={28} />
+              </div>
+              <h3 className="font-bold mb-2">1. Choose a number</h3>
+              <p>Select a phone number from any of our available countries</p>
+            </div>
+            
+            <div className="text-center">
+              <div className="bg-blue-500 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
+                <MessageSquare size={28} />
+              </div>
+              <h3 className="font-bold mb-2">2. Get the number</h3>
+              <p>Use the temporary phone number for verification on any service</p>
+            </div>
+            
+            <div className="text-center">
+              <div className="bg-blue-500 rounded-full h-16 w-16 flex items-center justify-center mx-auto mb-4">
+                <Phone size={28} />
+              </div>
+              <h3 className="font-bold mb-2">3. Get your code</h3>
+              <p>Receive and view SMS messages instantly in your account</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold text-center mb-12">Why choose our SMS service</h2>
+          
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-gray-100 p-6 rounded-lg">
+              <Shield size={28} className="text-blue-600 mb-4" />
+              <h3 className="font-bold mb-2">100% Anonymous</h3>
+              <p className="text-gray-700">Protect your privacy with our anonymous phone numbers</p>
+            </div>
+            
+            <div className="bg-gray-100 p-6 rounded-lg">
+              <Check size={28} className="text-blue-600 mb-4" />
+              <h3 className="font-bold mb-2">Instant Delivery</h3>
+              <p className="text-gray-700">Receive SMS messages instantly without delays</p>
+            </div>
+            
+            <div className="bg-gray-100 p-6 rounded-lg">
+              <Globe size={28} className="text-blue-600 mb-4" />
+              <h3 className="font-bold mb-2">Global Coverage</h3>
+              <p className="text-gray-700">Numbers available from countries all around the world</p>
+            </div>
+            
+            <div className="bg-gray-100 p-6 rounded-lg">
+              <DollarSign size={28} className="text-blue-600 mb-4" />
+              <h3 className="font-bold mb-2">Great Pricing</h3>
+              <p className="text-gray-700">Affordable rates for all budgets and needs</p>
+            </div>
+            
+            <div className="bg-gray-100 p-6 rounded-lg">
+              <Clock size={28} className="text-blue-600 mb-4" />
+              <h3 className="font-bold mb-2">24/7 Support</h3>
+              <p className="text-gray-700">Our support team is available around the clock</p>
+            </div>
+            
+            <div className="bg-gray-100 p-6 rounded-lg">
+              <ThumbsUp size={28} className="text-blue-600 mb-4" />
+              <h3 className="font-bold mb-2">Easy Access</h3>
+              <p className="text-gray-700">Simple interface that's easy to use for everyone</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="py-8 bg-gray-900 text-white">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-around flex-wrap">
+            <div className="text-center px-4">
+              <p className="text-4xl font-bold text-blue-400">99.9%</p>
+              <p className="text-gray-400">Uptime</p>
+            </div>
+            <div className="text-center px-4">
+              <p className="text-4xl font-bold text-blue-400">800K+</p>
+              <p className="text-gray-400">Users</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold text-center mb-12">What our users say</h2>
+          
+          <div className="grid md:grid-cols-3 gap-6">
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="bg-gray-100 p-6 rounded-lg">
+                <div className="flex text-yellow-500 mb-2">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} size={16} fill="currentColor" />
+                  ))}
                 </div>
-                <input
-                  type="text"
-                  placeholder="Search country"
-                  className="pl-10 w-full p-3 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 focus:border-[#7E57C2] focus:ring focus:ring-[#7E57C2] focus:ring-opacity-50"
-                  value={searchCountry}
-                  onChange={(e) => setSearchCountry(e.target.value)}
-                />
+                <p className="text-gray-700">{testimonial.text}</p>
               </div>
-              <div className="h-64 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-[#7E57C2] scrollbar-track-gray-700">
-                {filteredCountries.map((country) => (
-                  <div
-                    key={country.code}
-                    className={`flex items-center p-3 hover:bg-[#7E57C2] cursor-pointer rounded-lg mb-1 transition duration-200 ${
-                      selectedCountry === country.code
-                        ? "bg-[#7E57C2]"
-                        : "bg-gray-800"
-                    }`}
-                    onClick={() => setSelectedCountry(country.code)}
-                  >
-                    <span className="mr-3 text-2xl">{country.flag}</span>
-                    <span className="font-medium">{country.name}</span>
-                    <span className="ml-auto text-xs text-gray-400 bg-gray-900 px-2 py-1 rounded-full">
-                      VM
-                    </span>
-                  </div>
-                ))}
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section className="py-12 bg-blue-600 text-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold text-center mb-12">Simple transparent pricing</h2>
+          
+          <div className="flex flex-wrap justify-center gap-8">
+            <div className="bg-white text-gray-900 rounded-lg shadow-lg p-6 w-full max-w-xs">
+              <div className="border-b pb-4 mb-4">
+                <p className="text-lg font-bold">Basic</p>
+                <p className="text-3xl font-bold mt-2">$5</p>
+                <p className="text-gray-600">per month</p>
               </div>
-              <div className="text-xs text-gray-400 mt-4 flex items-center justify-between">
-                <span>
-                  Available Countries:{" "}
-                  <span className="text-white font-bold">179</span>
-                </span>
-                <button className="text-[#BB86FC] hover:underline flex items-center">
-                  View All <ChevronDown className="w-4 h-4 ml-1" />
+              
+              <ul className="mb-6 space-y-2">
+                <li className="flex items-center"><Check size={16} className="text-green-500 mr-2" /> 10 SMS daily</li>
+                <li className="flex items-center"><Check size={16} className="text-green-500 mr-2" /> 5 countries</li>
+                <li className="flex items-center"><Check size={16} className="text-green-500 mr-2" /> Basic support</li>
+              </ul>
+              
+              <button className="w-full bg-blue-600 text-white py-2 rounded">Get Started</button>
+            </div>
+            
+            <div className="bg-white text-gray-900 rounded-lg shadow-lg p-6 w-full max-w-xs relative">
+              <div className="absolute top-0 right-0 bg-blue-600 text-white text-xs px-2 py-1 rounded-bl">Popular</div>
+              <div className="border-b pb-4 mb-4">
+                <p className="text-lg font-bold">Premium</p>
+                <p className="text-3xl font-bold mt-2">$50</p>
+                <p className="text-gray-600">per month</p>
+              </div>
+              
+              <ul className="mb-6 space-y-2">
+                <li className="flex items-center"><Check size={16} className="text-green-500 mr-2" /> Unlimited SMS</li>
+                <li className="flex items-center"><Check size={16} className="text-green-500 mr-2" /> All countries</li>
+                <li className="flex items-center"><Check size={16} className="text-green-500 mr-2" /> Priority support</li>
+                <li className="flex items-center"><Check size={16} className="text-green-500 mr-2" /> Advanced features</li>
+              </ul>
+              
+              <button className="w-full bg-blue-600 text-white py-2 rounded">Get Started</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-12 bg-blue-600 text-white">
+        <div className="container mx-auto px-4 flex flex-wrap items-center justify-between">
+          <div className="w-full md:w-1/2 mb-8 md:mb-0">
+            <h2 className="text-2xl font-bold mb-4">Ready to get started?</h2>
+            <p className="mb-6">Create an account today and start receiving SMS messages online.</p>
+            <button className="bg-white text-blue-600 font-bold px-6 py-3 rounded-md">Sign Up Now</button>
+          </div>
+          <div className="w-full md:w-1/3">
+            <img src="/api/placeholder/300/600" alt="Phone with SMS app" className="rounded-lg mx-auto" />
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+          
+          <div className="max-w-2xl mx-auto">
+            {faqs.map((faq, index) => (
+              <div key={index} className="border-b py-4">
+                <button className="flex justify-between items-center w-full text-left font-medium">
+                  {faq}
+                  <ChevronDown size={20} />
                 </button>
               </div>
-            </div>
-
-            {/* Service Selection */}
-            <div className="bg-gray-900 rounded-lg p-4">
-              <h3 className="font-bold mb-4 flex items-center text-[#BB86FC]">
-                <Zap className="w-5 h-5 mr-2" />
-                Select Service
-              </h3>
-              <div className="mb-4 relative">
-                <input
-                  type="text"
-                  placeholder="Search service"
-                  className="pl-3 pr-10 w-full p-3 border border-gray-700 rounded-lg bg-gray-800 text-gray-100 focus:border-[#7E57C2] focus:ring focus:ring-[#7E57C2] focus:ring-opacity-50"
-                  value={searchService}
-                  onChange={(e) => setSearchService(e.target.value)}
-                />
-                <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                  <Search className="h-4 w-4 text-gray-400" />
-                </div>
-              </div>
-              <div className="h-64 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-[#7E57C2] scrollbar-track-gray-700">
-                {filteredServices.map((service, index) => (
-                  <div
-                    key={index}
-                    className={`flex items-center p-3 hover:bg-[#7E57C2] cursor-pointer rounded-lg mb-1 transition duration-200 ${
-                      selectedService === service.name
-                        ? "bg-[#7E57C2]"
-                        : "bg-gray-800"
-                    }`}
-                    onClick={() => setSelectedService(service.name)}
-                  >
-                    <div className="bg-gray-700 p-2 rounded-lg mr-3">
-                      {service.icon}
-                    </div>
-                    <span className="font-medium">{service.name}</span>
-                    <span className="ml-auto bg-black bg-opacity-30 px-2 py-1 rounded-lg text-yellow-300 font-bold">
-                      ${service.price.toFixed(2)}
-                    </span>
-                  </div>
-                ))}
-              </div>
-              <div className="text-xs text-gray-400 mt-4 flex items-center justify-between">
-                <span>
-                  Available Services:{" "}
-                  <span className="text-white font-bold">1102</span>
-                </span>
-                <button className="text-[#BB86FC] hover:underline flex items-center">
-                  Show All <ChevronDown className="w-4 h-4 ml-1" />
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="mt-6 flex justify-center">
-            <button className="bg-gradient-to-r from-[#7E57C2] to-[#BB86FC] hover:opacity-90 text-white font-bold py-3 px-8 rounded-lg transition shadow-lg flex items-center">
-              <MessageSquare className="w-5 h-5 mr-2" />
-              Receive SMS Now
-            </button>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Popular Services Section */}
-      <div className="w-full px-4 pb-16">
-        <h2 className="text-2xl font-bold mb-6 flex items-center">
-          <Gift className="w-6 h-6 mr-2 text-[#BB86FC]" />
-          Most Popular Services Today
-        </h2>
-        <div className="bg-gray-800 rounded-xl shadow-lg p-6">
-          <div className="overflow-x-auto">
-            <table className="w-full text-gray-100">
-              <thead>
-                <tr className="text-left border-b border-gray-700">
-                  <th className="pb-4 pt-2 pl-4">Country</th>
-                  <th className="pb-4 pt-2">Service</th>
-                  <th className="pb-4 pt-2">Activated</th>
-                  <th className="pb-4 pt-2">Cost</th>
-                  <th className="pb-4 pt-2"></th>
-                </tr>
-              </thead>
-              <tbody>
-                {popularServices.map((item, index) => (
-                  <tr
-                    key={index}
-                    className={
-                      index !== popularServices.length - 1
-                        ? "border-b border-gray-700"
-                        : ""
-                    }
-                  >
-                    <td className="py-4 pl-4">
-                      <div className="flex items-center">
-                        <span className="mr-2 text-xl">
-                          {item.country === "Indonesia"
-                            ? "🇮🇩"
-                            : item.country === "South Africa"
-                            ? "🇿🇦"
-                            : item.country === "Philippines"
-                            ? "🇵🇭"
-                            : item.country === "Chile"
-                            ? "🇨🇱"
-                            : item.country === "Colombia"
-                            ? "🇨🇴"
-                            : item.country === "India"
-                            ? "🇮🇳"
-                            : "🏳️"}
-                        </span>
-                        <span className="font-medium">{item.country}</span>
-                      </div>
-                    </td>
-                    <td className="py-4">
-                      <div className="flex items-center">
-                        <span className="mr-2 text-xl">{item.icon}</span>
-                        <span>{item.service}</span>
-                      </div>
-                    </td>
-                    <td className="py-4">
-                      <span className="bg-[#7E57C2] bg-opacity-20 text-[#BB86FC] px-3 py-1 rounded-full">
-                        {item.activated}
-                      </span>
-                    </td>
-                    <td className="py-4 font-bold text-yellow-300">
-                      ${item.cost.toFixed(2)}
-                    </td>
-                    <td className="py-4">
-                      <button className="bg-[#7E57C2] hover:bg-[#BB86FC] text-white font-medium py-2 px-4 rounded-lg text-sm transition">
-                        Get Now
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <div className="mt-4 text-center">
-            <button className="text-[#BB86FC] hover:underline flex items-center mx-auto">
-              View All Popular Services <ChevronDown className="w-4 h-4 ml-1" />
-            </button>
+      {/* Updates */}
+      <section className="py-8 bg-blue-600 text-white text-center">
+        <div className="container mx-auto px-4">
+          <h2 className="text-xl font-bold mb-2">Stay updated with our latest features</h2>
+          <p className="mb-4">Subscribe to our newsletter for updates and promotions</p>
+          <div className="flex max-w-md mx-auto">
+            <input type="email" placeholder="Enter your email" className="flex-grow px-4 py-2 rounded-l text-gray-900" />
+            <button className="bg-blue-800 px-4 py-2 rounded-r">Subscribe</button>
           </div>
         </div>
-      </div>
-
-      {/* Features Section */}
-      <div className="py-16 bg-gray-900 w-full px-4">
-        <h2 className="text-2xl font-bold text-center mb-12">
-          Premium SMS Services For All Your Needs
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="bg-gray-800 p-6 rounded-xl text-center shadow-lg transform hover:-translate-y-1 transition duration-300">
-            <div className="bg-gradient-to-br from-[#7E57C2] to-[#BB86FC] rounded-xl w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg">
-              <Shield className="w-8 h-8 text-white" />
-            </div>
-            <h3 className="font-bold mb-2 text-lg">24/7 Support</h3>
-            <p className="text-sm text-gray-400 mb-4">
-              Any questions? Our manager is here to help!
-            </p>
-            <a
-              href="#"
-              className="text-[#BB86FC] inline-flex items-center text-sm font-bold hover:underline"
-            >
-              Ask a question
-            </a>
-          </div>
-
-          <div className="bg-gray-800 p-6 rounded-xl text-center shadow-lg transform hover:-translate-y-1 transition duration-300">
-            <div className="bg-gradient-to-br from-[#7E57C2] to-[#BB86FC] rounded-xl w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg">
-              <MessageSquare className="w-8 h-8 text-white" />
-            </div>
-            <h3 className="font-bold mb-2 text-lg">Telegram Bot</h3>
-            <p className="text-sm text-gray-400 mb-4">
-              Receive SMS directly in Telegram!
-            </p>
-            <a
-              href="#"
-              className="text-[#BB86FC] inline-flex items-center text-sm font-bold hover:underline"
-            >
-              Connect Now
-            </a>
-          </div>
-
-          <div className="bg-gray-800 p-6 rounded-xl text-center shadow-lg transform hover:-translate-y-1 transition duration-300">
-            <div className="bg-gradient-to-br from-[#7E57C2] to-[#BB86FC] rounded-xl w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg">
-              <Phone className="w-8 h-8 text-white" />
-            </div>
-            <h3 className="font-bold mb-2 text-lg">Group Chat</h3>
-            <p className="text-sm text-gray-400 mb-4">
-              Join our special Telegram group chat.
-            </p>
-            <a
-              href="#"
-              className="text-[#BB86FC] inline-flex items-center text-sm font-bold hover:underline"
-            >
-              Join Group
-            </a>
-          </div>
-
-          <div className="bg-gray-800 p-6 rounded-xl text-center shadow-lg transform hover:-translate-y-1 transition duration-300">
-            <div className="bg-gradient-to-br from-[#7E57C2] to-[#BB86FC] rounded-xl w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg">
-              <Clock className="w-8 h-8 text-white" />
-            </div>
-            <h3 className="font-bold mb-2 text-lg">SMS on Desktop</h3>
-            <p className="text-sm text-gray-400 mb-4">
-              We offer a dedicated solution for PC users.
-            </p>
-            <a
-              href="#"
-              className="text-[#BB86FC] inline-flex items-center text-sm font-bold hover:underline"
-            >
-              Download App
-            </a>
-          </div>
-        </div>
-      </div>
+      </section>
 
       {/* Footer */}
-      <div className="py-8 border-t border-gray-700 w-full px-4">
-        <div className="text-center">
-          <div className="flex justify-center mb-8">
-            <div className="text-[#7E57C2] font-bold text-2xl">
-              <span className="text-[#BB86FC]">SMS</span>
-              <span className="bg-[#7E57C2] text-white px-2 rounded">M</span>
-              <span>AN</span>
+      <footer className="bg-gray-900 text-gray-400 py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="text-white font-bold mb-4">SMS Online</h3>
+              <p className="mb-4">The most reliable temporary SMS service for all your verification needs.</p>
+              <div className="flex space-x-4">
+                <a href="#" className="text-gray-400 hover:text-white"><Facebook size={20} /></a>
+                <a href="#" className="text-gray-400 hover:text-white"><Twitter size={20} /></a>
+                <a href="#" className="text-gray-400 hover:text-white"><Instagram size={20} /></a>
+                <a href="#" className="text-gray-400 hover:text-white"><Linkedin size={20} /></a>
+              </div>
+            </div>
+            
+            <div>
+              <h3 className="text-white font-bold mb-4">Quick Links</h3>
+              <ul className="space-y-2">
+                <li><a href="#" className="hover:text-white">Home</a></li>
+                <li><a href="#" className="hover:text-white">About Us</a></li>
+                <li><a href="#" className="hover:text-white">Pricing</a></li>
+                <li><a href="#" className="hover:text-white">Contact</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="text-white font-bold mb-4">Services</h3>
+              <ul className="space-y-2">
+                <li><a href="#" className="hover:text-white">SMS Receiving</a></li>
+                <li><a href="#" className="hover:text-white">Verification Service</a></li>
+                <li><a href="#" className="hover:text-white">API Access</a></li>
+                <li><a href="#" className="hover:text-white">Business Solutions</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="text-white font-bold mb-4">Contact</h3>
+              <ul className="space-y-2">
+                <li>support@smsonline.com</li>
+                <li>+1 (555) 123-4567</li>
+                <li>123 Main Street, City</li>
+              </ul>
             </div>
           </div>
-          <div className="flex flex-wrap justify-center gap-6 text-sm mb-8">
-            <a
-              href="#"
-              className="text-[#7E57C2] hover:text-[#BB86FC] transition"
-            >
-              Receive SMS online
-            </a>
-            <a
-              href="#"
-              className="text-[#7E57C2] hover:text-[#BB86FC] transition"
-            >
-              Rent Number
-            </a>
-            <a
-              href="#"
-              className="text-[#7E57C2] hover:text-[#BB86FC] transition"
-            >
-              API Connection
-            </a>
-            <a
-              href="#"
-              className="text-[#7E57C2] hover:text-[#BB86FC] transition"
-            >
-              Referral Program
-            </a>
-            <a
-              href="#"
-              className="text-[#7E57C2] hover:text-[#BB86FC] transition"
-            >
-              Partnership
-            </a>
-          </div>
-          <div className="text-xs text-gray-400">
-            <a href="#" className="hover:text-gray-200 mr-4">
-              Privacy Policy
-            </a>
-            <a href="#" className="hover:text-gray-200 mr-4">
-              Terms of Use
-            </a>
-            <a href="#" className="hover:text-gray-200">
-              Payment & Refund
-            </a>
+          
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center">
+            <p>&copy; {new Date().getFullYear()} SMS Online Service. All rights reserved.</p>
           </div>
         </div>
-      </div>
+      </footer>
+
+      {/* Chat Button */}
+      <button className="fixed bottom-4 right-4 bg-blue-600 text-white p-4 rounded-full shadow-lg">
+        <MessageSquare size={24} />
+      </button>
     </div>
   );
-};
-
-export default Home;
+}
