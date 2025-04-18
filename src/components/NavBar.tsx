@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { RiMenuFill } from "react-icons/ri";
-import { HiX } from "react-icons/hi";
+import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 
@@ -13,12 +12,15 @@ type NavBarProps = {
 
 const NavBar: React.FC<NavBarProps> = ({
   active = 0,
-  background = "#000000",
+  background = "#ffffff",
 }) => {
+  // Updated navigation items based on the SMS service design
   const nav = [
     { title: "Home", link: "/" },
-    { title: "About Us", link: "/about" },
-    { title: "Contact", link: "/contact" },
+    { title: "Numbers", link: "/numbers" },
+    { title: "Pricing", link: "/pricing" },
+    { title: "API", link: "/api" },
+    { title: "Blog", link: "/blog" },
   ];
 
   const [showNav, setShowNav] = useState(false);
@@ -26,25 +28,24 @@ const NavBar: React.FC<NavBarProps> = ({
   return (
     <header
       style={{ background }}
-      className="fixed top-0 left-0 w-full z-50 bg-black bg-opacity-95 shadow-lg"
+      className="fixed top-0 left-0 w-full z-50 shadow-sm"
     >
-      {/* remove horizontal padding on the container */}
-      <div className="flex items-center justify-between h-16">
+      <div className="container mx-auto flex items-center justify-between h-16">
         {/* Logo */}
         <Link href="/">
-          <h1 className="text-[#BB86FC] font-bold text-xl pl-4">
-            SMS<span className="text-white">MAN</span>
+          <h1 className="text-blue-600 font-bold text-xl">
+            SMS<span className="text-gray-800">Receiver</span>
           </h1>
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex flex-1 justify-center gap-8 text-white">
+        <nav className="hidden md:flex flex-1 justify-center gap-8 text-gray-600">
           {nav.map((item, i) => (
             <Link
               key={i}
               href={item.link}
-              className={`text-sm font-semibold hover:text-[#BB86FC] transition-colors duration-300 ${
-                active === i ? "text-[#BB86FC]" : ""
+              className={`text-sm font-medium hover:text-blue-600 transition-colors duration-300 ${
+                active === i ? "text-blue-600" : ""
               }`}
             >
               {item.title}
@@ -53,32 +54,27 @@ const NavBar: React.FC<NavBarProps> = ({
         </nav>
 
         {/* Auth Buttons */}
-        <div className="hidden md:flex items-center gap-4 pr-4">
-          <Link href="/signup">
-            <Button className="bg-transparent border-2 border-[#BB86FC] text-[#BB86FC] hover:bg-[#BB86FC] hover:text-white rounded-full px-5 py-2 text-sm font-semibold">
-              Sign Up
-            </Button>
-          </Link>
+        <div className="hidden md:flex items-center gap-4">
           <Link href="/signin">
-            <Button className="bg-[#7E57C2] hover:bg-[#BB86FC] text-white rounded-full px-5 py-2 text-sm font-semibold">
-              Login
+            <Button className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-4 py-2 text-sm font-medium">
+              Sign In
             </Button>
           </Link>
         </div>
 
         {/* Mobile Hamburger */}
-        <div className="md:hidden pr-4 text-white z-50">
+        <div className="md:hidden text-gray-800 z-50">
           {showNav ? (
-            <HiX size={28} onClick={() => setShowNav(false)} />
+            <X size={24} onClick={() => setShowNav(false)} className="cursor-pointer" />
           ) : (
-            <RiMenuFill size={28} onClick={() => setShowNav(true)} />
+            <Menu size={24} onClick={() => setShowNav(true)} className="cursor-pointer" />
           )}
         </div>
       </div>
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 bg-[#1A1A1A] text-white transform transition-transform duration-300 ease-in-out z-40 ${
+        className={`fixed inset-0 bg-white text-gray-800 transform transition-transform duration-300 ease-in-out z-40 ${
           showNav ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -88,30 +84,31 @@ const NavBar: React.FC<NavBarProps> = ({
               key={i}
               href={item.link}
               onClick={() => setShowNav(false)}
-              className={`text-lg font-medium hover:text-[#BB86FC] ${
-                active === i ? "text-[#BB86FC]" : ""
+              className={`text-lg font-medium hover:text-blue-600 ${
+                active === i ? "text-blue-600" : ""
               }`}
             >
               {item.title}
             </Link>
           ))}
 
-          <Link href="/signup">
-            <Button
-              onClick={() => setShowNav(false)}
-              className="mt-auto bg-transparent border-2 border-[#BB86FC] text-[#BB86FC] hover:bg-[#BB86FC] hover:text-white rounded-full w-full py-2 text-sm font-semibold"
-            >
-              Sign Up
-            </Button>
-          </Link>
-          <Link href="/signin">
-            <Button
-              onClick={() => setShowNav(false)}
-              className="bg-[#7E57C2] hover:bg-[#BB86FC] text-white rounded-full w-full py-2 text-sm font-semibold"
-            >
-              Login
-            </Button>
-          </Link>
+          <div className="mt-auto pb-8">
+            <Link href="/signin">
+              <Button
+                onClick={() => setShowNav(false)}
+                className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg w-full py-2 text-sm font-medium"
+              >
+                Sign In
+              </Button>
+            </Link>
+            <div className="mt-4">
+              <Link href="/signup" className="block text-center">
+                <span className="text-gray-600 hover:text-blue-600">
+                  New user? Create an account
+                </span>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </header>
