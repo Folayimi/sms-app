@@ -419,7 +419,7 @@ export default function SMSServiceLandingPage() {
                 </button>
               </div>
               <div className="md:w-1/2 flex justify-center">
-                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTksdsOuyQJEZLJw-ooPU5ycBw0FO0MFRQ3SmEtjWZY5qlLYReZ" className="max-w-full rounded-2xl border-4 border-white/20 shadow-lg" />
+                <img src="https://readdy.ai/api/search-image?query=smartphone%2520with%2520SMS%2520verification%2520code%2520interface%252C%2520modern%2520clean%2520design%252C%2520blue%2520themed%2520app%2520screen%252C%2520professional%2520product%2520visualization%252C%2520high%2520quality%2520render%2520with%2520subtle%2520shadows%2520and%2520glowing%2520elements&width=400&height=400&seq=3&orientation=squarish" alt="Mobile app screenshot" className="max-w-full rounded-2xl border-4 border-white/20 shadow-lg" />
               </div>
             </div>
           </div>
