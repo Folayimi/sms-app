@@ -17,7 +17,6 @@ import {
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import TopUp from "@/components/popups/TopUp";
 import { useDispatch, useSelector } from "react-redux";
 import { setTopUp } from "@/redux/features/register/registerSlice";
 import { RootState } from "@/redux/store";
@@ -351,8 +350,7 @@ const Overview: React.FC = () => {
   }, []);
 
   return (
-    <>
-      {topUp && <TopUp />}
+    <>      
       <div className="bg-[#101827] backdrop-blur-[12px] lg:mt-[50px] mt-[40px] pb-[40px] text-white px-[30px] pt-12">
         {overviewLoading ? (
           <SkeletonTheme

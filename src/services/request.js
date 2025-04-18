@@ -2,7 +2,7 @@ import axios from "axios";
 import { notify, notifyError } from "./toastify";
 
 // const api = BASE_URL;
-const api = "https://smsbackend-iota.vercel.app/api"
+const api = "https://smsbackend-iota.vercel.app/api";
 // const api = axios.create({
 //   baseURL: "http://localhost:5000/api",
 // });
@@ -56,7 +56,7 @@ export const userLogin = async (data) => {
         // localStorage.setItem(
         //   "alpsUser",
         //   JSON.stringify(response.data.data.data)
-        // );       
+        // );
       }
     })
     .catch((err) => {
@@ -93,26 +93,13 @@ export const userRegistration = async (data) => {
       headers: {
         "Content-Type": "application/json",
       },
-      withCredentials: true,
+      // withCredentials: false,
     })
     .then((response) => {
-      console.log(response)
-      if (response.data.status === "success") {
-        localStorage.setItem(
-          "userData",
-          JSON.stringify(response.data.data.data)
-        );
-        localStorage.setItem("alpsToken", response.data.token);
-        window.location.pathname = "/Info";
-      }
+      console.log(response);
     })
     .catch((err) => {
       console.log(err);
-      if (err.response.data.message) {
-        notifyError(err.response.data.message);
-      } else {
-        notifyError("Network Error");
-      }
     });
 };
 
