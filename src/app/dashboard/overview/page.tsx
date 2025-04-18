@@ -112,9 +112,8 @@ const Overview: React.FC = () => {
   const [mobile, setMobile] = useState(false);
   const [users, setUsers] = useState<UserData[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [overviewLoading, setOverviewLoading] = useState(false);
+  const [overviewLoading, setOverviewLoading] = useState(true);
   const dispatch = useDispatch();
-  const topUp = useSelector((state: RootState) => state.register.topUp);
 
   const overviewData: Stat[] = [
     {
