@@ -325,7 +325,7 @@ export default function SMSServiceLandingPage() {
           <h2 className="text-3xl font-bold text-center mb-16">Simple transparent pricing 💰</h2>
           
           <div className="flex flex-wrap justify-center gap-8">
-            <div className="bg-white backdrop-blur-sm text-blue-800/30 rounded-2xl overflow-hidden w-full max-w-xs border border-blue-500/30 hover:transform hover:scale-105 transition-all">
+            <div className="bg-white backdrop-blur-sm text-black rounded-2xl overflow-hidden w-full max-w-xs border border-blue-500/30 hover:transform hover:scale-105 transition-all">
               <div className="p-6">
                 <div className="text-center mb-6">
                   <div className="text-xl font-medium mb-2">Basic</div>
